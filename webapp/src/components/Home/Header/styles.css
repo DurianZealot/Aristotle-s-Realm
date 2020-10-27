@@ -1,0 +1,28 @@
+.header{
+    height: 7%;
+    width: 100%;
+}
+.header__bar{
+    background-image: './static/logo.jpg';
+}
+.absolute{
+    position: absolute;
+}
+.relative{
+    position: relative;
+}
+.flex{
+    flex-grow: 1;
+}
+.title{
+    text-align: center;
+
+}
+.image{
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top:1%;
+    max-width: 100px;
+    max-height: 60px;
+
+}

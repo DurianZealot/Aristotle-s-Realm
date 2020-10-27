@@ -1,0 +1,25 @@
+.website__intro {
+    height: 50%;
+    width: 100%;
+    position: relative;
+}
+
+.bottom__left{
+    height: 35%;
+    width: 50%;
+    position: relative;
+    float: left;
+}
+
+
+.bottom__right{
+    height: 35%;
+    width: 50%;
+    margin-left: 50%;
+    position: relative;
+}
+.homepage{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
