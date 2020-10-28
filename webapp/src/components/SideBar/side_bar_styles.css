@@ -1,0 +1,78 @@
+/* Styles for the Side Bar component */
+.side-bar {
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background-color: grey;
+}
+
+.side-bar__home-link {
+    position: absolute;
+    width: 180px;
+    height: 60px;
+    top: 10px;
+    left: 10px;
+}
+
+.side-bar__home-button {
+    background-size: cover;
+    background-image: url("./static/home-button-icon.png");
+}
+
+.side-bar__browse-link {
+    position: absolute;
+    width: 180px;
+    top: 70px;
+    padding: 10px;
+    height: 40px;
+}
+
+.side-bar__create-stories-link {
+    position: absolute;
+    width: 180px;
+    top: 120px;
+    padding: 10px;
+    height: 40px;
+}
+
+.side-bar__my-stories-link {
+    position: absolute;
+    width: 180px;
+    top: 170px;
+    padding: 10px;
+    height: 40px;
+}
+
+.side-bar__my-proposals-link {
+    position: absolute;
+    width: 180px;
+    top: 220px;
+    padding: 10px;
+    height: 40px;
+}
+
+.side-bar__button {
+    width: 100%;
+    height: 100%;
+}
+
+.side-bar__profile-link {
+    position: absolute;
+    width: 180px;
+    bottom: 20px;
+    padding: 10px;
+    height: 40px;
+}
+
+.side-bar__register-link {
+    position: absolute;
+    width: 180px;
+    bottom: 20px;
+    padding: 10px;
+    height: 40px;
+}
+
+/* Remove underline from text*/
+a:-webkit-any-link {
+    text-decoration: none;
+}
