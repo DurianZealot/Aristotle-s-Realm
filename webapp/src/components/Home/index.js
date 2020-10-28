@@ -1,16 +1,20 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+//import {Link} from 'react-router-dom'
+import Body from './Body'
+import Header from './Header'
+import "./styles.css"
 
 class Home extends React.Component{
     render() {
         return(
-            <div>
-                <h1>
-                    Welcome to the Home page
-                </h1>
-                <Link to={"./register"}>
-                    <button> go to registration</button>
-                </Link>
+            <div className="homepage">
+                <Header>
+
+                </Header>
+            
+                <Body>
+
+                </Body>                
             </div>
         )
     }
