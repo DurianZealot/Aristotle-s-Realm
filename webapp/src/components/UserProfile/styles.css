@@ -1,0 +1,26 @@
+/* Styles for the User Profile component */
+.user-profile__header {
+    position: absolute;
+    background-color: grey;
+    width: 800px;
+    height: 175px;
+    margin-top: 20px;
+    left: 30%;
+}
+
+.user-profile__icon {
+    background-size: cover;
+    width: 175px;
+    float: left;
+    height: 175px;
+    border-radius: 50%;
+    background-image: url("./icon/profile-icon-placeholder.png");
+}
+
+.user-profile__info {
+    margin-left: 200px;
+}
+
+.user-profile__info-username {
+    color: white;
+}
