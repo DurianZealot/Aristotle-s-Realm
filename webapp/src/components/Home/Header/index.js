@@ -5,12 +5,12 @@ import {AccountCircle} from '@material-ui/icons'
 class Header extends React.Component{
     render() {
         return(
-            <div className='header flex'>
-                <AppBar position="static">
+            <div className='header flex '>
+                <AppBar position="static container">
                     <Toolbar>
                         <Button color="secondary" variant="contained">Browse Stories</Button>
                             
-                        <Typography variant="h2" className='flex title' >
+                        <Typography variant="h3" className='flex title' >
                             <img src={require('./static/logo.jpg')} alt="logo" className='image flex' >
                             </img>
                              TITLE TBA

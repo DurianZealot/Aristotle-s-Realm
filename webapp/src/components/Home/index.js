@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+//import {Link} from 'react-router-dom'
 import Body from './Body'
 import Header from './Header'
 import "./styles.css"
@@ -14,11 +14,7 @@ class Home extends React.Component{
             
                 <Body>
 
-                </Body>
-                <Link to={"./register"}>
-                    <button> go to registration</button>
-                </Link>
-                
+                </Body>                
             </div>
         )
     }
