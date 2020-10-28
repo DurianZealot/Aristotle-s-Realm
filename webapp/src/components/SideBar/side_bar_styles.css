@@ -1,6 +1,7 @@
 /* Styles for the Side Bar component */
 .side-bar {
     position: fixed;
+    float: left;
     width: 200px;
     height: 100%;
     background-color: grey;
