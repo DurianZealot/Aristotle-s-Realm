@@ -1,0 +1,24 @@
+.search-container{
+    display: flex;
+}
+
+.search-bar{
+    float:left;
+    margin-left: 25%;
+    width: 45%;
+    height: 30px;
+    font-size: x-large;
+    text-align: center;
+    padding: 0%;
+}
+
+.search-button{
+    width: 5%;
+    text-align: center;
+}
+
+.search-header{
+    position: relative;
+    text-align: center;
+}
+
