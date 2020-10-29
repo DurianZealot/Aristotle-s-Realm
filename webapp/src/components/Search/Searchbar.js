@@ -3,10 +3,11 @@ import './style.css'
 class Searchbar extends Component {
     render() {
         const {searchKeyword, handleChange, searchStory} = this.props 
+        console.log(this.props)
         return (
             <div className="search-container">
             <input className="search-bar" name="searchKeyword" value={searchKeyword} onChange={handleChange}/>
-            <button className="search-button" onClick={searchStory}>Search</button>
+            <button className="search-button" onClick={() => searchStory(this.props.allStories, searchKeyword)}>Search</button>
             </div>
         );
     }
