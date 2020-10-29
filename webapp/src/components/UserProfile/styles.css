@@ -6,6 +6,7 @@
     background-color: #313232;
     overflow: hidden;
 }
+
 .user-profile__header {
     position: absolute;
     min-height: 175px;

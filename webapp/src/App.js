@@ -5,7 +5,8 @@ import './App.css';
 import Home from './components/Home'
 import Registration from './components/Registration'
 import Search from './components/Search/Search';
-import UserProfile from './components/UserProfile'
+import UserProfile from './components/UserProfile';
+import MyProposals from './components/MyProposals';
 import storyData from './data/stories';
 
 const authorId="authorId", storyline="storyLine", storyPreview="storyPreview", lastUpdate="lastUpdate";
@@ -37,6 +38,7 @@ const authorId="authorId", storyline="storyLine", storyPreview="storyPreview", l
             <Route exact path='/register' render={() => (<Registration/>)} />
             <Route exact path='/profile/user' render={() => (<UserProfile/>)} />
             <Route exact path='/search' render={() => (<Search data={this.state.stories}/>)}/>
+            <Route exact path='/profile/user/my-proposals' render={() => (<MyProposals/>)} />
           </Switch>
         </BrowserRouter>
       </div>

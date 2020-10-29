@@ -5,29 +5,31 @@ import "./styles.css"
 
 class UserProfile extends React.Component{
     render() {
-        const {isLoggedIn, user} = this.props // Check whether the user is logged in or not
+        const {user} = this.props // User Object to be used to grab all the data
         return (
             <div className="user-profile">
-                <SideBar isLoggedIn={isLoggedIn}>
+                <SideBar isLoggedIn={true}>
                 
                 </SideBar>
                 {/* Header */}
                 <div className="user-profile__header blocks">
-                    <div className="user-profile__icon"> 
+                    <div className="user-profile__icon">
                         {/* Currently the css file HARDCODES a placeholder profile image */}
+                        {/* Requires a server call to get the user's profile icon */}
                     </div>
                     <div className="user-profile__basic-info">
                         <h1 className="user-profile__username text">
-                            FirstName LastName
                             {/* Currently HARDCORDED */}
+                            {/* Requires a server call */}
+                            FirstName LastName
                         </h1>
                         <h3 className="user-profile__age text">
-                            Age: 20
                             {/* Currently HARDCODED */}
+                            Age: 20
                         </h3>
                         <h3 className="user-profile__preferred-genre text">
-                            Preferred Genre: Sci-Fi
                             {/* Currently HARDCODED */}
+                            Preferred Genre: Sci-Fi
                         </h3>
                     </div>
                 </div>    
