@@ -1,0 +1,36 @@
+/* Styles for the GeneralInfo component */
+.user_name {
+    margin-bottom: 5px;
+    font-size: 150%;
+}
+
+.general-info-container {
+    position: absolute;
+    width: 500px;
+    min-height: 175px;
+    margin-top: 20px;
+    overflow: auto;
+}
+
+.icon {
+    background-size: cover;
+    width: 175px;
+    float: left;
+    height: 175px;
+    border-radius: 50%;
+    background-image: url("icon/profile-icon-placeholder.png");
+}
+
+.general-info {
+    margin-left: 200px;
+}
+
+.black {
+    color: black;
+}
+
+.blocks {
+    background-color: #a2bce8;
+    min-width: 45%;
+    left: 25%;
+}

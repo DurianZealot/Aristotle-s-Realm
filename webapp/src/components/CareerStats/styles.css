@@ -1,0 +1,19 @@
+/* Styles for the CareerStats component */
+.user-profile__career-stats {
+    position: absolute;
+    background-color: #a2bce8;
+    width: 300px;
+    min-height: 300px;
+    top: 20px;
+    left: 75%;
+}
+
+.career-stats-header {
+    background-color: #721523;
+    text-align: center;
+}
+
+.career-stats-item {
+    margin-left: 10px;
+    margin-top: 5px;
+}
