@@ -3,32 +3,29 @@ import SideBar from "./../SideBar";
 import GeneralInfo from "./../GeneralInfo";
 import SocialStats from "./../SocialStats";
 import CareerStats from "./../CareerStats";
+import { getUserInfo } from "./../../actions/user-profile"
 import "./styles.css";
 
+// TODO: add a log out function somewhere that changes isLoggedIn to false
+
 class UserProfile extends React.Component {
-  state = {
-    user: {
-      name: "Ipsum Lorem",
-      iconPath: "icon/profile-icon-placeholder.png",
-      age: "20",
-      genrePref: "Sci-Fi",
 
-      joinDate: "December 21",
-      followerCount: "6666",
-      followingCount: "420",
-      approvalRate: "69",
+  constructor(props) {
+    // When the component is created
+    super(props);
+    this.state = {
+      user: {},
+      userId: "",
+      isLoggedIn: false,
+    };
+  }
 
-      proposalAcceptNum: "9",
-      worksBegunNum: "11",
-      LastContributionDate: "Oct 31, 2020"
-    },
-    isLoggedIn: false,
-  };
-
-  // If this component is able to load then the user must have logged in
+  // If this component is able to load then the user must have logged in.
+  // Otherwise, should redirect the user to the login/register view
   componentDidMount() {
     // When the component enters the DOM
     this.setState({
+      user: getUserInfo(this.state.userId),
       isLoggedIn: true,
     });
   }
@@ -58,9 +55,9 @@ class UserProfile extends React.Component {
           </div>
         </div>
         <CareerStats
-            proposalAcceptNum={this.state.user.proposalAcceptNum}
-            worksBegunNum={this.state.user.worksBegunNum}
-            LastContributionDate={this.state.user.LastContributionDate}
+          proposalAcceptNum={this.state.user.proposalAcceptNum}
+          worksBegunNum={this.state.user.worksBegunNum}
+          LastContributionDate={this.state.user.LastContributionDate}
         />
       </div>
     );
