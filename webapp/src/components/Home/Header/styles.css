@@ -1,11 +1,12 @@
 .header{
-    height: 7%;
+    height: 70px;
     width: 100%;
     position: fixed;
 
 }
 .container{
-    height: 100%; 
+    width: 100%;
+    position: absolute; 
     overflow: auto; 
 }
 .header__bar{

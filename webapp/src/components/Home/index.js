@@ -3,7 +3,7 @@ import React from 'react'
 import Body from './Body'
 import Header from './Header'
 import "./styles.css"
-
+import Sidebar from './../SideBar'
 class Home extends React.Component{
     render() {
         return(
@@ -11,7 +11,6 @@ class Home extends React.Component{
                 <Header>
 
                 </Header>
-            
                 <Body>
 
                 </Body>                
