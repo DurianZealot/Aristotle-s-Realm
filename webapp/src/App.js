@@ -7,13 +7,12 @@ import Registration from './components/Registration'
 import Search from './components/Search/Search';
 import UserProfile from './components/UserProfile';
 import MyProposals from './components/MyProposals';
+import MyStories from './components/MyStories';
 import storyData from './data/stories';
 import Login from './components/Login';
 const authorId="authorId", storyline="storyLine", storyPreview="storyPreview", lastUpdate="lastUpdate";
 
  class App extends React.Component{
-  
-  
    
   constructor(props) {
     // initialize a set of story data 
@@ -42,10 +41,11 @@ const authorId="authorId", storyline="storyLine", storyPreview="storyPreview", l
           <Switch>
             <Route exact path='/' render={() => (<Home appState={this.state} />)}/>
             <Route exact path='/register' render={() => (<Registration/>)} />
+            <Route exact path='/profile/user' render={() => (<UserProfile userId={"TEMP"}/>)} />
             <Route exact path='/login' render={() => (<Login appState={this.state} />)}/>
-            <Route exact path='/profile/user' render={() => (<UserProfile/>)} />
             <Route exact path='/search' render={() => (<Search data={this.state.stories}/>)}/>
-            <Route exact path='/profile/user/my-proposals' render={() => (<MyProposals/>)} />
+            <Route exact path='/profile/user/my-proposals' render={() => (<MyProposals userId={"TEMP"}/>)} />
+            <Route exact path='/profile/user/my-stories' render={() => <MyStories userId={"TEMP"}/>} />
           </Switch>
         </BrowserRouter>
       </div>

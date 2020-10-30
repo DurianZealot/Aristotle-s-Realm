@@ -1,0 +1,27 @@
+/* Styles for the MyStories component */
+.my-stories {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #f0e4e5;
+}
+
+.my-stories-body {
+    width: 100%;
+    height: 100%;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.my-stories-header-text {
+    text-align: center;
+    background-color: #721523;
+}
+
+.my-stories-list-container {
+    min-height: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 200px;
+}
