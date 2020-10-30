@@ -1,0 +1,15 @@
+.login__form {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.login__title {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+}
+.login__page {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}

@@ -26,7 +26,7 @@ const authorId="authorId", storyline="storyLine", storyPreview="storyPreview", l
         {username: "user2", password: "user2"},
         {username: "admin", password: "admin"},
       ],
-      loggedIn: false,
+      currentUser: null,
       userIds : ["LUsCH", "piPHe", "Ioust", "mairT"],  
       stories : storyData
       }

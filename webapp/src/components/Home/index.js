@@ -7,18 +7,18 @@ class Home extends React.Component{
     constructor(props) {
         super(props)
         this.state ={
-            loggedIn : props.appState.loggedIn
+            currentUser : props.appState.currentUser
         }
     }
     render() {
         
-        if (this.state.loggedIn === false){
+        if (!this.state.currentUser){
             return(
                 <div className="homepage">
-                    <Header>
+                    <Header className='header'>
     
                     </Header>
-                    <Body>
+                    <Body className='body'>
     
                     </Body>                
                 </div>

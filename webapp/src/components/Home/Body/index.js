@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.css'
 import {Link} from 'react-router-dom'
-import { Typography, AppBar, Toolbar, IconButton, Button} from '@material-ui/core';
+import {Button} from '@material-ui/core';
 class Body extends React.Component{
     
     render() {
