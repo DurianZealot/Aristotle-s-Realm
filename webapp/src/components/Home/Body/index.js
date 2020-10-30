@@ -29,7 +29,7 @@ class Body extends React.Component{
                     Have an Account? 
                 </div>
                         
-                <Link className='login_link'  to={"./register"}> { /*link to registration page*/}
+                <Link className='login_link'  to={"./login"}> { /*link to login page*/}
                     <Button className="button" >
                         <h1 className="register_text"> log In</h1>                          
                     </Button>
