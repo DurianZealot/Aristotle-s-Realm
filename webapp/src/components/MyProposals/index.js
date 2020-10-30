@@ -9,7 +9,7 @@ class MyProposals extends React.Component {
   render() {
     const { userId } = this.props;
 
-    const proposals = getUserProposals(this.props.userId);
+    const proposals = getUserProposals(userId);
 
     return (
       <div className="my-proposals">
