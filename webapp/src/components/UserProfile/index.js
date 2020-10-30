@@ -3,13 +3,12 @@ import SideBar from "./../SideBar";
 import GeneralInfo from "./../GeneralInfo";
 import SocialStats from "./../SocialStats";
 import CareerStats from "./../CareerStats";
-import { getUserInfo } from "./../../actions/user-profile"
+import { getUserInfo } from "./../../actions/user-profile";
 import "./styles.css";
 
 // TODO: add a log out function somewhere that changes isLoggedIn to false
 
 class UserProfile extends React.Component {
-
   constructor(props) {
     // When the component is created
     super(props);
@@ -25,6 +24,7 @@ class UserProfile extends React.Component {
   componentDidMount() {
     // When the component enters the DOM
     this.setState({
+      userId: this.props.userId,
       user: getUserInfo(this.state.userId),
       isLoggedIn: true,
     });
@@ -33,7 +33,11 @@ class UserProfile extends React.Component {
   render() {
     return (
       <div className="user-profile">
-        <SideBar isLoggedIn={this.state.isLoggedIn} />
+        <SideBar
+          isLoggedIn={this.state.isLoggedIn}
+          userId={this.state.userId}
+          user={this.state.user}
+        />
         <GeneralInfo
           name={this.state.user.name}
           iconPath={this.state.user.iconPath}

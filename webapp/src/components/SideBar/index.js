@@ -4,10 +4,31 @@ import Button from "@material-ui/core/Button";
 import "./side_bar_styles.css"
 
 class SideBar extends React.Component {
-    render() {
-        const {isLoggedIn} = this.props
 
-        if (isLoggedIn) {
+    constructor(props) {
+        // When the component is created
+        super(props);
+        this.state = {
+          user: {},
+          userId: "",
+          isLoggedIn: false,
+        };
+    }
+
+    /*
+    componentDidMount() {
+        // When the component enters the DOM
+        this.setState({
+            user: this.props.user,
+            userId: this.props.userId,
+            isLoggedIn: this.props.isLoggedIn
+        });
+    } 
+    */
+
+    render() {
+
+        if (this.props.isLoggedIn) {
             // User Sidebar
             return (
                 <div className="side-bar">

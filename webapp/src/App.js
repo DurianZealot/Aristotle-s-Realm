@@ -36,9 +36,9 @@ const authorId="authorId", storyline="storyLine", storyPreview="storyPreview", l
           <Switch>
             <Route exact path='/' render={() => (<Home />)}/>
             <Route exact path='/register' render={() => (<Registration/>)} />
-            <Route exact path='/profile/user' render={() => (<UserProfile/>)} />
+            <Route exact path='/profile/user' render={() => (<UserProfile userId={"TEMP"}/>)} />
             <Route exact path='/search' render={() => (<Search data={this.state.stories}/>)}/>
-            <Route exact path='/profile/user/my-proposals' render={() => (<MyProposals/>)} />
+            <Route exact path='/profile/user/my-proposals' render={() => (<MyProposals userId={"TEMP"}/>)} />
           </Switch>
         </BrowserRouter>
       </div>
