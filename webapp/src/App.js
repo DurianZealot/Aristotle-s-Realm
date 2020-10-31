@@ -5,13 +5,14 @@ import './App.css';
 import Home from './components/Home'
 import Registration from './components/Registration'
 import Search from './components/Search/Search';
-import UserProfile from './components/UserProfile'
+import UserProfile from './components/UserProfile';
+import MyProposals from './components/MyProposals';
+import MyStories from './components/MyStories';
 import storyData from './data/stories';
+import Login from './components/Login';
 
 
  class App extends React.Component{
-  
-  
    
   constructor(props) {
     // initialize a set of story data 
@@ -19,6 +20,12 @@ import storyData from './data/stories';
     // each story has a unique story name, author userId, storyLine, storyPreview, lastUpdate date
     super(props);
     this.state = {
+      users: [
+        {username: "user", password: "user"},
+        {username: "user2", password: "user2"},
+        {username: "admin", password: "admin"},
+      ],
+      currentUser: null, // currentUser should hold either a userId or null
       userIds : ["LUsCH", "piPHe", "Ioust", "mairT"],  
       stories : storyData
       }
@@ -32,12 +39,15 @@ import storyData from './data/stories';
       <div>
         <BrowserRouter>
           <Switch>
-            <Route exact path='/' render={() => (<Home />)}/>
+            <Route exact path='/' render={() => (<Home appState={this.state} />)}/>
             <Route exact path='/register' render={() => (<Registration/>)} />
-            <Route exact path='/profile/user' render={() => (<UserProfile/>)} />
+            <Route exact path='/profile/user' render={() => (<UserProfile appState={this.state}/>)} />
+            <Route exact path='/login' render={() => (<Login appState={this.state} />)}/>
             <Route exact path='/search' render={() => (<Search data={this.state.stories}/>)}/>
             {/* Route to a page of the article, set route to the home page temporarily */}
             <Route exact path='/aritcle=:name' render={(props) => {const { name } = props.match.params; console.log(name); return (<Home />)}}></Route>
+            <Route exact path='/profile/user/my-proposals' render={() => (<MyProposals appState={this.state}/>)} />
+            <Route exact path='/profile/user/my-stories' render={() => <MyStories appState={this.state}/>} />
           </Switch>
         </BrowserRouter>
       </div>

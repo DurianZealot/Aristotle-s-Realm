@@ -5,7 +5,12 @@
     position: relative;
     float: left;
 }
-
+.header{
+    z-index: 2;
+}
+.body{
+    z-index: 1;
+}
 
 .bottom__right{
     height: 35%;
