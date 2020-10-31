@@ -3,6 +3,7 @@ import Searchbar from "./Searchbar";
 import SearchResult from "./SearchResult";
 import $ from "jquery";
 import "./style.css";
+import SideBar from "../SideBar";
 
 class Search extends Component {
   state = {
@@ -57,6 +58,7 @@ class Search extends Component {
     }
     return (
       <div>
+        <SideBar></SideBar>
         <h1 className="search-header"> Search stories with keywords... </h1>
         <Searchbar
           allStories={this.props.data}
