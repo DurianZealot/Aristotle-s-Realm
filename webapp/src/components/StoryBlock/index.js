@@ -7,7 +7,8 @@ class StoryBlock extends React.Component {
         storyTitle,
         storyViewCount,
         storyTags,
-        storyDate
+        storyDate,
+        storyContent,
     } = this.props
 
     return (

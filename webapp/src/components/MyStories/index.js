@@ -9,7 +9,7 @@ import "./styles.css";
 // Similarly implemented to MyProposals
 class MyStories extends React.Component {
   render() {
-    const { userId } = this.props;
+    const userId = this.props.appState.currentUser;
 
     const stories = getUserStories(userId);
 

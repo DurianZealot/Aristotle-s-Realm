@@ -24,8 +24,8 @@ class UserProfile extends React.Component {
   componentDidMount() {
     // When the component enters the DOM
     this.setState({
-      userId: this.props.userId,
-      user: getUserInfo(this.state.userId),
+      user: getUserInfo(this.props.appState.currentUser),
+      userId: this.props.appState.currentUser,
       isLoggedIn: true,
     });
   }
