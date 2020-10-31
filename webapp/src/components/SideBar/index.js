@@ -57,7 +57,7 @@ class SideBar extends React.Component {
                     </Link>
 
                     {/* Currently No way to log user out yet */}
-                    <Link className="side-bar__logout-link" to={"/"}> {/* Log User Out */}
+                    <Link className="side-bar__logout-link" to={"/"} onClick={() => {this.props.appState.currentUser = null}}> {/* Log User Out */}
                         <Button className="side-bar__button" variant="contained" size="large">Logout</Button>
                     </Link>
                 </div>

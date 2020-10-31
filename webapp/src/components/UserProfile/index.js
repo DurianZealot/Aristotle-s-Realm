@@ -34,9 +34,8 @@ class UserProfile extends React.Component {
     return (
       <div className="user-profile">
         <SideBar
+          appState={this.props.appState}
           isLoggedIn={this.state.isLoggedIn}
-          userId={this.state.userId}
-          user={this.state.user}
         />
         <GeneralInfo
           name={this.state.user.name}

@@ -15,7 +15,10 @@ class MyStories extends React.Component {
 
     return (
       <div className="my-stories">
-        <SideBar isLoggedIn={true} />
+        <SideBar 
+            appState={this.props.appState}
+            isLoggedIn={true} 
+        />
         <div className="my-stories-body">
           <h1 className="my-stories-header-text text">My Stories</h1>
           <div className="my-stories-list-container">
