@@ -8,7 +8,6 @@ import Search from './components/Search/Search';
 import UserProfile from './components/UserProfile'
 import storyData from './data/stories';
 
-const authorId="authorId", storyline="storyLine", storyPreview="storyPreview", lastUpdate="lastUpdate";
 
  class App extends React.Component{
   
@@ -37,6 +36,8 @@ const authorId="authorId", storyline="storyLine", storyPreview="storyPreview", l
             <Route exact path='/register' render={() => (<Registration/>)} />
             <Route exact path='/profile/user' render={() => (<UserProfile/>)} />
             <Route exact path='/search' render={() => (<Search data={this.state.stories}/>)}/>
+            {/* Route to a page of the article, set route to the home page temporarily */}
+            <Route exact path='/aritcle=:name' render={(props) => {const { name } = props.match.params; console.log(name); return (<Home />)}}></Route>
           </Switch>
         </BrowserRouter>
       </div>
