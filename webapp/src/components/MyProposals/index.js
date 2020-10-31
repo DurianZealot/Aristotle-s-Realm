@@ -13,7 +13,10 @@ class MyProposals extends React.Component {
 
     return (
       <div className="my-proposals">
-        <SideBar isLoggedIn={true} />
+        <SideBar
+            appState={this.props.state}
+            isLoggedIn={true} 
+        />
         <div className="my-proposals-body">
           <h1 className="my-proposals-header-text text">My Proposals</h1>
           <div className="my-proposals-list-container">
