@@ -5,7 +5,7 @@ const log = console.log;
 export const getUserInfo = (userId) => {
   log("getting user data");
   // HARDCODED
-  // Requires server call here to access user general information based on userId given
+  // Requires server call here to access user general information based on >>>>>userId<<<<< given
   const user = {
     userId: "2134",
     name: "Ipsum Lorem",

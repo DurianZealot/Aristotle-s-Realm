@@ -7,7 +7,7 @@ import { uid } from 'react-uid';
 
 class MyProposals extends React.Component {
   render() {
-    const { userId } = this.props;
+    const userId = this.props.appState.currentUser;
 
     const proposals = getUserProposals(userId);
 

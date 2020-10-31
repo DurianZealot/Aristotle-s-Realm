@@ -25,7 +25,7 @@ const authorId="authorId", storyline="storyLine", storyPreview="storyPreview", l
         {username: "user2", password: "user2"},
         {username: "admin", password: "admin"},
       ],
-      currentUser: null,
+      currentUser: null, // currentUser should hold either a userId or null
       userIds : ["LUsCH", "piPHe", "Ioust", "mairT"],  
       stories : storyData
       }
@@ -41,11 +41,11 @@ const authorId="authorId", storyline="storyLine", storyPreview="storyPreview", l
           <Switch>
             <Route exact path='/' render={() => (<Home appState={this.state} />)}/>
             <Route exact path='/register' render={() => (<Registration/>)} />
-            <Route exact path='/profile/user' render={() => (<UserProfile userId={"TEMP"}/>)} />
+            <Route exact path='/profile/user' render={() => (<UserProfile appState={this.state}/>)} />
             <Route exact path='/login' render={() => (<Login appState={this.state} />)}/>
             <Route exact path='/search' render={() => (<Search data={this.state.stories}/>)}/>
-            <Route exact path='/profile/user/my-proposals' render={() => (<MyProposals userId={"TEMP"}/>)} />
-            <Route exact path='/profile/user/my-stories' render={() => <MyStories userId={"TEMP"}/>} />
+            <Route exact path='/profile/user/my-proposals' render={() => (<MyProposals appState={this.state}/>)} />
+            <Route exact path='/profile/user/my-stories' render={() => <MyStories appState={this.state}/>} />
           </Switch>
         </BrowserRouter>
       </div>
