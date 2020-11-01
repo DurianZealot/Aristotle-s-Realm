@@ -58,7 +58,7 @@ class Search extends Component {
     }
     return (
       <div>
-        <SideBar></SideBar>
+        <SideBar isLoggedIn={this.props.userLogin}></SideBar>
         <h1 className="search-header"> Search stories with keywords... </h1>
         <Searchbar
           allStories={this.props.data}

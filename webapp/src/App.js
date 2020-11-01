@@ -11,7 +11,6 @@ import MyStories from './components/MyStories';
 import storyData from './data/stories';
 import Login from './components/Login';
 
-
  class App extends React.Component{
    
   constructor(props) {
@@ -43,7 +42,7 @@ import Login from './components/Login';
             <Route exact path='/register' render={() => (<Registration/>)} />
             <Route exact path='/profile/user' render={() => (<UserProfile appState={this.state}/>)} />
             <Route exact path='/login' render={() => (<Login appState={this.state} />)}/>
-            <Route exact path='/search' render={() => (<Search data={this.state.stories}/>)}/>
+            <Route exact path='/search' render={() => (<Search data={this.state.stories} userLogin={this.state.currentUser}/>)}/>
             {/* Route to a page of the article, set route to the home page temporarily */}
             <Route exact path='/aritcle=:name' render={(props) => {const { name } = props.match.params; console.log(name); return (<Home />)}}></Route>
             <Route exact path='/profile/user/my-proposals' render={() => (<MyProposals appState={this.state}/>)} />
