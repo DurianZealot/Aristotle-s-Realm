@@ -10,6 +10,7 @@ import MyProposals from './components/MyProposals';
 import MyStories from './components/MyStories';
 import storyData from './data/stories';
 import Login from './components/Login';
+import CreateStory from './components/MyStories/CreateStory';
 
  class App extends React.Component{
    
@@ -47,6 +48,7 @@ import Login from './components/Login';
             <Route exact path='/aritcle=:name' render={(props) => {const { name } = props.match.params; console.log(name); return (<Home />)}}></Route>
             <Route exact path='/profile/user/my-proposals' render={() => (<MyProposals appState={this.state}/>)} />
             <Route exact path='/profile/user/my-stories' render={() => <MyStories appState={this.state}/>} />
+            <Route exact path='/profile/user/create-stories' render={() => <CreateStory appState={this.state}/>} />
           </Switch>
         </BrowserRouter>
       </div>
