@@ -1,3 +1,4 @@
+import { TextField } from "@material-ui/core";
 import React, { Component } from "react";
 import "./styles.css";
 
@@ -70,7 +71,11 @@ class CreateStory extends Component {
   render() {
     return (
       <div>
-        
+          <form className='story-creation-detail'>
+          <TextField fullWidth='true' style={{width: '20%',marginTop: '2%', marginLeft: '20%'}}id='story-name' label='Story Name' variant='outlined'></TextField>
+          <TextField id='story-line' label='Story Line' variant='outlined'></TextField>
+          <TextField id='story-preview' label='Story Preview' variant='outlined'></TextField>
+          </form>
           <button  onClick={() => confirmation("create")}>Create</button>
           <button  onClick={() => confirmation("discard")}>Discard</button>
        

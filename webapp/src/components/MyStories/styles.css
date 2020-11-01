@@ -25,3 +25,12 @@
     padding-right: 10px;
     margin-right: 200px;
 }
+
+.story-creation-detail{
+    display:flex;
+    flex-direction: column;
+}
+
+.story-creation-detail #story-name{
+    height: 5vh;
+}
