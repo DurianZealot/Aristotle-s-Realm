@@ -1,6 +1,25 @@
-import { red } from "@material-ui/core/colors";
 import React, { Component } from "react";
 import "./styles.css";
+
+
+function confirmation(action){
+  var answer;
+  if (action == "create"){
+    answer = window.confirm("Are you sure to create your story?");
+    if (answer) {
+      delayRedirect("create")
+  }
+    return;
+  }
+  else{
+    answer = window.confirm("Are you sure to discard your story draft?");
+    if (answer) {
+      delayRedirect("discard")
+  }
+    return;
+  }
+}
+
 function delayRedirect(action) {
   // Clear out what is previously in the page
   document.body.innerHTML = "";
@@ -51,10 +70,12 @@ class CreateStory extends Component {
   render() {
     return (
       <div>
-        <p>Create Your Story Here</p>
-        <button onClick={() => delayRedirect("create")}>Create</button>
-        <button onClick={() => delayRedirect("discard")}>Discard</button>
+        
+          <button  onClick={() => confirmation("create")}>Create</button>
+          <button  onClick={() => confirmation("discard")}>Discard</button>
+       
       </div>
+     
     );
   }
 }
