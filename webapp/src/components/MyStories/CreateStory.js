@@ -5,7 +5,7 @@ import "./styles.css";
 
 function confirmation(action){
   var answer;
-  if (action == "create"){
+  if (action === "create"){
     answer = window.confirm("Are you sure to create your story?");
     if (answer) {
       delayRedirect("create")
@@ -24,7 +24,7 @@ function confirmation(action){
 function delayRedirect(action) {
   // Clear out what is previously in the page
   document.body.innerHTML = "";
-  if (action == "create") {
+  if (action === "create") {
     // Create a paragraph to tell the user that the creation is successful
     var success = document.createElement("p");
     success.innerText = "You successfully create a new story, Congrats!";
@@ -60,7 +60,7 @@ function delayRedirect(action) {
   setInterval(() => {
     countDown--;
     document.getElementById("countDownSecond").innerHTML = countDown;
-    if (countDown == 0) {
+    if (countDown === 0) {
       // hard coded
       window.location.href = "/profile/user";
     }
