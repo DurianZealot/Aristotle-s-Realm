@@ -2,6 +2,7 @@ import { Button, TextField, withStyles } from "@material-ui/core";
 import React, { Component } from "react";
 import Switch from "@material-ui/core/Switch";
 import "./styles.css";
+import TagInput from "../TagInput/TagInput";
 
 const CssTextField = withStyles({
   root: {
@@ -129,6 +130,10 @@ class CreateStory extends Component {
           {" "}
           Create Your Story
         </h1>
+        <span style={txtFieldStyle}>
+          Story Genre
+        </span>
+        <TagInput></TagInput>
         <form className="story-creation-detail">
           {/* Material UI uses inline styling */}
           <CssTextField
@@ -175,6 +180,8 @@ class CreateStory extends Component {
             placeholder="Write down your story here ..."
             variant="outlined"
           />
+          {/* <span style={{marginLeft:'25%', marginTop:'2%', fontSize:'20px'}}>Story Genre</span> */}
+          
           <span
             style={{
               display: "flex",
@@ -194,7 +201,8 @@ class CreateStory extends Component {
             </span>
           </span>
         </form>
-
+        
+        
         <span
           style={{
             marginLeft: "25%",
@@ -220,6 +228,7 @@ class CreateStory extends Component {
             Discard
           </Button>
         </span>
+        
       </div>
     );
   }
