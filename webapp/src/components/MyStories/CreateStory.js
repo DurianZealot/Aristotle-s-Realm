@@ -1,22 +1,57 @@
-import { TextField } from "@material-ui/core";
+import { Button, TextField, withStyles } from "@material-ui/core";
 import React, { Component } from "react";
+import Switch from "@material-ui/core/Switch";
 import "./styles.css";
 
+const CssTextField = withStyles({
+  root: {
+    // color of label when selected
+    "& label.Mui-focused": {
+      color: "green",
+      fontSize: "large",
+    },
+    // unselected / unhovered
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "black",
+      },
+      // hovered
+      "&:hover fieldset": {
+        borderColor: "blue",
+      },
+      // selected
+      "&.Mui-focused fieldset": {
+        borderColor: "green",
+      },
+    },
+  },
+})(TextField);
 
-function confirmation(action){
+const txtFieldStyle = {
+  width: "50%",
+  marginTop: "1%",
+  marginLeft: "25%",
+};
+function confirmation(state, action) {
   var answer;
-  if (action === "create"){
-    answer = window.confirm("Are you sure to create your story?");
-    if (answer) {
-      delayRedirect("create")
-  }
-    return;
-  }
-  else{
+  if (action === "create") {
+    // check if required states are non empty
+    // story name , story content
+    if ((state.storyName.trim() === "") | (state.storyContent.trim() === "")) {
+      alert("The name of your story and story are required!");
+      return;
+    } else {
+      answer = window.confirm("Are you sure to create your story?");
+      if (answer) {
+        delayRedirect("create");
+      }
+      return;
+    }
+  } else {
     answer = window.confirm("Are you sure to discard your story draft?");
     if (answer) {
-      delayRedirect("discard")
-  }
+      delayRedirect("discard");
+    }
     return;
   }
 }
@@ -68,19 +103,124 @@ function delayRedirect(action) {
 }
 
 class CreateStory extends Component {
+  constructor() {
+    super();
+    this.state = {
+      storyName: "",
+      storyLine: "",
+      storyPreview: "",
+      storyContent: "",
+    };
+  }
+
+  __updateInput = (e) => {
+    const targetToChange = e.target.id;
+    const value = e.target.value;
+
+    this.setState({ [targetToChange]: value }, () => {
+      console.log("input detected", this.state[targetToChange]);
+    });
+  };
+
   render() {
     return (
       <div>
-          <form className='story-creation-detail'>
-          <TextField fullWidth='true' style={{width: '20%',marginTop: '2%', marginLeft: '20%'}}id='story-name' label='Story Name' variant='outlined'></TextField>
-          <TextField id='story-line' label='Story Line' variant='outlined'></TextField>
-          <TextField id='story-preview' label='Story Preview' variant='outlined'></TextField>
-          </form>
-          <button  onClick={() => confirmation("create")}>Create</button>
-          <button  onClick={() => confirmation("discard")}>Discard</button>
-       
+        <h1 style={{ fontFamily: "Noteworthy", textAlign: "center" }}>
+          {" "}
+          Create Your Story
+        </h1>
+        <form className="story-creation-detail">
+          {/* Material UI uses inline styling */}
+          <CssTextField
+            id="storyName"
+            onChange={this.__updateInput}
+            style={{ width: "50%", marginLeft: "25%" }}
+            multiline
+            rowsMax={2}
+            required
+            label="Story Name"
+            variant="outlined"
+          />
+          <CssTextField
+            id="storyLine"
+            onChange={this.__updateInput}
+            style={txtFieldStyle}
+            multiline
+            rows={3}
+            rowsMax={5}
+            label="Story Line"
+            placeholder="Please enter a story line to brief your story."
+            variant="outlined"
+          />
+          <CssTextField
+            id="storyPreview"
+            onChange={this.__updateInput}
+            style={txtFieldStyle}
+            multiline
+            rows={5}
+            rowsMax={10}
+            label="Story Preview"
+            placeholder="Please write down a few sentences as intro to your story here."
+            variant="outlined"
+          />
+          <CssTextField
+            id="storyContent"
+            onChange={this.__updateInput}
+            style={txtFieldStyle}
+            multiline
+            rows={20}
+            rowsMax={25}
+            label="Story"
+            required
+            placeholder="Write down your story here ..."
+            variant="outlined"
+          />
+          <span
+            style={{
+              display: "flex",
+              marginLeft: "25%",
+              width: "50%",
+              marginTop: "2%",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <span style={{}}>
+              {" "}
+              Open for Story Proposals : <Switch color="secondary"></Switch>
+            </span>
+            <span style={{}}>
+              {" "}
+              Visibility to Public : <Switch color="secondary"></Switch>{" "}
+            </span>
+          </span>
+        </form>
+
+        <span
+          style={{
+            marginLeft: "25%",
+            marginTop: "2%",
+            display: "flex",
+            width: "50%",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <Button
+            variant="contained"
+            color="primary"
+            disableElevation
+            onClick={() => confirmation(this.state, "create")}
+          >
+            Create
+          </Button>
+          <Button
+            variant="contained"
+            disableElevation
+            onClick={() => confirmation(this.state, "discard")}
+          >
+            Discard
+          </Button>
+        </span>
       </div>
-     
     );
   }
 }

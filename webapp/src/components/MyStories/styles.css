@@ -30,7 +30,3 @@
     display:flex;
     flex-direction: column;
 }
-
-.story-creation-detail #story-name{
-    height: 5vh;
-}
