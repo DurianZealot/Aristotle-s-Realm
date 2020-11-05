@@ -40,7 +40,7 @@ import CreateStory from './components/MyStories/CreateStory';
         <BrowserRouter>
           <Switch>
             <Route exact path='/' render={() => (<Home appState={this.state} />)}/>
-            <Route exact path='/register' render={() => (<Registration/>)} />
+            <Route exact path='/register' render={() => (<Registration appState={this.state}/>)} />
             <Route exact path='/profile/user' render={() => (<UserProfile appState={this.state}/>)} />
             <Route exact path='/login' render={() => (<Login appState={this.state} />)}/>
             <Route exact path='/search' render={() => (<Search data={this.state.stories} userLogin={this.state.currentUser}/>)}/>
