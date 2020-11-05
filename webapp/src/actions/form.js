@@ -22,3 +22,7 @@ export const handleSubmit = (form) => {
     }        
        
 }
+
+export const handleRegister = (form )=> {
+    
+}
