@@ -17,7 +17,6 @@ class MyStories extends React.Component {
       <div className="my-stories">
         <SideBar 
             appState={this.props.appState}
-            isLoggedIn={true} 
         />
         <div className="my-stories-body">
           <h1 className="my-stories-header-text text">My Stories</h1>

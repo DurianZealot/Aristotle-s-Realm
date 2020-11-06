@@ -25,7 +25,7 @@ import CreateStory from './components/MyStories/CreateStory';
         {username: "user2", password: "user2"},
         {username: "admin", password: "admin"},
       ],
-      currentUser: null, // currentUser should hold either a userId or null
+      currentUser: null, // currentUser should hold either a userId or null. NOTE THAT CURRENTLY IT IS IMPLEMENTED TO HOLD AN OBJECT WITH TWO VALUES (username, password) SHOULD BE CHANGED IN THE FUTURE
       userIds : ["LUsCH", "piPHe", "Ioust", "mairT"],  
       stories : storyData
       }
@@ -43,7 +43,7 @@ import CreateStory from './components/MyStories/CreateStory';
             <Route exact path='/register' render={() => (<Registration appState={this.state}/>)} />
             <Route exact path='/profile/user' render={() => (<UserProfile appState={this.state}/>)} />
             <Route exact path='/login' render={() => (<Login appState={this.state} />)}/>
-            <Route exact path='/search' render={() => (<Search data={this.state.stories} userLogin={this.state.currentUser}/>)}/>
+            <Route exact path='/search' render={() => (<Search data={this.state.stories} userLogin={this.state.currentUser} appState={this.state}/>)}/>
             {/* Route to a page of the article, set route to the home page temporarily */}
             <Route exact path='/aritcle=:name' render={(props) => {const { name } = props.match.params; console.log(name); return (<Home />)}}></Route>
             <Route exact path='/profile/user/my-proposals' render={() => (<MyProposals appState={this.state}/>)} />
