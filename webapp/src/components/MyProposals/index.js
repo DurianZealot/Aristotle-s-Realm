@@ -14,8 +14,7 @@ class MyProposals extends React.Component {
     return (
       <div className="my-proposals">
         <SideBar
-            appState={this.props.state}
-            isLoggedIn={true} 
+            appState={this.props.appState}
         />
         <div className="my-proposals-body">
           <h1 className="my-proposals-header-text text">My Proposals</h1>

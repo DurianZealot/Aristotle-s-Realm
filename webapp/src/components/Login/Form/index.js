@@ -2,7 +2,7 @@ import React from "react";
 import { Typography, Button, Grid, TextField } from "@material-ui/core";
 import "../styles.css";
 import {Redirect} from 'react-router-dom'
-
+import {handleInputChange, handleSubmit} from '../../../actions/form.js'
 class Form extends React.Component {
     constructor(props) {
         super(props);
@@ -11,30 +11,6 @@ class Form extends React.Component {
             password: "",
             redirect: false,
         }
-    }
-    handleInputChange = event => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
-    handleSubmit = () => {
-        const {username, password} = this.state
-        const userArray = this.props.appState.users.filter(user => {
-            return user.username === username && user.password === password
-        })
-        const currentUser = userArray[0]
-        this.props.appState.currentUser = currentUser
-        if (currentUser){
-            this.setState(
-                {
-                    redirect: true
-                }
-            )
-        }
-        else {
-            document.getElementById('errorText').appendChild(document.createTextNode('Incorrect Username or Password'))
-        }        
-           
     }
     render() {
         const {
@@ -56,7 +32,7 @@ class Form extends React.Component {
                         variant="outlined"
                         label="Username"
                         value={username}
-                        onChange={this.handleInputChange}    
+                        onChange={(event) => handleInputChange(event, this)}    
                         fullWidth
                     />
                 </Grid>
@@ -67,7 +43,7 @@ class Form extends React.Component {
                         label="Password"
                         type="password"
                         value={password}
-                        onChange={this.handleInputChange}
+                        onChange={(event) => handleInputChange(event, this)}
                         fullWidth
                     />
                 </Grid>
@@ -76,7 +52,7 @@ class Form extends React.Component {
                         name="login"
                         color="primary"
                         variant="contained"
-                        onClick={this.handleSubmit}
+                        onClick={() => handleSubmit(this)}
                         fullWidth>
                         User Login
                     </Button>
@@ -85,7 +61,7 @@ class Form extends React.Component {
                     <Button
                         name="loginAdmin"
                         variant="contained"
-                        onClick={this.handleSubmit}
+                        onClick={() => handleSubmit(this)}
                         fullWidth
                     >
                         ADMIN Login

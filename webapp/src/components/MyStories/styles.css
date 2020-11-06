@@ -25,3 +25,13 @@
     padding-right: 10px;
     margin-right: 200px;
 }
+
+.story-creation-detail{
+    display:flex;
+    flex-direction: column;
+}
+
+.tags{
+    margin-left: 25%;
+    width: 50%;
+}

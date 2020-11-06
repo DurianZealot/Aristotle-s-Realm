@@ -3,8 +3,6 @@ import { Typography, Container } from "@material-ui/core";
 import Form from "./Form";
 import "./styles.css";
 
-// import Navbar from "../Navbar";
-
 class Login extends React.Component {
     constructor(props) {
         super(props);

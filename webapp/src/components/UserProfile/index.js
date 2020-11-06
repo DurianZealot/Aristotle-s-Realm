@@ -15,7 +15,6 @@ class UserProfile extends React.Component {
     this.state = {
       user: {},
       userId: "",
-      isLoggedIn: false,
     };
   }
 
@@ -23,10 +22,10 @@ class UserProfile extends React.Component {
   // Otherwise, should redirect the user to the login/register view
   componentDidMount() {
     // When the component enters the DOM
+    console.log(this.props.appState.currentUser)
     this.setState({
       user: getUserInfo(this.props.appState.currentUser),
       userId: this.props.appState.currentUser,
-      isLoggedIn: true,
     });
   }
 
@@ -35,7 +34,6 @@ class UserProfile extends React.Component {
       <div className="user-profile">
         <SideBar
           appState={this.props.appState}
-          isLoggedIn={this.state.isLoggedIn}
         />
         <GeneralInfo
           name={this.state.user.name}

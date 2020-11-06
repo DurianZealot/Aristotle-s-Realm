@@ -10,7 +10,7 @@ import MyProposals from './components/MyProposals';
 import MyStories from './components/MyStories';
 import storyData from './data/stories';
 import Login from './components/Login';
-const authorId="authorId", storyline="storyLine", storyPreview="storyPreview", lastUpdate="lastUpdate";
+import CreateStory from './components/MyStories/CreateStory';
 
  class App extends React.Component{
    
@@ -25,7 +25,7 @@ const authorId="authorId", storyline="storyLine", storyPreview="storyPreview", l
         {username: "user2", password: "user2"},
         {username: "admin", password: "admin"},
       ],
-      currentUser: null, // currentUser should hold either a userId or null
+      currentUser: null, // currentUser should hold either a userId or null. NOTE THAT CURRENTLY IT IS IMPLEMENTED TO HOLD AN OBJECT WITH TWO VALUES (username, password) SHOULD BE CHANGED IN THE FUTURE
       userIds : ["LUsCH", "piPHe", "Ioust", "mairT"],  
       stories : storyData
       }
@@ -40,12 +40,15 @@ const authorId="authorId", storyline="storyLine", storyPreview="storyPreview", l
         <BrowserRouter>
           <Switch>
             <Route exact path='/' render={() => (<Home appState={this.state} />)}/>
-            <Route exact path='/register' render={() => (<Registration/>)} />
+            <Route exact path='/register' render={() => (<Registration appState={this.state}/>)} />
             <Route exact path='/profile/user' render={() => (<UserProfile appState={this.state}/>)} />
             <Route exact path='/login' render={() => (<Login appState={this.state} />)}/>
-            <Route exact path='/search' render={() => (<Search data={this.state.stories}/>)}/>
+            <Route exact path='/search' render={() => (<Search data={this.state.stories} userLogin={this.state.currentUser} appState={this.state}/>)}/>
+            {/* Route to a page of the article, set route to the home page temporarily */}
+            <Route exact path='/aritcle=:name' render={(props) => {const { name } = props.match.params; console.log(name); return (<Home />)}}></Route>
             <Route exact path='/profile/user/my-proposals' render={() => (<MyProposals appState={this.state}/>)} />
             <Route exact path='/profile/user/my-stories' render={() => <MyStories appState={this.state}/>} />
+            <Route exact path='/profile/user/create-stories' render={() => <CreateStory appState={this.state}/>} />
           </Switch>
         </BrowserRouter>
       </div>

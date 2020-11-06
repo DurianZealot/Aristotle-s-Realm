@@ -11,7 +11,6 @@ class SideBar extends React.Component {
         this.state = {
           user: {},
           userId: "",
-          isLoggedIn: false,
         };
     }
 
@@ -26,9 +25,14 @@ class SideBar extends React.Component {
     } 
     */
 
+    componentDidMount() {
+        // When the component enters the DOM
+        console.log(this.props.appState.currentUser)
+    }
+
     render() {
 
-        if (this.props.isLoggedIn) {
+        if (this.props.appState.currentUser !== null) {
             // User Sidebar
             return (
                 <div className="side-bar">
