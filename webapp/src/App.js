@@ -12,6 +12,7 @@ import storyData from './data/stories';
 import Login from './components/Login';
 import CreateStory from './components/MyStories/CreateStory';
 import StoryPage from './components/StoryPage';
+import CreateProposal from './components/MyProposals/CreateProposal';
 
  class App extends React.Component{
    
@@ -52,6 +53,7 @@ import StoryPage from './components/StoryPage';
             <Route exact path='/profile/user/my-proposals' render={() => (<MyProposals appState={this.state}/>)} />
             <Route exact path='/profile/user/my-stories' render={() => <MyStories appState={this.state}/>} />
             <Route exact path='/profile/user/create-stories' render={() => <CreateStory appState={this.state}/>} />
+            <Route exact path='/profile/user/create-proposal' render={() => <CreateProposal appState={this.state}></CreateProposal>} />
           </Switch>
         </BrowserRouter>
       </div>

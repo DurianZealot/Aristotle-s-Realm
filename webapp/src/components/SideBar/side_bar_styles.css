@@ -86,6 +86,13 @@
     height: 40px;
 }
 
+.side-bar_create-proposal-link{
+    position: absolute;
+    width: 180px;
+    top: 270px;
+    padding: 10px;
+    height: 40px;
+}
 /* Remove underline from text*/
 a:-webkit-any-link {
     text-decoration: none;
