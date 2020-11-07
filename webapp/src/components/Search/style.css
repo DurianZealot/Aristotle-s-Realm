@@ -34,10 +34,13 @@
 }
 
 .search-result{
-  
+  background: None;
+  width: 100%;
+  margin-left: 5%;
   flex-basis: 10%;
   list-style-type: none;
   border-bottom:solid 1px #666;
+  border-radius: 0%;
 }
 
 .truncate {
