@@ -1,0 +1,25 @@
+/* Styles Page for the StoryPageInfo Component */
+.story-page-info-wrapper {
+    box-shadow: 1px 1px 5px #aaa;
+}
+
+.story-page-info-list {
+    border: 1px solid #aaa;
+    clear: right;
+    padding: 1.25em 0.75em;
+    position: relative;
+    overflow: hidden;
+}
+
+.story-page-info-term {
+    min-width: 10.5em;
+    width: 35%;
+    float: left;
+    clear: left;
+}
+
+.story-page-info-item {
+    width: 55%;
+    float: left;
+    margin-bottom: .5em;
+}

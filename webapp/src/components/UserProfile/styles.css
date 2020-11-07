@@ -15,6 +15,7 @@
     position: absolute;
     height: 125px;
     top: 375px;
+    box-shadow: 1px 1px 5px #434143;
 }
 
 .career-featured-works-header {

@@ -73,11 +73,13 @@ export const getUserStories = (userId) => {
   // Requires server call here to access user proposals based on userId given
   const stories = [
     {
+      storyId: "Aedk1029je0a8d",
       storyTitle: "Metal Gear Solid",
       storyAuthor: "UofTThrowAway69",
       storyDate: "December 20 2001",
       storyViewCount: "98517",
       storyTags: ["sci-fi", "romance", "war"],
+      storyVotes: ["1109238", "6969"],
       storyContent:
         "I do need capital. And votes. Wanna know why? I have a dream." +
         "That one day, every person in this nation will control their OWN destiny." +
@@ -93,11 +95,13 @@ export const getUserStories = (userId) => {
         "strongest will thrive -- free to live as they see fit, they will make America GREAT AGAIN!",
     },
     {
+      storyId: "12345678",
       storyTitle: "Shrek 20",
       storyAuthor: "UofTThrowAway20",
       storyDate: "December 20 2020",
       storyViewCount: "12",
       storyTags: ["fantasy", "romance", "war"],
+      storyVotes: ["7", "420"],
       storyContent:
         "I do need capital. And votes. Wanna know why? I have a dream." +
         "That one day, every person in this nation will control their OWN destiny." +

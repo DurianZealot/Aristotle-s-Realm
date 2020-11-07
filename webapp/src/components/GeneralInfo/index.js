@@ -12,7 +12,7 @@ class GeneralInfo extends React.Component {
 
     return (
       <div className="general-info-container blocks">
-        <img className="icon" src={iconPath} /> {/* Doesn't seem to be working EVENT LISTENER MAYBE? */}
+        <img className="icon" /> {/* src={iconPath} Doesn't seem to be working EVENT LISTENER MAYBE? */}
         <div className="general-info">
           <h1 className="user_name black">
             {name}
