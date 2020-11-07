@@ -3,36 +3,8 @@ import React, { Component } from "react";
 import Switch from "@material-ui/core/Switch";
 import "./styles.css";
 import TagInput from "../TagInput/TagInput";
+import {CssTextField, txtFieldStyle} from "../CssTextField/CssTextField";
 
-const CssTextField = withStyles({
-  root: {
-    // color of label when selected
-    "& label.Mui-focused": {
-      color: "green",
-      fontSize: "large",
-    },
-    // unselected / unhovered
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "black",
-      },
-      // hovered
-      "&:hover fieldset": {
-        borderColor: "blue",
-      },
-      // selected
-      "&.Mui-focused fieldset": {
-        borderColor: "green",
-      },
-    },
-  },
-})(TextField);
-
-const txtFieldStyle = {
-  width: "50%",
-  marginTop: "1%",
-  marginLeft: "25%",
-};
 function confirmation(state, action) {
   var answer;
   if (action === "create") {
@@ -98,15 +70,17 @@ function delayRedirect(action) {
     document.getElementById("countDownSecond").innerHTML = countDown;
     if (countDown === 0) {
       // hard coded
+
       window.location.href = "/profile/user";
     }
   }, 1000);
 }
 
 class CreateStory extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      appState: this.props.appState,
       storyName: "",
       storyLine: "",
       storyPreview: "",

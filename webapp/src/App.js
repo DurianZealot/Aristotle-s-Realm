@@ -11,6 +11,7 @@ import MyStories from './components/MyStories';
 import storyData from './data/stories';
 import Login from './components/Login';
 import CreateStory from './components/MyStories/CreateStory';
+import CreateProposal from './components/MyProposals/CreateProposal';
 
  class App extends React.Component{
    
@@ -49,6 +50,7 @@ import CreateStory from './components/MyStories/CreateStory';
             <Route exact path='/profile/user/my-proposals' render={() => (<MyProposals appState={this.state}/>)} />
             <Route exact path='/profile/user/my-stories' render={() => <MyStories appState={this.state}/>} />
             <Route exact path='/profile/user/create-stories' render={() => <CreateStory appState={this.state}/>} />
+            <Route exact path='/profile/user/create-proposal' render={() => <CreateProposal appState={this.state}></CreateProposal>} />
           </Switch>
         </BrowserRouter>
       </div>
