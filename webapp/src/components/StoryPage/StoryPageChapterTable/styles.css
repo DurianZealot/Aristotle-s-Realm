@@ -1,0 +1,21 @@
+/* Styles for the StoryPageChapterTable component */
+.story-page-chapter-table {
+    border-collapse: collapse;
+    margin: 2px auto 0px;
+    clear: both;
+    box-shadow: 1px 1px 5px #aaa;
+}
+
+.story-page-chapter-td {
+    font-size: 1.15em;
+    text-align: center;
+    height: 15px;
+    width: 30px;
+    color: #470617d3;
+    border: 1px solid #470617d3;
+    border-bottom: 0;
+}
+
+.story-page-chapter-current {
+    font-weight: bold;
+}

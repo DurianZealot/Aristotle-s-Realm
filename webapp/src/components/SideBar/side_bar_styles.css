@@ -1,10 +1,15 @@
 /* Styles for the Side Bar component */
 .side-bar {
     position: fixed;
-    float: left;
+    overflow: auto;
+    display: block;
     width: 200px;
-    height: 100%;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
     background-color: #4e89f0;
+    box-shadow: 1px 1px 5px #434143;
 }
 
 .side-bar__home-link {

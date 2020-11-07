@@ -10,6 +10,7 @@
     min-height: 175px;
     margin-top: 20px;
     overflow: auto;
+    box-shadow: 1px 1px 5px #434143;
 }
 
 .icon {

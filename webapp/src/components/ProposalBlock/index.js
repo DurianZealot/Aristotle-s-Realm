@@ -24,16 +24,16 @@ class ProposalBlock extends React.Component {
           </span>
         </p>
         <p className="item text">Source Author: {proposalSourceAuthor} </p>
-        <p className="item text">Proposed Chapter: {proposalChapter}</p>
+        <p className="item text">Proposed Chapter Number: {proposalChapter}</p>
       </div>
     );
   }
 }
 
 const setProposalStatus = (status) => {
-  if (status == "Accepted") {
+  if (status === "Accepted") {
     return <span className="green">Accepted</span>;
-  } else if (status == "Pending") {
+  } else if (status === "Pending") {
     return <span className="yellow">Pending</span>;
   }
   return <span className="red">Rejected</span>;

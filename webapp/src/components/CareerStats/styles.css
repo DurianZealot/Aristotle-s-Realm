@@ -6,14 +6,17 @@
     min-height: 300px;
     top: 20px;
     left: 75%;
+    box-shadow: 1px 1px 5px #434143;
 }
 
 .career-stats-header {
-    background-color: #721523;
+    background-color: #901A37;
+    box-shadow: 1px 1px 5px #434143;
     text-align: center;
 }
 
 .career-stats-item {
     margin-left: 10px;
     margin-top: 5px;
+    line-height: 1.5;
 }

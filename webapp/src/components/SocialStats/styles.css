@@ -3,6 +3,7 @@
   position: absolute;
   min-height: 125px;
   top: 220px;
+  box-shadow: 1px 1px 5px #434143;
 }
 
 .social-stats__info-item {

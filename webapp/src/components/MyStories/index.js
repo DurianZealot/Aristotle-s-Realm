@@ -26,10 +26,12 @@ class MyStories extends React.Component {
               return (
                 <StoryBlock
                   key={uid(story)}
+                  storyId={story.storyId}
                   storyTitle={story.storyTitle}
                   storyViewCount={story.storyViewCount}
                   storyTags={story.storyTags}
                   storyDate={story.storyDate}
+                  storyVotes={story.storyVotes}
                 />
               );
             })}
