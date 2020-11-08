@@ -12,23 +12,24 @@ class Home extends React.Component{
     }
     render() {
         
-        if (!this.state.currentUser){
+        if (this.state.currentUser){
             return(
                 <div className="homepage">
-                    <Header className='header' topRightText="LOGIN">
-                    </Header>
-                    <Body className='body' loggedIn={false}>   
-                    </Body>                
+                        <Header className='header' appState={this.props.appState} >                       
+                        </Header>
+                        <Body className='body' appState={this.props.appState}>
+                            
+                        </Body>                
                 </div>
             )
         }
+        
         return(
             <div className="homepage">
-                    <Header className='header' topRightText="Profile">                       
-                    </Header>
-                    <Body className='body' loggedIn={true}>
-                        
-                    </Body>                
+                <Header className='header' appState={this.props.appState} >
+                </Header>
+                <Body className='body'  appState={this.props.appState}>   
+                </Body>                
             </div>
         )
         
