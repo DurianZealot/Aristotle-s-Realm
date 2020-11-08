@@ -25,7 +25,7 @@ class Header extends React.Component{
                                 
                         <AccountCircle className='white'/>
                         <Typography variant="h6" className=''>
-                            <span className='white'>LOGIN</span>
+                            <span className='white'>{this.props.topRightText}</span>
                         </Typography>
 
                     </IconButton>      
