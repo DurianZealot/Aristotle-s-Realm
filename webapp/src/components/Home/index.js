@@ -15,18 +15,20 @@ class Home extends React.Component{
         if (!this.state.currentUser){
             return(
                 <div className="homepage">
-                    <Header className='header'>
-    
+                    <Header className='header' topRightText="LOGIN">
                     </Header>
-                    <Body className='body'>
-    
+                    <Body className='body' loggedIn={false}>   
                     </Body>                
                 </div>
             )
         }
         return(
             <div className="homepage">
-                Logged in version of this page under construction              
+                    <Header className='header' topRightText="Profile">                       
+                    </Header>
+                    <Body className='body' loggedIn={true}>
+                        
+                    </Body>                
             </div>
         )
         
