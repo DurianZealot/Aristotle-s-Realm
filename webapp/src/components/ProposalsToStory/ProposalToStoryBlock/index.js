@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import "./styles.css";
 
 class ProposalBlock extends React.Component {
@@ -7,30 +7,30 @@ class ProposalBlock extends React.Component {
     const {
       proposalId,
       proposalSourceId,
-      proposalSourceTitle,
-      proposalSourceAuthor,
+      proposalTitle,
+      proposalAuthor,
       proposalChapter,
       proposalAccepted,
     } = this.props;
 
     return (
-      <div className="my-proposals-list-item">
+      <div className="proposals-to-story-block-list-item">
         {/* Requires server call here
                 Currently HARDCODED */}
-        <div className="my-proposals-list-item-icon"></div>
+        <div className="proposals-to-story-block-list-item-icon"></div>
         {/* Require call to props/states here */}
         <p className="item text">
           <span>
-            Source Title:{" "}
+            Title:{" "}
             <Link to={`/proposals/${proposalSourceId}/${proposalId}`}>
-              <span>{proposalSourceTitle}</span>
+              <span>{proposalTitle}</span>
             </Link>
           </span>
           <span className="subitem">
             Proposal Status: {setProposalStatus(proposalAccepted)}
           </span>
         </p>
-        <p className="item text">Source Author: {proposalSourceAuthor} </p>
+        <p className="item text">Source Author: {proposalAuthor} </p>
         <p className="item text">Proposed Chapter Number: {proposalChapter}</p>
       </div>
     );

@@ -31,8 +31,12 @@ export const getUserProposals = (userId) => {
   // Requires server call here to access user proposals based on userId given
   const proposals = [
     {
+      proposalId: "AOfpo12931fapO",
+      proposalSourceId: "OAIjoiawoid", // The Id of the source story, currently HARDCODED, CHANGE AT WILL TO MAKE IT WORK
       proposalSourceTitle: "Ipsum Lorem Title",
       proposalSourceAuthor: "Ipsum Lorem Author",
+      proposalAuthor: "IGG Timeless",
+      proposalTitle: "Melissa Is Best Girl",
       proposalChapter: "7",
       proposalAccepted: "Accepted",
       proposalContent:
@@ -44,8 +48,12 @@ export const getUserProposals = (userId) => {
         "dictum non. Donec tincidunt tristique nibh eget pulvinar. Vivamus commodo ac nisl sit amet pellentesque.",
     },
     {
+      proposalId: "1f19028nFAJ09",
+      proposalSourceId: "OAIjo102nd837", // The Id of the source story, currently HARDCODED, CHANGE AT WILL TO MAKE IT WORK
       proposalSourceTitle: "Ipsum2 Lorem Title",
       proposalSourceAuthor: "Ipsum2 Lorem Author",
+      proposalAuthor: "IGG ClemyClue",
+      proposalTitle: "We are Valorant",
       proposalChapter: "13",
       proposalAccepted: "Pending",
       proposalContent:

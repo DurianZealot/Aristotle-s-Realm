@@ -13,6 +13,7 @@ import Login from './components/Login';
 import CreateStory from './components/MyStories/CreateStory';
 import StoryPage from './components/StoryPage';
 import CreateProposal from './components/MyProposals/CreateProposal';
+import ProposalsToStory from './components/ProposalsToStory';
 
  class App extends React.Component{
    
@@ -46,10 +47,11 @@ import CreateProposal from './components/MyProposals/CreateProposal';
             <Route exact path='/profile/user' render={() => (<UserProfile appState={this.state}/>)} />
             <Route exact path='/login' render={() => (<Login appState={this.state} />)}/>
             <Route exact path='/search' render={() => (<Search data={this.state.stories} userLogin={this.state.currentUser} appState={this.state}/>)}/>
-            {/* Route to a page of the article, set route to the home page temporarily */}
-            <Route exact path='/aritcle=:name' render={(props) => {const { name } = props.match.params; console.log(name); return (<Home />)}}></Route>
-            {/* EXPERIMENTAL STORY PAGE */}
-            <Route exact path='/article/:storyId/:chapterNum' render={(props) => (<StoryPage params={props.match.params} appState={this.state}/>)}></Route>
+            {/* Route to a page of the article; url also separated based on chapter number*/}
+            <Route exact path='/article/:storyId/:chapterNum' render={(props) => (<StoryPage params={props.match.params} appState={this.state}/>)}/>
+            <Route exact path='/proposals/:storyId' render={(props) => (<ProposalsToStory params={props.match.params} appState={this.state}/>)}/>
+            {/* YOLANDA CHANGE THE ROUTE BELOW FOR THE PROPOSAL PAGE*/}
+            <Route exact path='/proposasl/:storyId/:proposalId' render={(props) => (<Home></Home>)} /> 
             <Route exact path='/profile/user/my-proposals' render={() => (<MyProposals appState={this.state}/>)} />
             <Route exact path='/profile/user/my-stories' render={() => <MyStories appState={this.state}/>} />
             <Route exact path='/profile/user/create-stories' render={() => <CreateStory appState={this.state}/>} />
