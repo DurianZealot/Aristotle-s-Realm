@@ -20,7 +20,7 @@ class Form extends React.Component {
         } = this.state;
         if (redirect){
             return(
-                <Redirect to={{pathname: '/profile/user'}}/>
+                <Redirect to={{pathname: `/profile/user=${this.props.appState.currID}`}}/> 
             )
         }
         return (

@@ -29,6 +29,7 @@ import ProposalsToStory from './components/ProposalsToStory';
         {username: "admin", password: "admin"},
       ],
       currentUser: null, // currentUser should hold either a userId or null. NOTE THAT CURRENTLY IT IS IMPLEMENTED TO HOLD AN OBJECT WITH TWO VALUES (username, password) SHOULD BE CHANGED IN THE FUTURE
+      currID: null, // FOR NOW currID WILL BE THE VARIABLE USED TO HOLD A USERID.
       userIds : ["LUsCH", "piPHe", "Ioust", "mairT"],  
       stories : storyData
       }
@@ -44,7 +45,7 @@ import ProposalsToStory from './components/ProposalsToStory';
           <Switch>
             <Route exact path='/' render={() => (<Home appState={this.state} />)}/>
             <Route exact path='/register' render={() => (<Registration appState={this.state}/>)} />
-            <Route exact path='/profile/user' render={() => (<UserProfile appState={this.state}/>)} />
+            <Route exact path='/profile/user=:userId' render={(props) => (<UserProfile params={props.match.params} appState={this.state}/>)} />
             <Route exact path='/login' render={() => (<Login appState={this.state} />)}/>
             <Route exact path='/search' render={() => (<Search data={this.state.stories} userLogin={this.state.currentUser} appState={this.state}/>)}/>
             {/* Route to a page of the article; url also separated based on chapter number*/}
@@ -52,10 +53,10 @@ import ProposalsToStory from './components/ProposalsToStory';
             <Route exact path='/proposals/:storyId' render={(props) => (<ProposalsToStory params={props.match.params} appState={this.state}/>)}/>
             {/* YOLANDA CHANGE THE ROUTE BELOW FOR THE PROPOSAL PAGE*/}
             <Route exact path='/proposasl/:storyId/:proposalId' render={(props) => (<Home></Home>)} /> 
-            <Route exact path='/profile/user/my-proposals' render={() => (<MyProposals appState={this.state}/>)} />
-            <Route exact path='/profile/user/my-stories' render={() => <MyStories appState={this.state}/>} />
-            <Route exact path='/profile/user/create-stories' render={() => <CreateStory appState={this.state}/>} />
-            <Route exact path='/profile/user/create-proposal' render={() => <CreateProposal appState={this.state}></CreateProposal>} />
+            <Route exact path='/profile/user=:userId/my-proposals' render={(props) => (<MyProposals params={props.match.params} appState={this.state}/>)} />
+            <Route exact path='/profile/user=:userId/my-stories' render={(props) => <MyStories params={props.match.params} appState={this.state}/>} />
+            <Route exact path='/profile/user=:userId/create-stories' render={(props) => <CreateStory params={props.match.params} appState={this.state}/>} />
+            <Route exact path='/profile/user=:userId/create-proposal' render={(props) => <CreateProposal params={props.match.params} appState={this.state}></CreateProposal>} />
           </Switch>
         </BrowserRouter>
       </div>

@@ -6,23 +6,44 @@ export const getUserInfo = (userId) => {
   log("getting user data");
   // HARDCODED
   // Requires server call here to access user general information based on >>>>>userId<<<<< given
-  const user = {
-    userId: "2134",
-    name: "Ipsum Lorem",
-    iconPath: "icon/profile-icon-placeholder.png",
-    age: "20",
-    genrePref: "Sci-Fi",
+  switch (userId) {
+    case "AcawO":
+      return {
+        userId: "AcawO",
+        name: "Ipsum Lorem",
+        iconPath: "icon/profile-icon-placeholder.png",
+        age: "20",
+        genrePref: "Sci-Fi",
 
-    joinDate: "December 21",
-    followerCount: "6666",
-    followingCount: "420",
-    approvalRate: "69",
+        joinDate: "December 21",
+        followerCount: "6666",
+        followingCount: "420",
+        approvalRate: "69",
 
-    proposalAcceptNum: "9",
-    worksBegunNum: "11",
-    LastContributionDate: "Oct 31, 2020",
-  };
-  return user;
+        proposalAcceptNum: "9",
+        worksBegunNum: "11",
+        lastContributionDate: "Oct 31, 2020",
+      };
+    case "LuCaW":
+      return {
+        userId: "LuCaW",
+        name: "Ipsum Lorem 2",
+        iconPath: "icon/profile-icon-placeholder.png",
+        age: "48",
+        genrePref: "Romance",
+
+        joinDate: "January 1 2020",
+        followerCount: "12",
+        followingCount: "9450",
+        approvalRate: "99",
+
+        proposalAcceptNum: "9",
+        worksBegunNum: "11",
+        lastContributionDate: "Oct 31, 2020",
+      };
+    default:
+      return "ERROR GRABBING USER DATA";
+  }
 };
 
 export const getUserProposals = (userId) => {
@@ -125,5 +146,5 @@ export const getUserStories = (userId) => {
         "strongest will thrive -- free to live as they see fit, they will make America GREAT AGAIN!",
     },
   ];
-  return stories
+  return stories;
 };
