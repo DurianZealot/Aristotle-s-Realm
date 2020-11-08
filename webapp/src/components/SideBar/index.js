@@ -27,7 +27,7 @@ class SideBar extends React.Component {
 
     componentDidMount() {
         // When the component enters the DOM
-        console.log(this.props.appState.currentUser)
+        console.log("Current user ID: " + this.props.appState.currID)
     }
 
     render() {

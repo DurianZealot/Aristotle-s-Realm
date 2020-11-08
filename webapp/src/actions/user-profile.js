@@ -84,7 +84,7 @@ export const getUserProposals = (userId) => {
         "not committee. Where the law changes to suit the individual, not the other way" +
         "around. Where power and justice are back where they belong: in the hands of the" +
         "people! Where every man is free to think -- to act -- for himself! F all these" +
-        "limp-dick lawyers and chicken-shit bureaucrats. F this 24/7 Internet spew of" +
+        "limp lawyers and chicken bureaucrats. F this 24/7 Internet spew of" +
         "trivia and celebrity bullshit. F American pride. F the media! F all of it!" +
         "America is diseased. Rotten to the core. There's no saving it -- we need to pull" +
         "it out by the roots. WIpe the slate clean. BURN IT DOWN! And from the ashes, a" +
@@ -116,7 +116,7 @@ export const getUserStories = (userId) => {
         "not committee. Where the law changes to suit the individual, not the other way" +
         "around. Where power and justice are back where they belong: in the hands of the" +
         "people! Where every man is free to think -- to act -- for himself! F all these" +
-        "limp-dick lawyers and chicken-shit bureaucrats. F this 24/7 Internet spew of" +
+        "limp lawyers and chicken bureaucrats. F this 24/7 Internet spew of" +
         "trivia and celebrity bullshit. F American pride. F the media! F all of it!" +
         "America is diseased. Rotten to the core. There's no saving it -- we need to pull" +
         "it out by the roots. WIpe the slate clean. BURN IT DOWN! And from the ashes, a" +

@@ -22,8 +22,8 @@ class UserProfile extends React.Component {
   // Otherwise, should redirect the user to the login/register view
   componentDidMount() {
     // When the component enters the DOM
-    console.log(this.props.appState.currentUser)
-    console.log(this.props.currID)
+    // console.log(this.props.appState.currentUser)
+    // console.log(this.props.currID)
     this.setState({
       user: getUserInfo(this.props.appState.currID),
       userId: this.props.appState.currID,
@@ -31,17 +31,15 @@ class UserProfile extends React.Component {
   }
 
   render() {
-
     const params = this.props.params;
     const user = getUserInfo(params.userId); // Reserved in case needed
-    console.log(params.currID + "AOWIDJAOWIDJ")
-    console.log(user);
+    console.log(
+      "userId based on url: " + params.userId + ", currId: " + this.props.appState.currId
+    );
 
     return (
       <div className="user-profile">
-        <SideBar
-          appState={this.props.appState}
-        />
+        <SideBar appState={this.props.appState} />
         <GeneralInfo
           name={this.state.user.name}
           iconPath={this.state.user.iconPath}
