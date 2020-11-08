@@ -24,6 +24,8 @@ class MyProposals extends React.Component {
               return (
                 <ProposalBlock
                   key={uid(proposal)}
+                  proposalId={proposal.proposalId}
+                  proposalSourceId={proposal.proposalSourceId}
                   proposalSourceTitle={proposal.proposalSourceTitle}
                   proposalSourceAuthor={proposal.proposalSourceAuthor}
                   proposalChapter={proposal.proposalChapter}

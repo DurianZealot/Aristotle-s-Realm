@@ -6,23 +6,44 @@ export const getUserInfo = (userId) => {
   log("getting user data");
   // HARDCODED
   // Requires server call here to access user general information based on >>>>>userId<<<<< given
-  const user = {
-    userId: "2134",
-    name: "Ipsum Lorem",
-    iconPath: "icon/profile-icon-placeholder.png",
-    age: "20",
-    genrePref: "Sci-Fi",
+  switch (userId) {
+    case "AcawO":
+      return {
+        userId: "AcawO",
+        name: "Ipsum Lorem",
+        iconPath: "icon/profile-icon-placeholder.png",
+        age: "20",
+        genrePref: "Sci-Fi",
 
-    joinDate: "December 21",
-    followerCount: "6666",
-    followingCount: "420",
-    approvalRate: "69",
+        joinDate: "December 21",
+        followerCount: "6666",
+        followingCount: "420",
+        approvalRate: "69",
 
-    proposalAcceptNum: "9",
-    worksBegunNum: "11",
-    LastContributionDate: "Oct 31, 2020",
-  };
-  return user;
+        proposalAcceptNum: "9",
+        worksBegunNum: "11",
+        lastContributionDate: "Oct 31, 2020",
+      };
+    case "LuCaW":
+      return {
+        userId: "LuCaW",
+        name: "Ipsum Lorem 2",
+        iconPath: "icon/profile-icon-placeholder.png",
+        age: "48",
+        genrePref: "Romance",
+
+        joinDate: "January 1 2020",
+        followerCount: "12",
+        followingCount: "9450",
+        approvalRate: "99",
+
+        proposalAcceptNum: "9",
+        worksBegunNum: "11",
+        lastContributionDate: "Oct 31, 2020",
+      };
+    default:
+      return "ERROR GRABBING USER DATA";
+  }
 };
 
 export const getUserProposals = (userId) => {
@@ -31,8 +52,12 @@ export const getUserProposals = (userId) => {
   // Requires server call here to access user proposals based on userId given
   const proposals = [
     {
+      proposalId: "AOfpo12931fapO",
+      proposalSourceId: "OAIjoiawoid", // The Id of the source story, currently HARDCODED, CHANGE AT WILL TO MAKE IT WORK
       proposalSourceTitle: "Ipsum Lorem Title",
       proposalSourceAuthor: "Ipsum Lorem Author",
+      proposalAuthor: "IGG Timeless",
+      proposalTitle: "Melissa Is Best Girl",
       proposalChapter: "7",
       proposalAccepted: "Accepted",
       proposalContent:
@@ -44,8 +69,12 @@ export const getUserProposals = (userId) => {
         "dictum non. Donec tincidunt tristique nibh eget pulvinar. Vivamus commodo ac nisl sit amet pellentesque.",
     },
     {
+      proposalId: "1f19028nFAJ09",
+      proposalSourceId: "OAIjo102nd837", // The Id of the source story, currently HARDCODED, CHANGE AT WILL TO MAKE IT WORK
       proposalSourceTitle: "Ipsum2 Lorem Title",
       proposalSourceAuthor: "Ipsum2 Lorem Author",
+      proposalAuthor: "IGG ClemyClue",
+      proposalTitle: "We are Valorant",
       proposalChapter: "13",
       proposalAccepted: "Pending",
       proposalContent:
@@ -117,5 +146,5 @@ export const getUserStories = (userId) => {
         "strongest will thrive -- free to live as they see fit, they will make America GREAT AGAIN!",
     },
   ];
-  return stories
+  return stories;
 };

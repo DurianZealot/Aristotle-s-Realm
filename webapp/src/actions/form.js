@@ -10,6 +10,8 @@ export const handleSubmit = (form) => {
     })
     const currentUser = userArray[0]
     form.props.appState.currentUser = currentUser
+    // TONY I CHANGED THIS IN ORDER TO MAKE CURRENTUSER AN ACTUAL ID.
+    form.props.appState.currID = getCurrentUserId(currentUser);
     if (currentUser){
         form.setState(
             {
@@ -26,3 +28,9 @@ export const handleSubmit = (form) => {
 export const handleRegister = (form )=> {
     
 }
+
+// HARDCODED METHOD
+// Requires server call to get the userId associated with the currentUser
+const getCurrentUserId = (currentUser) => {
+    return "AcawO";
+};

@@ -23,13 +23,20 @@ class UserProfile extends React.Component {
   componentDidMount() {
     // When the component enters the DOM
     console.log(this.props.appState.currentUser)
+    console.log(this.props.currID)
     this.setState({
-      user: getUserInfo(this.props.appState.currentUser),
-      userId: this.props.appState.currentUser,
+      user: getUserInfo(this.props.appState.currID),
+      userId: this.props.appState.currID,
     });
   }
 
   render() {
+
+    const params = this.props.params;
+    const user = getUserInfo(params.userId); // Reserved in case needed
+    console.log(params.currID + "AOWIDJAOWIDJ")
+    console.log(user);
+
     return (
       <div className="user-profile">
         <SideBar
@@ -58,7 +65,7 @@ class UserProfile extends React.Component {
         <CareerStats
           proposalAcceptNum={this.state.user.proposalAcceptNum}
           worksBegunNum={this.state.user.worksBegunNum}
-          LastContributionDate={this.state.user.LastContributionDate}
+          lastContributionDate={this.state.user.lastContributionDate}
         />
       </div>
     );
