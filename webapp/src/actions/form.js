@@ -23,12 +23,17 @@ export const handleSubmit = (form) => {
         )
     }
     else {
-        document.getElementById('errorText').appendChild(document.createTextNode('Incorrect Username or Password'))
+        alert("Invalid Username or Password");
     }        
        
 }
 
-export const handleRegister = (form )=> {
+export const handleRegister = (form)=> {
+    const {username, password, firstName, lastName, birthday} = form.state
+   
+    const newUser = {username: username,
+                     password: password}
+    form.state.appState.users.push(newUser)
     
 }
 

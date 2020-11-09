@@ -21,7 +21,7 @@ class RegisterForm extends React.Component {
                 <Grid item xs={6}>
                     <TextField
                         name="firstName"
-                        variant="outlined"
+                        variant="filled"
                         label="First Name"
                         value={firstName}
                         onChange={handleInputChange}
@@ -32,7 +32,7 @@ class RegisterForm extends React.Component {
                 <Grid item xs={6}>
                     <TextField
                         name="lastName"
-                        variant="outlined"
+                        variant="filled"
                         label="Last Name"
                         value={lastName}
                         onChange={handleInputChange}
@@ -43,7 +43,7 @@ class RegisterForm extends React.Component {
                 <Grid item xs={12}>
                     <TextField
                         name="username"
-                        variant="outlined"
+                        variant="filled"
                         label="Username"
                         value={username}
                         onChange={handleInputChange}
@@ -54,7 +54,7 @@ class RegisterForm extends React.Component {
                 <Grid item xs={12}>
                     <TextField
                         name="password"
-                        variant="outlined"
+                        variant="filled"
                         label="Password"
                         type="password"
                         value={password}
@@ -66,7 +66,7 @@ class RegisterForm extends React.Component {
                 <Grid item xs={12}>
                     <TextField
                         name="birthday"
-                        variant="outlined"
+                        variant="filled"
                         label="Birthday"
                         type="date"
                         value={birthday}
