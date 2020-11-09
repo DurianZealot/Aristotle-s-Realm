@@ -21,16 +21,14 @@ class ProposalBlock extends React.Component {
         <div className="proposals-to-story-block-list-item-icon"></div>
         {/* Require call to props/states here */}
         <p className="item text">
-          <span>
-            Title:{" "}
-            <SimpleModal viewFrom='original_author' status={proposalAccepted} title={proposalTitle} chapter={proposalChapter} accpeted ={proposalAccepted} content = {proposalContent}></SimpleModal>
-          </span>
+        <h3>Title: <SimpleModal viewFrom = 'original_author' status={proposalAccepted} title={proposalTitle} chapter={proposalChapter} accpeted ={proposalAccepted} content = {proposalContent}></SimpleModal></h3>
           <span className="subitem">
             Proposal Status: {setProposalStatus(proposalAccepted)}
           </span>
         </p>
-        <p className="item text">Source Author: {proposalAuthor} </p>
-        <p className="item text">Proposed Chapter Number: {proposalChapter}</p>
+        <h4 className="item text">Source Author: {proposalAuthor} </h4>
+        <h4 className="item text">Proposed Chapter Number: {proposalChapter}</h4>
+        
       </div>
     );
   }

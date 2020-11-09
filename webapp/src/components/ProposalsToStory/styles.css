@@ -25,3 +25,7 @@
     padding-right: 10px;
     margin-right: 200px;
 }
+
+.proposals-to-story-block-list-item{
+    height: fit-content;
+}

@@ -201,7 +201,8 @@ export default function SimpleModal(props) {
 
     }
   };
-
+  // ONLY Proposal writters can modify proposals when the proposals are pending
+  const disableChanges = (props.status == 'Pending' && props.viewFrom == 'proposal_writter');
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <div>
@@ -218,13 +219,13 @@ export default function SimpleModal(props) {
             Proposal to Chapter:  
           </span>
           <span style={{display:"inline-flex"}}>
-            <Input style={{fontSize:"x-large"}} defaultValue={props.chapter} onChange={handleChange}></Input>
+            <Input disabled={!disableChanges}style={{fontSize:"x-large"}} defaultValue={props.chapter} onChange={handleChange}></Input>
           </span>
         </span>
         <span style={{display:"flex", marginTop:'2%'}}>
           Proposal Content:  
         </span>
-        <CssTextField style={{width: "100%", marginTop:'2%'}} variant='outlined' multiline rows={5} rowsMax={10} defaultValue={props.content} onChange={handleChange}></CssTextField>
+        <CssTextField disabled={!disableChanges} style={{width: "100%", marginTop:'2%'}} variant='outlined' multiline rows={5} rowsMax={10} defaultValue={props.content} onChange={handleChange}></CssTextField>
         {actionsAvailable(props.viewFrom, props.status)}
       </div>
       
