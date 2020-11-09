@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom"
 import "./styles.css";
+import SimpleModal from './SimpleModal'
 
 class ProposalBlock extends React.Component {
   render() {
+
     const {
       proposalId,
       proposalSourceId,
@@ -11,6 +12,7 @@ class ProposalBlock extends React.Component {
       proposalSourceAuthor,
       proposalChapter,
       proposalAccepted,
+      proposalContent
     } = this.props;
 
     return (
@@ -20,18 +22,14 @@ class ProposalBlock extends React.Component {
         <div className="my-proposals-list-item-icon"></div>
         {/* Require call to props/states here */}
         <p className="item text">
-          <span>
-            Source Title:{" "}
-            <Link to={`/proposals/${proposalSourceId}/${proposalId}`}>
-              <span>{proposalSourceTitle}</span>
-            </Link>
-          </span>
+          <h3>Source Title: <SimpleModal title={proposalSourceTitle} chapter={proposalChapter} accpeted ={proposalAccepted} content = {proposalContent}></SimpleModal></h3>
+          
           <span className="subitem">
             Proposal Status: {setProposalStatus(proposalAccepted)}
           </span>
         </p>
-        <p className="item text">Source Author: {proposalSourceAuthor} </p>
-        <p className="item text">Proposed Chapter Number: {proposalChapter}</p>
+        <h4 className="item text">Source Author: {proposalSourceAuthor} </h4>
+        <h4 className="item text">Proposed Chapter Number: {proposalChapter}</h4>
       </div>
     );
   }

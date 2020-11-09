@@ -2,7 +2,7 @@
 .my-proposals-list-item {
     border: 3px solid grey;
     max-width: 100%;
-    height: 100px;
+    height: fit-content;
 }
 .my-proposals-list-item-icon {
     width: 90px;
@@ -39,4 +39,9 @@
 
 .yellow {
     color: orange;
+}
+
+.round-title-button{
+    background: honeydew;
+    border-radius: 10px;
 }
