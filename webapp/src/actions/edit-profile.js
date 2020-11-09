@@ -10,10 +10,10 @@ export const handleInputChange = (event, form) => {
 
 export const handleSave = (edit) => {
   if (
-    (edit.state.username == "") |
-    (edit.state.firstName == "") |
-    (edit.state.lastName == "") |
-    (edit.state.age == "") |
+    (edit.state.username == "") ||
+    (edit.state.firstName == "") ||
+    (edit.state.lastName == "") ||
+    (edit.state.age == "") ||
     (edit.state.genrePref == "")
   ) {
     alert("Cannot leave empty fields!");

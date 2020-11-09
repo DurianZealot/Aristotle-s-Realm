@@ -10,7 +10,7 @@ function confirmation(state, action) {
   if (action === "create") {
     // check if required states are non empty
     // story name , story content
-    if ((state.storyName.trim() === "") | (state.storyContent.trim() === "")) {
+    if ((state.storyName.trim() === "") || (state.storyContent.trim() === "")) {
       alert("The name of your story and story are required!");
       return;
     } else {
