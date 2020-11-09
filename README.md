@@ -56,7 +56,9 @@ Users can ACCEPT/REJECT a story proposal to their stories
 
 Users can view their stories and proposals to their stories in `MY STORIES` . Users are free to delete any story they create.
 
+### Proposals To My Story
 
+A Page accessible from `My Stories`, this view allows users to see the proposals to the stories they've created.
 
 ### Manage Own Proposals
 
@@ -65,3 +67,15 @@ User can view the proposals that they created in `MY PROPOSAL`. Users can edit t
 Only the author of the proposal can do changes to a proposal for intellectual property rights.
 
 Proposals to users' own stories will can be viewed under the `View Proposals to this story` in a story block.
+
+### User Profile: 
+
+User will be able to view informations regarding themselves in the profile page, which contains a Side Bar with various buttons to direct users to `My Stories`, `My Proposals`, `Create Proposal`, `Create Story`, `Browse`. The User Profile itself also contains a button leading to the `Edit Profile` page.
+
+### Edit Profile:
+
+User will be directed to a page that allows them to edit basic informations regarding themselves.
+
+### Story:
+
+Users will be directed to this page when viewing the main content of a story. The page contains basic information regarding the story and a chapter selector to choose the chapters to go to. The majority of the page is covered by the main texts of the story.
