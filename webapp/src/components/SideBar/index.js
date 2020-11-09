@@ -28,11 +28,11 @@ class SideBar extends React.Component {
     componentDidMount() {
         // When the component enters the DOM
         console.log("Current user ID: " + this.props.appState.currID)
+        console.log("localStorage's currId: " + window.localStorage.currentUser)
     }
 
     render() {
-        console.log(window.localStorage.currentUser)
-        if (this.props.appState.currentUser !== null | window.sessionStorage.getItem('currentUser') != null) {
+        if (this.props.appState.currId !== null | window.sessionStorage.getItem('currentUser') != null) {
             // User Sidebar
             return (
                 <div className="side-bar">
