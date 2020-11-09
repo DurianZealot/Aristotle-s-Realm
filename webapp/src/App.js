@@ -51,14 +51,11 @@ import ProposalsToStory from './components/ProposalsToStory';
             {/* Route to a page of the article; url also separated based on chapter number*/}
             <Route exact path='/article/:storyId/:chapterNum' render={(props) => (<StoryPage params={props.match.params} appState={this.state}/>)}/>
             <Route exact path='/proposals/:storyId' render={(props) => (<ProposalsToStory params={props.match.params} appState={this.state}/>)}/>
-            {/* YOLANDA CHANGE THE ROUTE BELOW FOR THE PROPOSAL PAGE*/}
             <Route exact path='/proposasl/:storyId/:proposalId' render={(props) => (<Home></Home>)} /> 
             <Route exact path='/profile/user=:userId/my-proposals' render={(props) => (<MyProposals params={props.match.params} appState={this.state}/>)} />
             <Route exact path='/profile/user=:userId/my-stories' render={(props) => <MyStories params={props.match.params} appState={this.state}/>} />
             <Route exact path='/profile/user=:userId/create-stories' render={(props) => <CreateStory params={props.match.params} appState={this.state}/>} />
             <Route exact path='/profile/user=:userId/create-proposal' render={(props) => <CreateProposal params={props.match.params} appState={this.state}></CreateProposal>} />
-            {/* YOLANDA THE ROUTE BELOW IS FOR USER PROFILE SETTINGS */}
-            <Route exact path='/profile-settings' render={() => (<Home></Home>)}/>
           </Switch>
         </BrowserRouter>
       </div>
