@@ -48,6 +48,7 @@ class Registration extends React.Component {
                             username={this.state.username}
                             password={this.state.password}
                             birthday={this.state.birthday}
+                            redirect={this.state.redirect}
                             handleInputChange={(event) => handleInputChange(event, this)}
                             handleRegister={() => handleRegister(this)}
                             appState={this.props.appState}

@@ -1,3 +1,5 @@
+import { FlashOffRounded } from "@material-ui/icons"
+
 export const handleInputChange = (event, form) => {
     form.setState({
         [event.target.name]: event.target.value
@@ -28,14 +30,41 @@ export const handleSubmit = (form) => {
        
 }
 
-export const handleRegister = (form)=> {
-    const {username, password, firstName, lastName, birthday} = form.state
-   
-    const newUser = {username: username,
-                     password: password}
-    form.state.appState.users.push(newUser)
-    
+export const handleRegister = (form)=> {   
+    const {username, password} = form.state 
+    const valid = validateEntries(form)
+    if (valid){
+        const newUser = {username: username,
+        password: password}
+        form.props.appState.users.push(newUser) //store in database in phase 2
+        alert("Successfully Created Account")
+        console.log(form.props.appState.users)
+        form.setState(
+            {redirect: true}
+        )
+    }   
 }
+
+const validateEntries = (form) =>{
+    const {username, password, firstName, lastName} = form.state
+    if (!username || !password || !firstName || !lastName ){
+        alert("Please fill out all required infromation")
+        return false
+        
+    }
+    else{
+        const userArray = form.props.appState.users.filter(user => {
+            return user.username === username 
+        })
+        if(userArray[0]){
+            alert("The username you have entered is not available")
+            return false
+           
+        }
+        return true
+    }
+}
+
 
 // HARDCODED METHOD
 // Requires server call to get the userId associated with the currentUser

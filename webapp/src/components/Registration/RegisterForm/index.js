@@ -2,7 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid"
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-
+import {Redirect} from 'react-router-dom'
 /* Component for register form */
 class RegisterForm extends React.Component {
     render() {
@@ -14,8 +14,13 @@ class RegisterForm extends React.Component {
             birthday,
             handleInputChange,
             handleRegister,
+            redirect
         } = this.props;
-
+        if (redirect){
+            return(
+                <Redirect to={{pathname: '/'}}/> 
+            )
+        }
         return (
             <Grid container spacing={2}>
                 <Grid item xs={6}>
@@ -71,7 +76,6 @@ class RegisterForm extends React.Component {
                         type="date"
                         value={birthday}
                         onChange={handleInputChange}
-                        required
                         InputLabelProps={{
                             shrink: true,
                         }}
