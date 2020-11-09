@@ -45,6 +45,7 @@ class UserProfile extends React.Component {
           iconPath={this.state.user.iconPath}
           age={this.state.user.age}
           genrePref={this.state.user.genrePref}
+          currId={this.props.appState.currId}
         />
 
         <SocialStats

@@ -57,6 +57,8 @@ import ProposalsToStory from './components/ProposalsToStory';
             <Route exact path='/profile/user=:userId/my-stories' render={(props) => <MyStories params={props.match.params} appState={this.state}/>} />
             <Route exact path='/profile/user=:userId/create-stories' render={(props) => <CreateStory params={props.match.params} appState={this.state}/>} />
             <Route exact path='/profile/user=:userId/create-proposal' render={(props) => <CreateProposal params={props.match.params} appState={this.state}></CreateProposal>} />
+            {/* YOLANDA THE ROUTE BELOW IS FOR USER PROFILE SETTINGS */}
+            <Route exact path='/profile-settings' render={() => (<Home></Home>)}/>
           </Switch>
         </BrowserRouter>
       </div>
