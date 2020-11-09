@@ -32,7 +32,7 @@ class SideBar extends React.Component {
     }
 
     render() {
-        if (this.props.appState.currId !== null || window.sessionStorage.getItem('currentUser') != null) {
+        if (this.props.appState.currId  || window.sessionStorage.getItem('currentUser')) {
             // User Sidebar
             return (
                 <div className="side-bar">
