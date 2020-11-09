@@ -77,6 +77,131 @@ export default function SimpleModal(props) {
     }
   }
 
+  const acceptOrReject = (action) => {
+    var answer
+    if (action == 'ACCEPT'){
+      answer = window.confirm('Are you sure you are going to accept this proposal?')
+      if (answer){
+        window.alert('You accept this proposal successfully')
+        handleClose()
+      }
+    }
+    else if (action == 'REJECT'){
+      answer = window.confirm('Are you sure you are going to reject this proposal?')
+      if (answer){
+        window.alert('You reject this proposal successfully')
+        handleClose()
+      }
+    }
+  }
+
+  const closeBtn = () => {
+    return(
+    <Button
+            color="primary"
+            style={{ display: "flex" }}
+            onClick={() => onClickButton("close", modified)}>close</Button>
+    );
+  }
+
+  const saveChangesBtn = () => {
+    return (
+      <Button
+          color="primary"
+          style={{ display: "flex" }}
+          onClick={() => onClickButton("save", modified)}>Save Changes</Button>
+    )
+  }
+
+  const deleteBtn = () => {
+    return (
+      <Button
+            color="primary"
+            style={{ display: "flex" }}
+            onClick={() => onClickButton("delete", modified)}>Delete</Button>
+    )
+  }
+
+  const acceptOrRejectBtn = (action) => {
+    return(
+      <Button
+            color="primary"
+            style={{ display: "flex" }}
+            onClick={() => acceptOrReject(action)}>{action}</Button>
+    )
+  }
+
+  
+
+  const actionsAvailable = (viewFrom, proposalStatus) => {
+    // if the propsal is viewd by the user that created the story that the proposal is proposed to,
+    // only ACCEPT, REJECT, CLOSE are available for choosing
+    // if the proposal is viewd by the user that created the proposal,
+    // only SAVE CHANGES, DELETE, CLOSE are available for choosing
+
+    console.log("View from ", viewFrom)
+    console.log("Status ", proposalStatus)
+
+    if(viewFrom == 'proposal_writter'){
+      // if the status is ACCEPTED, the user can only CLOSE the modal
+      if(proposalStatus == 'Accepted'){
+        return (
+          <span style={{display: "flex",justifyContent: "space-around",width: "100%"}}>
+            {closeBtn()}
+          </span>
+        )
+      }
+      // if the status is REJECTED, the user can only CLOSE the modal / DELETE the proposal
+      else if (proposalStatus == 'Rejected'){
+        return (
+          <span style={{display: "flex",justifyContent: "space-around",width: "100%"}}>
+            {deleteBtn()}
+            {closeBtn()}
+          </span>)
+      }
+      // if status is PENDING, the user can SAVE CHANGES / DELETE proposal or CLOSE the modal
+      else if (proposalStatus == 'Pending'){
+        return (
+          <span style={{display: "flex",justifyContent: "space-around",width: "100%"}}>
+            {saveChangesBtn()}
+            {deleteBtn()}
+            {closeBtn()}
+          </span>)
+      }
+      
+    }
+    else if (viewFrom == 'original_author'){
+      // if the status is ACCEPTED, the user can only CLOSE the modal / REJECT the proposal
+      if(proposalStatus == 'Accepted'){
+        return (
+          <span style={{display: "flex",justifyContent: "space-around",width: "100%"}}>
+            {acceptOrRejectBtn('REJECT')}
+            {closeBtn()}
+          </span>
+        )
+      }
+      // if the status is REJECTED, the user can only CLOSE the modal / DELETE / ACCEPT the proposal
+      else if (proposalStatus == 'Rejected'){
+        return (
+          <span style={{display: "flex",justifyContent: "space-around",width: "100%"}}>
+            {acceptOrRejectBtn('ACCEPT')}
+            {deleteBtn()}
+            {closeBtn()}
+          </span>)
+      }
+      // if status is PENDING, the user can  ACCEPT / REJECT proposal or CLOSE the modal
+      else if (proposalStatus == 'Pending'){
+        return (
+          <span style={{display: "flex",justifyContent: "space-around",width: "100%"}}>
+            {acceptOrRejectBtn('ACCEPT')}
+            {acceptOrRejectBtn('REJECT')}
+            {closeBtn()}
+          </span>)
+      }
+
+    }
+  };
+
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <div>
@@ -100,11 +225,7 @@ export default function SimpleModal(props) {
           Proposal Content:  
         </span>
         <CssTextField style={{width: "100%", marginTop:'2%'}} variant='outlined' multiline rows={5} rowsMax={10} defaultValue={props.content} onChange={handleChange}></CssTextField>
-        <span style={{display:"flex", justifyContent: "space-around", width:"100%"}}>
-          <Button color="primary" style={{display:'flex'}} onClick = {() => onClickButton('save', modified)}> Save Changes </Button>
-          <Button color="primary" style={{display:'flex'}} onClick = {() => onClickButton('delete', modified)}> Delete Proposal </Button>
-          <Button color="primary" style={{display:'flex'}} onClick = {() => onClickButton('close', modified)}> Close </Button>
-        </span>
+        {actionsAvailable(props.viewFrom, props.status)}
       </div>
       
     </div>

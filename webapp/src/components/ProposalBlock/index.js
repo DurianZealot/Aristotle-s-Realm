@@ -22,7 +22,7 @@ class ProposalBlock extends React.Component {
         <div className="my-proposals-list-item-icon"></div>
         {/* Require call to props/states here */}
         <p className="item text">
-          <h3>Source Title: <SimpleModal title={proposalSourceTitle} chapter={proposalChapter} accpeted ={proposalAccepted} content = {proposalContent}></SimpleModal></h3>
+          <h3>Source Title: <SimpleModal viewFrom = 'proposal_writter' status={proposalAccepted} title={proposalSourceTitle} chapter={proposalChapter} accpeted ={proposalAccepted} content = {proposalContent}></SimpleModal></h3>
           
           <span className="subitem">
             Proposal Status: {setProposalStatus(proposalAccepted)}

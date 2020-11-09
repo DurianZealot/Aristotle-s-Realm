@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import SimpleModal from '../../ProposalBlock/SimpleModal'
 import "./styles.css";
 
 class ProposalBlock extends React.Component {
@@ -11,6 +11,7 @@ class ProposalBlock extends React.Component {
       proposalAuthor,
       proposalChapter,
       proposalAccepted,
+      proposalContent
     } = this.props;
 
     return (
@@ -22,9 +23,7 @@ class ProposalBlock extends React.Component {
         <p className="item text">
           <span>
             Title:{" "}
-            <Link to={`/proposals/${proposalSourceId}/${proposalId}`}>
-              <span>{proposalTitle}</span>
-            </Link>
+            <SimpleModal viewFrom='original_author' status={proposalAccepted} title={proposalTitle} chapter={proposalChapter} accpeted ={proposalAccepted} content = {proposalContent}></SimpleModal>
           </span>
           <span className="subitem">
             Proposal Status: {setProposalStatus(proposalAccepted)}
