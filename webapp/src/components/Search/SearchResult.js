@@ -11,7 +11,7 @@ class SearchResult extends Component {
         <ul className="search-result-list">
           {storyNames.map((name) => {
             const {
-              authorId,
+              storyId,
               lastUpdate,
               storyLine,
               storyPreview,
@@ -19,7 +19,7 @@ class SearchResult extends Component {
             return (
               <li className="search-result" key={uid(name)}>
                 <span>
-                  <Link to={`/aritcle=${name}`}>
+                  <Link to={`/article/${storyId}/1`}>
                     <h4 className="story-name">{name}</h4>
                   </Link>
                   <span className="last-update">
