@@ -7,26 +7,30 @@ class Home extends React.Component{
     constructor(props) {
         super(props)
         this.state ={
-            currentUser : props.appState.currentUser
+            // currentUser : props.appState.currentUser
+            currentUser : window.sessionStorage.getItem('currentUser')
         }
     }
     render() {
         
-        if (!this.state.currentUser){
+        if (this.state.currentUser){
             return(
                 <div className="homepage">
-                    <Header className='header'>
-    
-                    </Header>
-                    <Body className='body'>
-    
-                    </Body>                
+                        <Header className='header' appState={this.props.appState} >                       
+                        </Header>
+                        <Body className='body' appState={this.props.appState}>
+                            
+                        </Body>                
                 </div>
             )
         }
+        
         return(
             <div className="homepage">
-                Logged in version of this page under construction              
+                <Header className='header' appState={this.props.appState} >
+                </Header>
+                <Body className='body'  appState={this.props.appState}>   
+                </Body>                
             </div>
         )
         

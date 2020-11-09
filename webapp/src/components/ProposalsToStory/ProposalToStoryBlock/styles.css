@@ -1,17 +1,16 @@
-/* Styles for the ProposalBlock component */
-.my-proposals-list-item {
+.proposals-to-story-block-list-item {
     border: 3px solid grey;
     max-width: 100%;
-    height: fit-content;
+    height: 100px;
 }
-.my-proposals-list-item-icon {
+.proposals-to-story-block-list-item-icon {
     width: 90px;
     height: 90px;
     padding: 2px;
     float: left;
     border: 3px solid grey;
     background-size: cover;
-    background-image: url("../MyProposals/mock_data/story_icon.png");
+    background-image: url("../ProposalToStoryBlock/static/story_icon.png");
 }
 
 .text {
@@ -39,9 +38,4 @@
 
 .yellow {
     color: orange;
-}
-
-.round-title-button{
-    background: honeydew;
-    border-radius: 10px;
 }

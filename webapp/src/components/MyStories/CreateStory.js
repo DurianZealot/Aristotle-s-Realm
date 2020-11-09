@@ -10,7 +10,7 @@ function confirmation(state, action) {
   if (action === "create") {
     // check if required states are non empty
     // story name , story content
-    if ((state.storyName.trim() === "") | (state.storyContent.trim() === "")) {
+    if ((state.storyName.trim() === "") || (state.storyContent.trim() === "")) {
       alert("The name of your story and story are required!");
       return;
     } else {
@@ -62,7 +62,10 @@ function delayRedirect(action) {
   redirectDiv.appendChild(redirectMsg);
   // Create a span for direct redirection
   var redirect = document.createElement("span");
-  redirect.innerHTML = "<a href = '/profile/user' >Or Redirect Now<a href>";
+
+  // get current user id from session storage
+  const userId = window.sessionStorage.getItem('currentUser')
+  redirect.innerHTML = "<a href = '/profile/user=" + userId + "'" +  ">Or Redirect Now<a href>";
   redirectDiv.appendChild(redirect);
   var countDown = 5;
   setInterval(() => {
@@ -70,8 +73,8 @@ function delayRedirect(action) {
     document.getElementById("countDownSecond").innerHTML = countDown;
     if (countDown === 0) {
       // hard coded
-
-      window.location.href = "/profile/user";
+      console.log(userId)
+      window.location.href = '/profile/user=' + userId
     }
   }, 1000);
 }
@@ -86,6 +89,7 @@ class CreateStory extends Component {
       storyPreview: "",
       storyContent: "",
     };
+    console.log("In create story, the current app state is ", this.props.appState)
   }
 
   __updateInput = (e) => {

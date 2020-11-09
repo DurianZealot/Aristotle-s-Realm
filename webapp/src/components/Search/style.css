@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* set the font family for the entire page */
 *{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -75,3 +76,98 @@
   color: grey;
   display: inline;
 }
+=======
+/* set the font family for the entire page */
+*{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.search-container {
+  display: flex;
+}
+
+.search-bar {
+  float: left;
+  margin-left: 25%;
+  width: 45%;
+  height: 30px;
+  font-size: x-large;
+  text-align: center;
+  padding: 0%;
+}
+
+.search-button {
+  width: 5%;
+  text-align: center;
+}
+
+.search-header {
+  position: relative;
+  text-align: center;
+}
+
+.search-result-list{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-left: 23%; 
+}
+
+.search-result{
+  background: None;
+  width: 100%;
+  margin-left: 5%;
+  flex-basis: 10%;
+  list-style-type: none;
+  border-bottom:solid 1px #666;
+  border-radius: 0%;
+}
+
+.truncate {
+  /* for text truncate */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.story-preview{
+  width: 40%;
+  flex-basis: 10%;
+  text-align: justify;
+}
+
+.story-line{
+  width: 600px;
+}
+
+.story-name{
+  display: inline;
+}
+
+.last-update{
+  display: inline;
+  float:right;
+  margin-right: 5%;
+}
+
+.grey{
+  color: grey;
+}
+
+
+.date{
+  color: grey;
+  display: inline;
+}
+
+.black{
+  color: black;
+}
+
+.inline-flex{
+  display: inline-flex;
+}
+
+.inline-block{
+  display: inline-block;
+}
+>>>>>>> b2c89c3750008c9c892f2e9cf14faa557d9ade81

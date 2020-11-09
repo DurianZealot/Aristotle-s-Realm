@@ -22,24 +22,33 @@ class UserProfile extends React.Component {
   // Otherwise, should redirect the user to the login/register view
   componentDidMount() {
     // When the component enters the DOM
-    console.log(this.props.appState.currentUser)
+    // console.log(this.props.appState.currentUser)
+    // console.log(this.props.currID)
     this.setState({
-      user: getUserInfo(this.props.appState.currentUser),
-      userId: this.props.appState.currentUser,
-    });
+      // user: getUserInfo(this.props.appState.currID),
+      user: getUserInfo(window.sessionStorage.getItem('currentUser')),
+      userId: window.sessionStorage.getItem('currentUser')
+    }, () => {console.log("The user id we get is ", this.state.userId); console.log("The user we get is ", this.state.user)});
+  
   }
 
   render() {
+    const params = this.props.params;
+    const user = getUserInfo(params.userId); // Reserved in case needed
+    console.log(
+      "userId based on url: " + params.userId + ", currId: " + this.props.appState.currId
+    );
+
     return (
       <div className="user-profile">
-        <SideBar
-          appState={this.props.appState}
-        />
+        <SideBar appState={this.props.appState} />
         <GeneralInfo
-          name={this.state.user.name}
+          firstName={this.state.user.firstName}
+          lastName={this.state.user.lastName}
           iconPath={this.state.user.iconPath}
           age={this.state.user.age}
           genrePref={this.state.user.genrePref}
+          currId={this.props.appState.currId}
         />
 
         <SocialStats
@@ -58,7 +67,7 @@ class UserProfile extends React.Component {
         <CareerStats
           proposalAcceptNum={this.state.user.proposalAcceptNum}
           worksBegunNum={this.state.user.worksBegunNum}
-          LastContributionDate={this.state.user.LastContributionDate}
+          lastContributionDate={this.state.user.lastContributionDate}
         />
       </div>
     );

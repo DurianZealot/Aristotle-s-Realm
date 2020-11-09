@@ -1,8 +1,15 @@
+import { Button } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./styles.css";
 
 class StoryBlock extends React.Component {
+  delete = () => {
+    var answer = window.confirm('Are you sure to delete this story? This will wipe out all data.')
+    if (answer){
+      alert('You delete this story!')
+    }
+  }
   render() {
     const {
       storyId,
@@ -40,7 +47,14 @@ class StoryBlock extends React.Component {
             }
             return tag + ", ";
           })}
+          <span className="stories-subitem">
+            <Link to={`/proposals/${storyId}`}>
+              <span>View Proposals to this story</span>
+            </Link>
+          </span>
+          <Button style={{float:'right', marginTop:'2%', marginRight:'1%'}} onClick={() => this.delete()}color="primary" variant="contained">Delete</Button>
         </p>
+       
       </div>
     );
   }
