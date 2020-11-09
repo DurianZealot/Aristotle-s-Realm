@@ -22,6 +22,12 @@
     background-image: url("icon/profile-icon-placeholder.png");
 }
 
+.user-profile-edit {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
 .general-info {
     margin-left: 200px;
 }
