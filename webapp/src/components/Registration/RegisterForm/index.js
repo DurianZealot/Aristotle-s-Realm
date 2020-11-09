@@ -2,7 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid"
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-
+import {Redirect} from 'react-router-dom'
 /* Component for register form */
 class RegisterForm extends React.Component {
     render() {
@@ -14,14 +14,19 @@ class RegisterForm extends React.Component {
             birthday,
             handleInputChange,
             handleRegister,
+            redirect
         } = this.props;
-
+        if (redirect){
+            return(
+                <Redirect to={{pathname: '/'}}/> 
+            )
+        }
         return (
             <Grid container spacing={2}>
                 <Grid item xs={6}>
                     <TextField
                         name="firstName"
-                        variant="outlined"
+                        variant="filled"
                         label="First Name"
                         value={firstName}
                         onChange={handleInputChange}
@@ -32,7 +37,7 @@ class RegisterForm extends React.Component {
                 <Grid item xs={6}>
                     <TextField
                         name="lastName"
-                        variant="outlined"
+                        variant="filled"
                         label="Last Name"
                         value={lastName}
                         onChange={handleInputChange}
@@ -43,7 +48,7 @@ class RegisterForm extends React.Component {
                 <Grid item xs={12}>
                     <TextField
                         name="username"
-                        variant="outlined"
+                        variant="filled"
                         label="Username"
                         value={username}
                         onChange={handleInputChange}
@@ -54,7 +59,7 @@ class RegisterForm extends React.Component {
                 <Grid item xs={12}>
                     <TextField
                         name="password"
-                        variant="outlined"
+                        variant="filled"
                         label="Password"
                         type="password"
                         value={password}
@@ -66,12 +71,11 @@ class RegisterForm extends React.Component {
                 <Grid item xs={12}>
                     <TextField
                         name="birthday"
-                        variant="outlined"
+                        variant="filled"
                         label="Birthday"
                         type="date"
                         value={birthday}
                         onChange={handleInputChange}
-                        required
                         InputLabelProps={{
                             shrink: true,
                         }}
