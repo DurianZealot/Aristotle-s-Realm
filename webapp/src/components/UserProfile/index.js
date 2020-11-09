@@ -25,9 +25,11 @@ class UserProfile extends React.Component {
     // console.log(this.props.appState.currentUser)
     // console.log(this.props.currID)
     this.setState({
-      user: getUserInfo(this.props.appState.currID),
-      userId: this.props.appState.currID,
-    });
+      // user: getUserInfo(this.props.appState.currID),
+      user: getUserInfo(window.sessionStorage.getItem('currentUser')),
+      userId: window.sessionStorage.getItem('currentUser')
+    }, () => {console.log("The user id we get is ", this.state.userId); console.log("The user we get is ", this.state.user)});
+  
   }
 
   render() {

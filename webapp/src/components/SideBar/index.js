@@ -32,7 +32,7 @@ class SideBar extends React.Component {
 
     render() {
         console.log(window.localStorage.currentUser)
-        if (this.props.appState.currentUser !== null) {
+        if (this.props.appState.currentUser !== null | window.sessionStorage.getItem('currentUser') != null) {
             // User Sidebar
             return (
                 <div className="side-bar">
@@ -44,28 +44,27 @@ class SideBar extends React.Component {
                         <Button className="side-bar__button" variant="contained" size="large">Browse</Button>
                     </Link>
     
-                    <Link className="side-bar__create-stories-link" to={`/profile/user=${this.props.appState.currID}/create-stories`}> {/* Takes User to Create Stories Page */}
-                        <Button className="side-bar__button" variant="contained" size="large">Create Stories</Button>
+                    <Link className="side-bar__create-stories-link" to={`/profile/user=${window.sessionStorage.getItem('currentUser')}/create-stories`}> {/* Takes User to Create Stories Page */}
+                        <Button className="side-bar__button" variant="contained" size="large">Create Story</Button>
                     </Link>
     
-                    <Link className="side-bar__my-stories-link" to={`/profile/user=${this.props.appState.currID}/my-stories`}> {/* Takes User to My Stories */}
+                    <Link className="side-bar__my-stories-link" to={`/profile/user=${window.sessionStorage.getItem('currentUser')}/my-stories`}> {/* Takes User to My Stories */}
                         <Button className="side-bar__button" variant="contained" size="large">My Stories</Button>
                     </Link>
     
-                    <Link className="side-bar__my-proposals-link" to={`/profile/user=${this.props.appState.currID}/my-proposals`}> {/* Takes User to My Proposals */}
+                    <Link className="side-bar__my-proposals-link" to={`/profile/user=${window.sessionStorage.getItem('currentUser')}/my-proposals`}> {/* Takes User to My Proposals */}
                         <Button className="side-bar__button" variant="contained" size="large">My Proposals</Button>
                     </Link>
 
-                    <Link className="side-bar_create-proposal-link" to={`/profile/user=${this.props.appState.currID}/create-proposal`}> {/* Take User to Create Proposal Page*/}
+                    <Link className="side-bar_create-proposal-link" to={`/profile/user=${window.sessionStorage.getItem('currentUser')}/create-proposal`}> {/* Take User to Create Proposal Page*/}
                         <Button className="side-bar__button" variant="contained" size="large">Create Proposal</Button>
                     </Link>
 
-                    <Link className="side-bar__profile-link" to={`/profile/user=${this.props.appState.currID}`}> {/* Takes User to Profile Page */}
+                    <Link className="side-bar__profile-link" to={`/profile/user=${window.sessionStorage.getItem('currentUser')}`}> {/* Takes User to Profile Page */}
                         <Button className="side-bar__button" variant="contained" size="large">Profile</Button>
                     </Link>
 
-                    {/* Currently No way to log user out yet */}
-                    <Link className="side-bar__logout-link" to={"/"} onClick={() => {this.props.appState.currID = null; this.props.appState.currentUser = null}}> {/* Log User Out */}
+                    <Link className="side-bar__logout-link" to={"/"} onClick={() => {this.props.appState.currID = null; this.props.appState.currentUser = null; window.sessionStorage.clear()}}> {/* Log User Out */}
                         <Button className="side-bar__button" variant="contained" size="large">Logout</Button>
                     </Link>
                 </div>

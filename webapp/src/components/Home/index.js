@@ -7,7 +7,8 @@ class Home extends React.Component{
     constructor(props) {
         super(props)
         this.state ={
-            currentUser : props.appState.currentUser
+            // currentUser : props.appState.currentUser
+            currentUser : window.sessionStorage.getItem('currentUser')
         }
     }
     render() {

@@ -12,6 +12,8 @@ export const handleSubmit = (form) => {
     form.props.appState.currentUser = currentUser
     // TONY I CHANGED THIS IN ORDER TO MAKE CURRENTUSER AN ACTUAL ID.
     form.props.appState.currID = getCurrentUserId(form, currentUser);
+    // Set a session storage to store the current User ID 
+    window.sessionStorage.setItem('currentUser', form.props.appState.currID)
     if (currentUser){
         form.setState(
             {

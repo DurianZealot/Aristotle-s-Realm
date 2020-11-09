@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import story from "./existingStory"
 import {CssTextField, txtFieldStyle} from "../CssTextField/CssTextField";
-import { Redirect } from 'react-router-dom';
 import {Button} from '@material-ui/core'
 class CreateProposal extends Component {
     constructor(props){
@@ -21,7 +20,7 @@ class CreateProposal extends Component {
 
     actionToProposal = (action) => {
         
-
+        const userId = window.sessionStorage.getItem('currentUser')
         var answer;
         if (action == "submit"){
             // if we are going to submit the propsal
@@ -34,7 +33,7 @@ class CreateProposal extends Component {
                 answer = window.confirm("Are you sure to submit your proposal?")
                 if (answer){
                     alert("Your proposal is submitted!")
-                    window.location.href = "/profile/user"
+                    window.location.href = "/profile/user=" + userId
                 }
             }
         }
@@ -42,7 +41,7 @@ class CreateProposal extends Component {
             answer = window.confirm("Are you sure to discard your proposal?")
             if (answer){
                 alert("Your proposal is discarded!")
-                window.location.href = "/profile/user"
+                window.location.href = "/profile/user=" + userId
             }
             
         }

@@ -5,7 +5,8 @@ import { Typography, IconButton, Button} from '@material-ui/core';
 import {AccountCircle} from '@material-ui/icons'
 class Header extends React.Component{
     render() {
-        if (this.props.appState.currentUser){
+        // if (this.props.appState.currentUser){
+        if(window.sessionStorage.getItem('currentUser')){
             return(
                 <div className='header flex '>
                      <Link className="browse_link flex" to={"/search"}> {/* Takes User to Homepage */}
@@ -21,7 +22,7 @@ class Header extends React.Component{
                    
                     <img src={require('./static/logo.jpg')} alt="logo" className='image_two flex' >
                     </img>
-                    <Link className ="login_link2 " to={"./login"}>
+                    <Link className ="login_link2 " to={"/profile/user="+window.sessionStorage.getItem('currentUser')}>
                         <IconButton edge="start" className='button flex '  aria-label="menu">
                                     
                             <AccountCircle className='white'/>
