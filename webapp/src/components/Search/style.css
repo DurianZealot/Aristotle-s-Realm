@@ -51,9 +51,13 @@
 }
 
 .story-preview{
-  width: 75%;
+  width: 40%;
   flex-basis: 10%;
   text-align: justify;
+}
+
+.story-line{
+  width: 600px;
 }
 
 .story-name{
@@ -74,4 +78,16 @@
 .date{
   color: grey;
   display: inline;
+}
+
+.black{
+  color: black;
+}
+
+.inline-flex{
+  display: inline-flex;
+}
+
+.inline-block{
+  display: inline-block;
 }

@@ -23,17 +23,17 @@ class SearchResult extends Component {
                     <h4 className="story-name">{name}</h4>
                   </Link>
                   <span className="last-update">
-                    <span>Most Recent Update: </span>
+                    <span className="black">Most Recent Update: </span>
                     <span className="grey">{lastUpdate}</span>
                   </span>
                 </span>
-                <span>
-                  <span>
-                    <p>Story Line: </p>
+                <span className="inline-block">
+                  <span className="inline-flex">
+                    <p className="black">Story Line: </p>
                     <p className="story-line truncate grey">{storyLine}</p>
                   </span>
-                  <span>
-                    <p>Story Preview: </p>
+                  <span className="inline-flex">
+                    <p className="black">Story Preview: </p>
                     <p className="story-preview truncate grey">
                       {" "}
                       {storyPreview}{" "}
