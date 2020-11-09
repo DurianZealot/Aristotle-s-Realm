@@ -43,7 +43,8 @@ class UserProfile extends React.Component {
       <div className="user-profile">
         <SideBar appState={this.props.appState} />
         <GeneralInfo
-          name={this.state.user.name}
+          firstName={this.state.user.firstName}
+          lastName={this.state.user.lastName}
           iconPath={this.state.user.iconPath}
           age={this.state.user.age}
           genrePref={this.state.user.genrePref}

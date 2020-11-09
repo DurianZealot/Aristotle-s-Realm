@@ -7,7 +7,8 @@ import "./styles.css";
 class GeneralInfo extends React.Component {
   render() {
     const {
-      name, // User's name
+      firstName, // User's first name
+      lastName, // User's last name
       iconPath, // Path to user's icon
       age, // User's age
       genrePref, // User's preferred genre of writing
@@ -19,7 +20,7 @@ class GeneralInfo extends React.Component {
         <img className="icon" />{" "}
         {/* src={iconPath} Doesn't seem to be working EVENT LISTENER MAYBE? */}
         <div className="general-info">
-          <h1 className="user_name black">{name}</h1>
+          <h1 className="user_name black">{firstName + " " + lastName}</h1>
           <div className="user-profile-edit">
             <Link className="" to={"/profile-settings"}>
               {/* Takes User to Profile Page */}

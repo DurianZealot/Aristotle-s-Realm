@@ -10,7 +10,9 @@ export const getUserInfo = (userId) => {
     case "AcawO":
       return {
         userId: "AcawO",
-        name: "Ipsum Lorem",
+        username: "EnTaroAdun",
+        firstName: "Ipsum",
+        lastName: "Lorem",
         iconPath: "icon/profile-icon-placeholder.png",
         age: "20",
         genrePref: "Sci-Fi",
@@ -27,7 +29,9 @@ export const getUserInfo = (userId) => {
     case "LuCaW":
       return {
         userId: "LuCaW",
-        name: "Ipsum Lorem 2",
+        username: "EnTaroTassadar",
+        firstName: "Ipsum 2",
+        lastName: "Lorem 2",
         iconPath: "icon/profile-icon-placeholder.png",
         age: "48",
         genrePref: "Romance",

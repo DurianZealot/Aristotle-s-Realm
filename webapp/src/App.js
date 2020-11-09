@@ -14,6 +14,7 @@ import CreateStory from './components/MyStories/CreateStory';
 import StoryPage from './components/StoryPage';
 import CreateProposal from './components/MyProposals/CreateProposal';
 import ProposalsToStory from './components/ProposalsToStory';
+import EditProfile from './components/EditProfile';
 
  class App extends React.Component{
    
@@ -28,7 +29,11 @@ import ProposalsToStory from './components/ProposalsToStory';
         {username: "user2", password: "user2"},
         {username: "admin", password: "admin"},
       ],
-      currentUser: null, // currentUser should hold either a userId or null. NOTE THAT CURRENTLY IT IS IMPLEMENTED TO HOLD AN OBJECT WITH TWO VALUES (username, password) SHOULD BE CHANGED IN THE FUTURE
+      /* CurrentUser is an object holding two keys and values (username:, password:), 
+        note that this object is different from the key of 
+        same name 'currentUser' in session storage 
+      */
+      currentUser: null, 
       currID: null, // FOR NOW currID WILL BE THE VARIABLE USED TO HOLD A USERID.
       userIds : ["LUsCH", "piPHe", "Ioust", "mairT"],  
       stories : storyData
@@ -45,6 +50,7 @@ import ProposalsToStory from './components/ProposalsToStory';
           <Switch>
             <Route exact path='/' render={() => (<Home appState={this.state} />)}/>
             <Route exact path='/register' render={() => (<Registration appState={this.state}/>)} />
+            <Route exact path='/profile-settings' render={() => (<EditProfile appState={this.state}/>)} />
             <Route exact path='/profile/user=:userId' render={(props) => (<UserProfile params={props.match.params} appState={this.state}/>)} />
             <Route exact path='/login' render={() => (<Login appState={this.state} />)}/>
             <Route exact path='/search' render={() => (<Search data={this.state.stories} userLogin={this.state.currentUser} appState={this.state}/>)}/>
