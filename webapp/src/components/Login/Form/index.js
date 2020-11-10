@@ -2,7 +2,7 @@ import React from "react";
 import { Typography, Button, Grid, TextField } from "@material-ui/core";
 import "../styles.css";
 import {Redirect} from 'react-router-dom'
-import {handleInputChange, handleSubmit} from '../../../actions/form.js'
+import {handleInputChange, handleSubmit, handleAdminSubmit} from '../../../actions/form.js'
 class Form extends React.Component {
     constructor(props) {
         super(props);
@@ -18,11 +18,17 @@ class Form extends React.Component {
             password,
             redirect,
         } = this.state;
+        if (this.props.appState.currID === 'admin' && redirect){
+            return(
+                <Redirect to={{pathname: `/admin/user=${this.props.appState.currID}`}}/> 
+            )
+        }
         if (redirect){
             return(
                 <Redirect to={{pathname: `/profile/user=${this.props.appState.currID}`}}/> 
             )
         }
+       
         return (
 
             <Grid container spacing={2}>
@@ -61,7 +67,7 @@ class Form extends React.Component {
                     <Button
                         name="loginAdmin"
                         variant="contained"
-                        onClick={() => handleSubmit(this)}
+                        onClick={() => handleAdminSubmit(this)}
                         fullWidth
                     >
                         ADMIN Login

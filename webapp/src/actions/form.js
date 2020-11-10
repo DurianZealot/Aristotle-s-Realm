@@ -30,6 +30,31 @@ export const handleSubmit = (form) => {
        
 }
 
+export const handleAdminSubmit = (form) => {
+    const {username, password} = form.state
+    const adminArray = form.props.appState.admins.filter(admin => {
+        return admin.username === username && admin.password === password
+    })
+    const currentAdmin = adminArray[0]
+    form.props.appState.currentUser = currentAdmin
+   
+    if (currentAdmin){
+        // hardcoded admin ID
+        form.props.appState.currID = 'admin'
+        // Set a session storage to store the current User ID 
+        window.sessionStorage.setItem('currentUser', form.props.appState.currID)
+        form.setState(
+            {
+                redirect: true
+            }
+        )
+    }
+    else {
+        alert("Invalid Username or Password");
+    }        
+       
+}
+
 export const handleRegister = (form)=> {   
     const {username, password} = form.state 
     const valid = validateEntries(form)

@@ -15,6 +15,7 @@ import StoryPage from './components/StoryPage';
 import CreateProposal from './components/MyProposals/CreateProposal';
 import ProposalsToStory from './components/ProposalsToStory';
 import EditProfile from './components/EditProfile';
+import Admin from './components/admin'
 
  class App extends React.Component{
    
@@ -28,6 +29,9 @@ import EditProfile from './components/EditProfile';
         {username: "user", password: "user"},
         {username: "user2", password: "user2"},
         {username: "admin", password: "admin"},
+      ],
+      admins: [
+        {username: "admin", password: "admin"}
       ],
       /* CurrentUser is an object holding two keys and values (username:, password:), 
         note that this object is different from the key of 
@@ -49,6 +53,7 @@ import EditProfile from './components/EditProfile';
         <BrowserRouter>
           <Switch>
             <Route exact path='/' render={() => (<Home appState={this.state} />)}/>
+            <Route exact path='/admin/user=:userId' render={(props) => (<Admin appState={this.state} />)}/>
             <Route exact path='/register' render={() => (<Registration appState={this.state}/>)} />
             <Route exact path='/profile-settings' render={() => (<EditProfile appState={this.state}/>)} />
             <Route exact path='/profile/user=:userId' render={(props) => (<UserProfile params={props.match.params} appState={this.state}/>)} />
