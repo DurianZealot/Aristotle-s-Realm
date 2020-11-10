@@ -11,7 +11,8 @@ A platform that enables story writters to create original stories and contributi
 ##### Instruction on How to run this app virtually:
 
 1. Go to `team31/webapp` directory
-2. `npm start` will run this app at  http://localhost:3000
+2. `npm install` to install all dependencies this app will need
+3. `npm start` will run this app at  http://localhost:3000
 
 ***Note : please run this app on full page size***
 
@@ -28,11 +29,12 @@ A platform that enables story writters to create original stories and contributi
 | **admin username** | **admin password** |
 |       admin        |       admin        |
 
-
-
-A guest withou loggoing in can browse stories published pulically.
+A guest without loggoing in can browse stories published pulically.
 
 A log-in user can browse stories, create stories, make proposal to others stories, create own proposal to others stories, and accept/reject others proposal to own stories
+
+An admin account can log in as a user to use the website as stated above. They can also choose to log in as admin on the login screen to access the admin dashboard which 
+will allow them to review reports as well as view all users and stories on the website
 
 
 
