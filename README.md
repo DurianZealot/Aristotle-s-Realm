@@ -6,6 +6,8 @@
 
 A platform that enables story writters to create original stories and contributing to others' stories
 
+## Deployed Website: https://aristotles-realm.herokuapp.com/
+
 
 
 ##### Instruction on How to run this app virtually:
