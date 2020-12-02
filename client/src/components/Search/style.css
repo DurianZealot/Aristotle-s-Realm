@@ -2,6 +2,10 @@
 *{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+body {
+  background: #F0E3E5;
+}
 .search-container {
   display: flex;
 }

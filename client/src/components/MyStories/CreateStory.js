@@ -4,7 +4,7 @@ import Switch from "@material-ui/core/Switch";
 import "./styles.css";
 import TagInput from "../TagInput/TagInput";
 import {CssTextField, txtFieldStyle} from "../CssTextField/CssTextField";
-
+import SideBar from "../SideBar";
 function confirmation(state, action) {
   var answer;
   if (action === "create") {
@@ -104,6 +104,8 @@ class CreateStory extends Component {
   render() {
     return (
       <div>
+        <SideBar appState={this.props.appState}></SideBar>
+        <div style={{marginLeft: '15%'}}> 
         <h1 style={{ fontFamily: "Noteworthy", textAlign: "center" }}>
           {" "}
           Create Your Story
@@ -206,6 +208,8 @@ class CreateStory extends Component {
             Discard
           </Button>
         </span>
+        </div>
+        
         
       </div>
     );
