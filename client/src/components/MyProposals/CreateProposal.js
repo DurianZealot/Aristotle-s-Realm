@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import story from "./existingStory"
 import {CssTextField, txtFieldStyle} from "../CssTextField/CssTextField";
 import {Button} from '@material-ui/core'
+import SideBar from "../SideBar";
 class CreateProposal extends Component {
     constructor(props){
         super(props);
@@ -51,6 +52,8 @@ class CreateProposal extends Component {
     render() {
         return (
             <div>
+                <SideBar appState={this.props.appState}></SideBar>
+                <div style={{marginLeft: '15%'}}>
                 <h1 style={{ fontFamily: "Noteworthy", textAlign: "center" }}>
                 Proposal for Story: {this.state.storyToChange.storyName} -- {this.state.storyToChange.originalAuthor}
                 </h1>
@@ -89,9 +92,8 @@ class CreateProposal extends Component {
                     Discard
                 </Button>
                 </span>
-
-
-            </div>
+                </div>
+        </div>
         );
     }
 }
