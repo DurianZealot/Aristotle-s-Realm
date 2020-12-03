@@ -7,14 +7,26 @@ const express = require("express");
 const app = express();
 const path = require('path')
 
-// mongoose and mongo connection
-const { mongoose } = require("./mongoose");
+/** CREATING MONGO AND MONGOOSE CONNECTION */
+const mongoose = require('mongoose')
+require('dotenv').config()
+// Get the URI of the local database, or the one specified on deployment.
+const mongoURI = process.env.ATLAS_URI
+   
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
+
+const connection = mongoose.connection;
+connection.once('open', () => {
+  console.log("MongoDB database connection established successfully");
+})
 mongoose.set('useFindAndModify', false); // for some deprecation issues
 
-
+/** IMPORTING MONGOOSE MODELS */
 //user model TODO: change from generic example
 const{ User } = require("./models/user")
 
+
+/**MIDDLEWARE */
 // body-parser: middleware for parsing HTTP JSON body into a usable object
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -41,6 +53,7 @@ const mongoChecker = (req, res, next) => {
     }   
 }
 
+/**API CALLS */
 //making a user (test API call)
 app.post('/api/users', mongoChecker, async (req, res) => {
     log(req.body)
@@ -65,6 +78,7 @@ app.post('/api/users', mongoChecker, async (req, res) => {
     }
 })
 
+/**ROUTES */
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "/client/build/index.html"));
 });
