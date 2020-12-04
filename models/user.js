@@ -33,7 +33,56 @@ const UserSchema = new mongoose.Schema({
 	birthday: {
 		type: Date,
 		required: false
+	},
+	genrePref: {	// Preferred Genre type(s)
+		type: [String],
+		required: true,
+		default: ['None']
+	},
+	followerCount: {	// MOST LIKELY TO BE SCRAPPED, ADDED TENTATIVELY FOR NOW
+		type: Number,
+		required: true,
+		default: 0
+	},
+	followingCount: {	// MOST LIKELY TO BE SCRAPPED, ADDED TENTATIVELY FOR NOW
+		type: Number,
+		required: true,
+		default: 0
+	},
+	approvalRate: {	// Approval rate, from 0 to 100, percentage
+		type: Number,
+		required: true,
+		default: 100
+	},
+	proposalAcceptNum: { // Number of proposals accepted by other authors
+		type: Number,
+		required: true,
+		default: 0
+	},
+	worksBegunNum: {	// Number of works the user has created thus far
+		type: Number,
+		required: true,
+		default: 0
+	},
+	LastContributionDate: {	// Date when the user last contributed
+		type: Date,
+		required: true,
+		default: Date.now
 	}
+
+	// ===========Need the variables below===========
+	// iconPath: "icon/profile-icon-placeholder.png",
+	// age: "20",
+	// genrePref: "Sci-Fi",
+
+	// joinDate: "December 21",
+	// followerCount: "6666",
+	// followingCount: "420",
+	// approvalRate: "69",
+
+	// proposalAcceptNum: "9",
+	// worksBegunNum: "11",
+	// lastContributionDate: "Oct 31, 2020",
 })
 
 // An example of Mongoose middleware.
