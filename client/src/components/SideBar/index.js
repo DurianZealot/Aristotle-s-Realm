@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import "./side_bar_styles.css"
+import { logout } from '../../actions/user';
 
 class SideBar extends React.Component {
 
@@ -64,7 +65,7 @@ class SideBar extends React.Component {
                         <Button className="side-bar__button" variant="contained" size="large">Profile</Button>
                     </Link>
 
-                    <Link className="side-bar__logout-link" to={"/"} onClick={() => {this.props.appState.currID = null; this.props.appState.currentUser = null; window.sessionStorage.clear()}}> {/* Log User Out */}
+                    <Link className="side-bar__logout-link" to={"/"} onClick={async () => await logout()}> {/* Log User Out */}
                         <Button className="side-bar__button" variant="contained" size="large">Logout</Button>
                     </Link>
                 </div>

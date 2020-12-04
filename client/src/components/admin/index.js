@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.css";
 import {Link} from 'react-router-dom'
 import {Button} from '@material-ui/core';
+import {adminLogout} from '../../actions/admin'
 class Admin extends React.Component {
     constructor(props) {
         // When the component is created
@@ -16,7 +17,7 @@ class Admin extends React.Component {
             <div className='admin_page'>
             
                 <div className='admin_title_container'> 
-                    <Link className="admin_logout-link" to={"/"} onClick={() => {this.props.appState.currID = null; this.props.appState.currentUser = null; window.sessionStorage.clear()}}> {/* Log User Out */}
+                    <Link className="admin_logout-link" to={"/"} onClick={() => adminLogout()}> {/* Log User Out */}
                         <Button className="button" color='primary' variant="contained" size="large">Logout</Button>
                     </Link>
                     <span className='admin_title_text'>

@@ -24,7 +24,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 /** IMPORTING MONGOOSE MODELS */
 //user model TODO: change from generic example
 const{ User } = require("./models/user")
-
+const {Admin} = require("./models/admin")
 
 /**MIDDLEWARE */
 // body-parser: middleware for parsing HTTP JSON body into a usable object
@@ -33,6 +33,7 @@ app.use(bodyParser.json());
 
 // express-session for managing user sessions
 const session = require("express-session");
+const { request } = require("http");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "/client/build")));
@@ -53,6 +54,21 @@ const mongoChecker = (req, res, next) => {
     }   
 }
 
+
+/*** Session handling **************************************/
+// Create a session and session cookie
+app.use(
+    session({
+        secret: "our secret",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 30 * 1000,
+            httpOnly: true
+        }
+    })
+);
+
 /**API CALLS */
 //making a user (test API call)
 app.post('/api/users', mongoChecker, async (req, res) => {
@@ -61,13 +77,16 @@ app.post('/api/users', mongoChecker, async (req, res) => {
     // Create a new user
     const user = new User({
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        birthday: req.body.birthday
     })
 
     try {
         // Save the user
         const newUser = await user.save()
-        res.send(newUser)
+        res.status(200).send(newUser)
     } catch (error) {
         if (isMongoError(error)) { // check for if mongo server suddenly disconnected before this request.
             res.status(500).send('Internal server error')
@@ -76,6 +95,58 @@ app.post('/api/users', mongoChecker, async (req, res) => {
             res.status(400).send('Bad Request') // bad request for changing the student.
         }
     }
+})
+
+// A route to login and create a session 
+app.post("/users/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    User.findByUsername(username, password).then(user => {
+        req.session.user = user._id 
+        req.session.username = user.username
+        res.send({currentUser: req.session.user})
+    })
+    .catch(error => {
+        res.status(400).send()
+    })
+})
+
+// A route to login and create a sessino for admin
+app.post("/admin/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    Admin.findByUsername(username, password).then(user => {
+        req.session.user = user._id 
+        req.session.username = user.username
+        res.send({currentUser: req.session.user})
+    })
+    .catch(error => {
+        res.status(400).send()
+    })
+})
+
+
+// A route to logout a user / admin
+app.get("/logout", (req, res) => {
+    // log the previous session 
+    if(req.session.user == undefined){
+        res.status(400).send('Login Session Expired')
+    }
+    // Remove the session 
+    else{
+        req.session.destroy(error => {
+            if (error){
+                res.status(500).send(error)
+            }
+            else{
+                // the session already expire 
+                res.status(200).send('Session Logout')
+            }
+        })
+    }
+    
 })
 
 /**ROUTES */

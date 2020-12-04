@@ -18,6 +18,21 @@ const UserSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 		minlength: 1
+	},
+	firstName: {
+		type: String,
+		required: true,
+		trim: true,
+		minlength: 1
+	},
+	lastName: {
+		type: String,
+		required: true,
+		minlength: 1
+	},
+	birthday: {
+		type: Date,
+		required: false
 	}
 })
 
@@ -49,6 +64,27 @@ UserSchema.statics.findByEmailPassword = function(email, password) {
 
 	// First find the user by their email
 	return User.findOne({ email: email }).then((user) => {
+		if (!user) {
+			return Promise.reject()  // a rejected promise
+		}
+		// if the user exists, make sure their password is correct
+		return new Promise((resolve, reject) => {
+			bcrypt.compare(password, user.password, (err, result) => {
+				if (result) {
+					resolve(user)
+				} else {
+					reject()
+				}
+			})
+		})
+	})
+}
+
+UserSchema.statics.findByUsername = function(username, password) {
+	const User = this // bind this to the User model
+
+	// First find the user by their email
+	return User.findOne({ username: username }).then((user) => {
 		if (!user) {
 			return Promise.reject()  // a rejected promise
 		}

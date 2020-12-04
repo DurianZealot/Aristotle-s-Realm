@@ -1,12 +1,14 @@
 import { FlashOffRounded } from "@material-ui/icons"
-
+import {login, register} from "../actions/user"
+import {adminLogin} from "../actions/admin"
 export const handleInputChange = (event, form) => {
     form.setState({
         [event.target.name]: event.target.value
     })
 }
-export const handleSubmit = (form) => {
+export const handleSubmit = async function(form){
     const {username, password} = form.state
+    /*
     const userArray = form.props.appState.users.filter(user => {
         return user.username === username && user.password === password
     })
@@ -17,7 +19,7 @@ export const handleSubmit = (form) => {
         // TONY I CHANGED THIS IN ORDER TO MAKE CURRENTUSER AN ACTUAL ID.
         form.props.appState.currID = getCurrentUserId(form, currentUser);
         // Set a session storage to store the current User ID 
-        window.sessionStorage.setItem('currentUser', form.props.appState.currID)
+        
         form.setState(
             {
                 redirect: true
@@ -27,11 +29,22 @@ export const handleSubmit = (form) => {
     else {
         alert("Invalid Username or Password");
     }        
-       
+    */
+        if(await login(username, password, form)){
+            window.sessionStorage.setItem('currentUser', form.state.currID)
+            form.setState(
+                {redirect: true}
+            )
+        }
+        else{
+            alert("Invalid Username or Password");
+        }
+        
 }
 
-export const handleAdminSubmit = (form) => {
+export const handleAdminSubmit = async (form) => {
     const {username, password} = form.state
+    /*
     const adminArray = form.props.appState.admins.filter(admin => {
         return admin.username === username && admin.password === password
     })
@@ -51,13 +64,28 @@ export const handleAdminSubmit = (form) => {
     }
     else {
         alert("Invalid Username or Password");
-    }        
+    }  
+    */
+   if (await adminLogin(username, password, form)){
+       form.props.appState.currID = form.state.currentUser
+       window.sessionStorage.setItem('currentUser', form.state.currentUser)
+       form.setState(
+        {
+            redirect: true
+        }
+    )
+   }   
+   else{
+    alert("Invalid Admin Account");
+}   
        
 }
 
-export const handleRegister = (form)=> {   
-    const {username, password} = form.state 
+export const handleRegister = async function (form){   
+    const {username, password, firstName, lastName, birthday} = form.state 
     const valid = validateEntries(form)
+    /*
+    console.log('Valid entries for registration: ', valid)
     if (valid){
         const newUser = {username: username,
         password: password}
@@ -68,26 +96,29 @@ export const handleRegister = (form)=> {
             {redirect: true}
         )
     }   
+    */
+    if(valid){
+        if (await register(username, password, firstName, lastName, birthday)){
+            alert('Successfully Created Account')
+            form.setState(
+                {redirect: true}
+            )
+        }
+        else{
+            alert("Invalid Registeration: Username already exists")
+        }
+    }
+    
 }
 
 const validateEntries = (form) =>{
-    const {username, password, firstName, lastName} = form.state
+
+    const {username, password, firstName, lastName, birthday} = form.state 
     if (!username || !password || !firstName || !lastName ){
         alert("Please fill out all required infromation")
-        return false
-        
+        return false 
     }
-    else{
-        const userArray = form.props.appState.users.filter(user => {
-            return user.username === username 
-        })
-        if(userArray[0]){
-            alert("The username you have entered is not available")
-            return false
-           
-        }
-        return true
-    }
+    return true
 }
 
 

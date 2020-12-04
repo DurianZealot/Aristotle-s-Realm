@@ -2,11 +2,13 @@ import React from 'react'
 import './styles.css'
 import {Link} from 'react-router-dom'
 import {Button} from '@material-ui/core';
+import { logout } from '../../../actions/user';
 class Body extends React.Component{
     
     render() {
         const currentUser = window.sessionStorage.getItem('currentUser')
         // if (this.props.appState.currentUser){
+        console.log('Now, the user is ', currentUser)
         if (currentUser){
             return(
                 <div className='body'>
@@ -47,7 +49,7 @@ class Body extends React.Component{
                                 <Button className="button" color='primary'  variant="contained" size="large">Profile</Button>
                             </Link>
 
-                            <Link className="home_logout-link" to={"/"} onClick={() => {this.props.appState.currID = null; this.props.appState.currentUser = null; window.sessionStorage.clear()}}> {/* Log User Out */}
+                            <Link className="home_logout-link" to={"/"} onClick={async() => await logout()}> {/* Log User Out */}
                                 <Button className="button" color='primary' variant="contained" size="large">Logout</Button>
                             </Link>
                         </div>
