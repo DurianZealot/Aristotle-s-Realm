@@ -32,7 +32,6 @@ class Login extends React.Component {
                     </div>
                     <Container className="login__form" maxWidth="xs">
                     <Form appState={this.props.appState}
-                        
                     />
                     </Container>
                 </div>

@@ -62,7 +62,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 600000,
+            expires: 6,
             httpOnly: true
         }
     })
@@ -101,7 +101,7 @@ app.post("/users/login", (req, res) => {
     User.findByUsername(username, password).then(user => {
         req.session.user = user._id 
         req.session.username = user.username
-        res.send({"currnetUser": req.session.user})
+        res.send({currentUser: req.session.user})
     })
     .catch(error => {
         res.status(400).send()
@@ -119,7 +119,8 @@ app.get("/users/logout", (req, res) => {
         }
         else{
             console.log(req.session)
-            res.send()
+            // the session already expire 
+            res.status(400).send('Login Session Expired')
         }
     })
 })

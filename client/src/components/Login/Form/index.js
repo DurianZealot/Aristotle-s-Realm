@@ -24,8 +24,10 @@ class Form extends React.Component {
             )
         }
         if (redirect){
+            console.log('Redirecting')
+            console.log(this.props.appState)
             return(
-                <Redirect to={{pathname: `/profile/user=${this.props.appState.currID}`}}/> 
+                <Redirect to={{pathname: `/profile/user=${this.state.currID}`}}/> 
             )
         }
        
