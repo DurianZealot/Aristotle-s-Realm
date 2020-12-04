@@ -1,7 +1,7 @@
 "use strict";
 const log = console.log;
 
-export const login = async function(username, password, app){
+export const login = async function(username, password, form){
     // Create a new request with parameters we need
     const request = new Request ("/users/login", {
         method: "post",
@@ -17,7 +17,7 @@ export const login = async function(username, password, app){
     if (response.status === 200){
         const returnJson = await response.json()
         if(returnJson.currentUser !== undefined){
-            app.setState({currID: returnJson.currentUser, currentUser: username})
+            form.setState({currID: returnJson.currentUser, currentUser: username})
             return true;
         }
     }
