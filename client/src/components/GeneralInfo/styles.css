@@ -19,7 +19,7 @@
     float: left;
     height: 175px;
     border-radius: 50%;
-    background-image: url("icon/profile-icon-placeholder.png");
+    /* background-image: url("icon/profile-icon-placeholder.png"); */
 }
 
 .user-profile-edit {
