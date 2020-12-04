@@ -3,7 +3,8 @@
     height: 100%;
     width: 100%;
     z-index: 1;
-    background-image: linear-gradient(to bottom right, rgb(9, 142, 219), rgb(245, 131, 0));
+    background-image: url('../Home/Body/static/background.jpg');
+    background-size: cover;
 }
 .admin_title_container{
     position: absolute;
@@ -32,7 +33,7 @@
     margin-left: 5%;
     height: 40%;
     width: 40%;
-    background-image: linear-gradient(to bottom right, rgb(227, 240, 248), rgb(110, 245, 0));
+    background-image: linear-gradient(to bottom right, rgb(189, 136, 142), rgb(134, 91, 91));
 
 }
 .users_container{
@@ -41,7 +42,7 @@
     margin-left: 55%;
     height: 40%;
     width: 40%;
-    background-image: linear-gradient(to bottom right, rgb(227, 240, 248), rgb(110, 245, 0));
+    background-image: linear-gradient(to bottom right,rgb(189, 136, 142), rgb(134, 91, 91));
 
 }
 .reports_container{
@@ -50,5 +51,5 @@
     margin-left: 5%;
     height: 40%;
     width: 90%;
-    background-image: linear-gradient(to bottom right, rgb(227, 240, 248), rgb(110, 245, 0));
+    background-image: linear-gradient(to bottom right,rgb(189, 136, 142), rgb(134, 91, 91));
 }
