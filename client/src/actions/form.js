@@ -1,5 +1,5 @@
 import { FlashOffRounded } from "@material-ui/icons"
-import {login} from "../actions/user"
+import {login, register} from "../actions/user"
 export const handleInputChange = (event, form) => {
     form.setState({
         [event.target.name]: event.target.value
@@ -66,9 +66,11 @@ export const handleAdminSubmit = (form) => {
        
 }
 
-export const handleRegister = (form)=> {   
-    const {username, password} = form.state 
+export const handleRegister = async function (form){   
+    const {username, password, firstName, lastName, birthday} = form.state 
     const valid = validateEntries(form)
+    /*
+    console.log('Valid entries for registration: ', valid)
     if (valid){
         const newUser = {username: username,
         password: password}
@@ -79,26 +81,29 @@ export const handleRegister = (form)=> {
             {redirect: true}
         )
     }   
+    */
+    if(valid){
+        if (await register(username, password, firstName, lastName, birthday)){
+            alert('Successfully Created Account')
+            form.setState(
+                {redirect: true}
+            )
+        }
+        else{
+            alert("Invalid Registeration: Username already exists")
+        }
+    }
+    
 }
 
 const validateEntries = (form) =>{
-    const {username, password, firstName, lastName} = form.state
+
+    const {username, password, firstName, lastName, birthday} = form.state 
     if (!username || !password || !firstName || !lastName ){
         alert("Please fill out all required infromation")
-        return false
-        
+        return false 
     }
-    else{
-        const userArray = form.props.appState.users.filter(user => {
-            return user.username === username 
-        })
-        if(userArray[0]){
-            alert("The username you have entered is not available")
-            return false
-           
-        }
-        return true
-    }
+    return true
 }
 
 
