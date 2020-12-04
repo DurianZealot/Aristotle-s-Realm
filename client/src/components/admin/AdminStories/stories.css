@@ -1,0 +1,99 @@
+/* set the font family for the entire page */
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  body {
+    background: #F0E3E5;
+  }
+  .search_container {
+    display: flex;
+  }
+  
+  .search_bar {
+    float: left;
+    margin-top: 100px;
+    margin-left: 25%;
+    width: 45%;
+    height: 30px;
+    font-size: x-large;
+    text-align: center;
+    padding: 0%;
+  }
+  
+  .search_button {
+    width: 5%;
+    margin-top: 100px;
+    text-align: center;
+  }
+  
+  .search_header {
+    position: relative;
+    text-align: center;
+  }
+  
+  .search_result_list{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-left: 23%;
+    margin-top: 100px 
+  }
+  
+  .search_result{
+    background: None;
+    width: 100%;
+    flex-basis: 10%;
+    list-style-type: none;
+    border-bottom:solid 1px #666;
+    border-radius: 0%;
+  }
+  
+  .truncate {
+    /* for text truncate */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .story_preview{
+    width: 40%;
+    flex-basis: 10%;
+    text-align: justify;
+  }
+  
+  .story_line{
+    width: 600px;
+  }
+  
+  .story_name{
+    display: inline;
+  }
+  
+  .last_update{
+    display: inline;
+    float:right;
+    margin-right: 5%;
+  }
+  
+  .grey{
+    color: grey;
+  }
+  
+  
+  .date{
+    color: grey;
+    display: inline;
+  }
+  
+  .black{
+    color: black;
+  }
+  
+  .inline-flex{
+    display: inline-flex;
+  }
+  
+  .inline-block{
+    display: inline-block;
+  }

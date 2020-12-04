@@ -15,7 +15,9 @@ import StoryPage from './components/StoryPage';
 import CreateProposal from './components/MyProposals/CreateProposal';
 import ProposalsToStory from './components/ProposalsToStory';
 import EditProfile from './components/EditProfile';
-import Admin from './components/admin'
+import Admin from './components/admin/Admin'
+import AdminStories from './components/admin/AdminStories'
+import Reports from './components/admin/Reports'
 
  class App extends React.Component{
    
@@ -53,7 +55,9 @@ import Admin from './components/admin'
         <BrowserRouter>
           <Switch>
             <Route exact path='/' render={() => (<Home appState={this.state} />)}/>
-            <Route exact path='/admin/user=:userId' render={(props) => (<Admin appState={this.state} />)}/>
+            <Route exact path='/admin/reports/' render={() => (<Reports appState={this.state} />)}/>
+            <Route exact path='/admin/stories/' render={() => (<AdminStories appState={this.state} />)}/>
+            <Route exact path='/admin/users/' render={() => (<Admin appState={this.state} />)}/>
             <Route exact path='/register' render={() => (<Registration appState={this.state}/>)} />
             <Route exact path='/profile-settings' render={() => (<EditProfile appState={this.state}/>)} />
             <Route exact path='/profile/user=:userId' render={(props) => (<UserProfile params={props.match.params} appState={this.state}/>)} />

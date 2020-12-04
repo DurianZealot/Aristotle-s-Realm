@@ -1,0 +1,49 @@
+/* Styles for the Side Bar component */
+.admin_sidebar {
+    position: fixed;
+    overflow: auto;
+    display: block;
+    width: 200px;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    background-color: brown;
+    box-shadow: 1px 1px 5px #434143;
+}
+
+.admin_stories_link {
+    position: absolute;
+    width: 180px;
+    height: 60px;
+    top: 500px;
+    left: 10px;
+}
+
+.admin_reports_link {
+    position: absolute;
+    width: 180px;
+    top: 350px;
+    padding: 10px;
+    height: 60px;
+}
+
+.admin_users_link {
+    position: absolute;
+    width: 180px;
+    top: 200px;
+    padding: 10px;
+    height: 60px;
+}
+
+
+.admin_sidebar_button {
+    width: 100%;
+    height: 100%;
+
+}
+
+/* Remove underline from text*/
+a:-webkit-any-link {
+    text-decoration: none;
+}

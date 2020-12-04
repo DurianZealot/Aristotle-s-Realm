@@ -1,0 +1,28 @@
+.admin_page{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background-image: url('../../Home/Body/static/background.jpg');
+  background-size: cover;
+}
+.admin_title_container{
+  position: absolute;
+  height: 75px;
+  width: 100%;
+  background-color: black;
+}
+.admin_logout-link{
+  position: absolute;
+  height: 60%;
+  width: 10%;
+  margin-left: 2%;
+  margin-top: 1%;
+}
+.admin_title_text{
+  text-align: center;
+  color: white;
+  font-weight: 900;
+  font-size: 40px;
+  margin-left: 22%;
+}

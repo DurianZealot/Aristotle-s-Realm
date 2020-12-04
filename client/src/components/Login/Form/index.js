@@ -20,10 +20,10 @@ class Form extends React.Component {
         } = this.state;
 
         // Since there is only one admin, we decide to hard code the admin id
-        if (this.props.appState.currID == '5fca452cba8d9512de35e4b1' /**&& redirect*/ || true){
+        if (this.props.appState.currID == '5fca452cba8d9512de35e4b1' && redirect){
             
             return(
-                <Redirect to={{pathname: `/admin/user=admin`}}/> 
+                <Redirect to={{pathname: `/admin/users/`}}/> 
             )
         }
 
