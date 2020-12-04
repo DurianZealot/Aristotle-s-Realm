@@ -63,7 +63,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 6,
+            expires: 30 * 1000,
             httpOnly: true
         }
     })
@@ -128,21 +128,25 @@ app.post("/admin/login", (req, res) => {
 })
 
 
-// A route to logout a user
-app.get("/users/logout", (req, res) => {
+// A route to logout a user / admin
+app.get("/logout", (req, res) => {
     // log the previous session 
-    log(req.session)
+    if(req.session.user == undefined){
+        res.status(400).send('Login Session Expired')
+    }
     // Remove the session 
-    req.session.destroy(error => {
-        if (error){
-            res.status(500).send(error)
-        }
-        else{
-            console.log(req.session)
-            // the session already expire 
-            res.status(400).send('Login Session Expired')
-        }
-    })
+    else{
+        req.session.destroy(error => {
+            if (error){
+                res.status(500).send(error)
+            }
+            else{
+                // the session already expire 
+                res.status(200).send('Session Logout')
+            }
+        })
+    }
+    
 })
 
 /**ROUTES */

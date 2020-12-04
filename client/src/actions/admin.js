@@ -26,3 +26,21 @@ export const adminLogin = async function(username, password, form){
     }
     
 }
+
+export const adminLogout = async()=>{
+    const request = new Request ("/logout", {
+        method: "get",
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    })
+
+    // Send the logout request with fetch() async
+    const response = await fetch(request)
+    if (response.status !== 500){
+        // log out successfully
+        window.sessionStorage.clear()
+        window.location.reload()
+    }    
+}
