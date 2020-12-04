@@ -26,7 +26,7 @@ const StorySchema = new mongoose.Schema({
         minlength: 1
     },
     storyDate: {
-		type: String,
+		type: Date,
 		required: true,
         minlength: 1,
         trim: true,
