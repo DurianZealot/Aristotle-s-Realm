@@ -1,5 +1,6 @@
 import { FlashOffRounded } from "@material-ui/icons"
 import {login, register} from "../actions/user"
+import {adminLogin} from "../actions/admin"
 export const handleInputChange = (event, form) => {
     form.setState({
         [event.target.name]: event.target.value
@@ -41,8 +42,9 @@ export const handleSubmit = async function(form){
         
 }
 
-export const handleAdminSubmit = (form) => {
+export const handleAdminSubmit = async (form) => {
     const {username, password} = form.state
+    /*
     const adminArray = form.props.appState.admins.filter(admin => {
         return admin.username === username && admin.password === password
     })
@@ -62,7 +64,20 @@ export const handleAdminSubmit = (form) => {
     }
     else {
         alert("Invalid Username or Password");
-    }        
+    }  
+    */
+   if (await adminLogin(username, password, form)){
+       form.props.appState.currID = form.state.currentUser
+       window.sessionStorage.setItem('currentUser', form.state.currentUser)
+       form.setState(
+        {
+            redirect: true
+        }
+    )
+   }   
+   else{
+    alert("Invalid Admin Account");
+}   
        
 }
 

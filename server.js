@@ -24,7 +24,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 /** IMPORTING MONGOOSE MODELS */
 //user model TODO: change from generic example
 const{ User } = require("./models/user")
-
+const {Admin} = require("./models/admin")
 
 /**MIDDLEWARE */
 // body-parser: middleware for parsing HTTP JSON body into a usable object
@@ -111,6 +111,22 @@ app.post("/users/login", (req, res) => {
         res.status(400).send()
     })
 })
+
+// A route to login and create a sessino for admin
+app.post("/admin/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    Admin.findByUsername(username, password).then(user => {
+        req.session.user = user._id 
+        req.session.username = user.username
+        res.send({currentUser: req.session.user})
+    })
+    .catch(error => {
+        res.status(400).send()
+    })
+})
+
 
 // A route to logout a user
 app.get("/users/logout", (req, res) => {
