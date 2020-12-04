@@ -53,6 +53,21 @@ const mongoChecker = (req, res, next) => {
     }   
 }
 
+
+/*** Session handling **************************************/
+// Create a session and session cookie
+app.use(
+    session({
+        secret: "our secret",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 600000,
+            httpOnly: true
+        }
+    })
+);
+
 /**API CALLS */
 //making a user (test API call)
 app.post('/api/users', mongoChecker, async (req, res) => {
@@ -76,6 +91,37 @@ app.post('/api/users', mongoChecker, async (req, res) => {
             res.status(400).send('Bad Request') // bad request for changing the student.
         }
     }
+})
+
+// A route to login and create a session 
+app.post("/users/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    User.findByUsername(username, password).then(user => {
+        req.session.user = user._id 
+        req.session.username = user.username
+        res.send({"currnetUser": req.session.user})
+    })
+    .catch(error => {
+        res.status(400).send()
+    })
+})
+
+// A route to logout a user
+app.get("/users/logout", (req, res) => {
+    // log the previous session 
+    log(req.session)
+    // Remove the session 
+    req.session.destroy(error => {
+        if (error){
+            res.status(500).send(error)
+        }
+        else{
+            console.log(req.session)
+            res.send()
+        }
+    })
 })
 
 /**ROUTES */
