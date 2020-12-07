@@ -2,28 +2,34 @@
 'use strict';
 
 const mongoose = require('mongoose')
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const { ObjectID } = require('mongodb');
 
 // Making a Mongoose model a little differently: a Mongoose Schema
 // Allows us to add additional functionality.
 const StorySchema = new mongoose.Schema({
-	storyId: {
-		type: String,
-		required: true,
-		minlength: 1,
-		trim: true,
-		unique: true,
-	}, 
+    // story will have an ObjectID
+	// storyId: {
+	// 	type: String,
+	// 	required: true,
+	// 	minlength: 1,
+	// 	trim: true,
+	// 	unique: true,
+	// }, 
 	storyTitle: {
 		type: String,
 		required: true,
         minlength: 1,
         trim: true,
     },
-    storyAuthor: {
+    storyAuthorUsername: {
         type: String,
         required: true,
         minlength: 1
+    },
+    storyAuthorID: {
+        type: ObjectID,
+        required: true
     },
     storyDate: {
 		type: Date,
