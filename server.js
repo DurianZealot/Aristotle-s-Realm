@@ -36,6 +36,7 @@ const session = require("express-session");
 const { request } = require("http");
 const { Proposal } = require("./models/proposal");
 const { Story } = require("./models/story");
+const { error } = require("console");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "/client/build")));
@@ -124,6 +125,17 @@ app.post("/users/login", (req, res) => {
     .catch(error => {
         res.status(400).send()
     })
+})
+
+// A route to get the user ID in database 
+app.get("/getUserID", (req, res) => {
+    const username = req.query.username
+    User.findOne({username})
+        .then(user => {res.send(user._id)})
+        .catch(error => {
+            res.status(404).send('Invalid username')
+        })
+
 })
 
 // A route to login and create a sessino for admin

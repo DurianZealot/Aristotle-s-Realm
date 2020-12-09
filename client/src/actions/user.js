@@ -1,5 +1,6 @@
 "use strict";
 const log = console.log;
+const axios = require('axios')
 
 export const login = async function(username, password, form){
     // Create a new request with parameters we need
@@ -67,3 +68,15 @@ export const logout = async()=>{
         window.location.reload()
     }    
 }
+
+// Get a user id in database by username
+export const getUserID = async (username) => {
+    axios.get('/getUserID', {
+        params: {
+            username
+        }
+    })
+        .then(data => {return Promise.resolve(data)})
+        .catch(error => {return Promise.reject()})
+}
+
