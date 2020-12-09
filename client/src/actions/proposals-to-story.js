@@ -2,12 +2,12 @@
 
 const log = console.log;
 
-export const getStoryProposals = (storyId) => {
+export const getStoryProposals = async (storyId) => {
   const url = `/proposals/${storyId}`;
 
   // Since this is a GET request, simply call fetch on the URL
   await fetch(url)
-      .then(res => {
+      .then(async(res) => {
           if (res.status === 200) {
               // return a promise that resolves with the JSON body
               const proposalsJSON = await res.json();

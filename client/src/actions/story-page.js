@@ -10,7 +10,7 @@ export const getStory = async (storyId) => {
 
   // Since this is a GET request, simply call fetch on the URL
   await fetch(url)
-      .then(res => {
+      .then(async (res) => {
           if (res.status === 200) {
               // return a promise that resolves with the JSON body
               const storyJSON = await res.json();
