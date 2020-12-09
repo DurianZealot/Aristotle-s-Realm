@@ -4,13 +4,14 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs');
 const { ObjectID } = require('mongodb');
+const Schema = mongoose.Schema;
 
 const ProposalSchema = new mongoose.Schema(
     {   
         // The story ID that this proposal is proposing to 
         proposeToID: {
-            type: ObjectID,
-            required: true
+             type: Schema.Types.ObjectId, ref: 'Story',
+             required: true
         },
 
         // The story title that this proposal is proposing to 
@@ -22,7 +23,7 @@ const ProposalSchema = new mongoose.Schema(
         
         // The id of user who is making this proposal
         proposeByID: {
-            type: ObjectID,
+            type: Schema.Types.ObjectID, ref: 'User',
             required: true
         },
 
@@ -39,9 +40,11 @@ const ProposalSchema = new mongoose.Schema(
         },
 
         // visibility : public(1) / private(0)
+        // maybe not that necessary, just put it here
         visibility: {
             type: Boolean,
-            required: true
+            required: true,
+            default: true
         },
 
         // content
@@ -58,6 +61,19 @@ const ProposalSchema = new mongoose.Schema(
     }
 )
 
+ProposalSchema.statics.findByStoryIDAuthorIDAndContent = function(storyID, authorID, content) {
+    const Proposal = this
+    return Proposal.findOne({proposeToID: storyID, proposeByID: authorID, content: content}).then((proposal) => {
+        if(!proposal){
+            // No duplicate
+            return Promise.resolve()
+        }
+        else{
+            // Duplicate
+            return Promise.reject()
+        }
+    })
+}
 
 // make a model using the Proposal schema
 const Proposal = mongoose.model('Proposal', ProposalSchema)

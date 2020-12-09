@@ -27,10 +27,12 @@ const StorySchema = new mongoose.Schema({
         required: true,
         minlength: 1
     },
+
     storyAuthorID: {
-        type: ObjectID,
+        type: mongoose.Schema.Types.ObjectID, ref: 'User',
         required: true
     },
+
     storyDate: {
 		type: Date,
 		required: true,
@@ -40,8 +42,7 @@ const StorySchema = new mongoose.Schema({
     storyViewCount: {
 		type: Number,
 		required: true,
-        minlength: 1,
-        trim: true,
+        default:0
     },
     storyTags: {
 		type: [String],
@@ -52,16 +53,32 @@ const StorySchema = new mongoose.Schema({
     storyVotes: {
 		type: [Number],
 		required: true,
-        minlength: 1,
-        trim: true,
+        default: []
     },
     storyChapters: {
         type:[String],
         required: true,
         minlength: 1,
         trim: true,
+        default: []
     }
 })
+
+// Find a story by the story name and author
+// An author cannot write two stories with the same title
+StorySchema.statics.findByStoryNameAndAuthor = function(storyName, storyAuthorID){
+    const Story = this
+
+    return Story.findOne({"storyTitle": storyName, "storyAuthorID": storyAuthorID}).then((story) => {
+        if(!story){
+            return Promise.resolve()
+        }
+        else{
+            // Duplicate
+            return Promise.reject()
+        }
+    })
+}
 
 // make a model using the User schema
 const Story = mongoose.model('Story', StorySchema)

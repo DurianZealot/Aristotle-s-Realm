@@ -34,6 +34,8 @@ app.use(bodyParser.json());
 // express-session for managing user sessions
 const session = require("express-session");
 const { request } = require("http");
+const { Proposal } = require("./models/proposal");
+const { Story } = require("./models/story");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "/client/build")));
@@ -63,11 +65,23 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 30 * 1000,
+            expires: 3000 * 1000,
             httpOnly: true
         }
     })
 );
+
+// Check if a session is still valid
+// Return false and clear the sessionStorage if the session expires, maybe need to redirect to the login page when needed 
+const checkSessionVaid = (req) => {
+    if (!req.session.user){
+        // expired
+        console.log(req.session)
+        return true
+    }
+    return false
+}
+
 
 /**API CALLS */
 //making a user (test API call)
@@ -146,6 +160,95 @@ app.get("/logout", (req, res) => {
             }
         })
     }
+    
+})
+
+/*
+The request will be like 
+{
+    proposeToID: A Story's ObjectID in database,
+    proposeToTile: Title of the proposing story,
+    proposalByUsername: Proposal user's username,
+    proposeChapter: Proposal to which chapter,
+    visibility: publice(true) / private(false),
+    content: proposal content,
+    status: proposal status (accpeted/declined/pending/private)
+
+}
+*/
+
+// A route to post a story proposal
+app.post("/proposal/:id", (req, res) => {
+    // Check if the session expired 
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired, failed to create a new proposal')
+        return 
+    }
+
+    // the session is not expired 
+    const proposal = new Proposal({
+        proposeToID: req.body.proposeToID,
+        proposeToTitle: req.body.proposeToTitle,
+        proposeByID: req.params.id,
+        proposeByUsername: req.body.proposeByUsername,
+        proposeChapter: req.body.proposeChapter,
+        visibility: req.body.visibility,
+        content: req.body.content,
+        status: req.body.status
+    })
+
+    Proposal.findByStoryIDAuthorIDAndContent(req.body.proposeToID, req.params.id, req.body.content).then(() => {
+        proposal.save().then((result) => {
+            res.status(200).send(result)
+        }).catch((error) => {
+            log(error) // log server error to the console, not to the client.
+            if (isMongoError(error)) { // check for if mongo server suddenly dissconnected before this request.
+                res.status(500).send('Internal server error')
+            } else {
+                res.status(400).send('Bad Request') // 400 for bad request gets sent to client.
+            }
+        })
+    })
+    .catch(error => {
+        res.status(400).send('Duplicate Proposal Found')
+    }) 
+    
+})
+
+// A route to post a story
+app.post("/story/:id", (req, res) =>{
+    // Check if the session expired
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired, failed to create a new story')
+        return 
+    }
+
+    // the session is not expired 
+    const story = new Story({
+        storyTitle: req.body.storyTitle,
+        storyAuthorUsername: req.body.storyAuthorUsername,
+        storyAuthorID: req.params.id,
+        storyDate: req.body.storyDate,
+        storyTags: req.body.storyTags,
+        storyViewCount: req.body.storyViewCount,
+        storyChapters: req.body.storyChapters
+    })
+
+    Story.findByStoryNameAndAuthor(req.body.storyTitle, req.params.id).then(() => {
+        story.save().then((result) => {
+            res.status(200).send(result)
+        }).catch((error) => {
+            log(error) // log server error to the console, not to the client.
+            if (isMongoError(error)) { // check for if mongo server suddenly dissconnected before this request.
+                res.status(500).send('Internal server error')
+            } else {
+                res.status(400).send('Bad Request') // 400 for bad request gets sent to client.
+            }
+        })
+    })
+    .catch(error => {
+        res.status(400).send('Duplicate Story')
+    })
     
 })
 
