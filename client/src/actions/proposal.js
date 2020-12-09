@@ -4,12 +4,12 @@ import Axios from "axios"
 import {getUserID} from './user'
 const log = console.log
 
-export const postProposal = async function(proposeToID, proposeToTitle, proposeChapter, visibility, content, proposalByUsername, status = 'pending'){
-    getUserID(proposalByUsername)
-        .then(userID => {
+export const postProposal = async function(proposeToID, proposeToTitle, proposeChapter, visibility, content, proposeByID, status = 'pending'){
+    getUsername(proposeByID)
+        .then(proposeByUsername => {
             Axios({
                 method: 'post',
-                url:'/proposal/' + userID,
+                url:'/proposal/' + proposeByID,
                 data: {
                     proposeToID,
                     proposeToTitle,

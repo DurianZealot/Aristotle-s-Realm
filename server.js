@@ -139,6 +139,17 @@ app.get("/getUserID", (req, res) => {
 
 })
 
+// A route to get the username in database 
+app.get("/getUsername", (req, res) => {
+    const userID = req.query.userID
+    User.findById(userID)
+        .then(user => {res.send(user.username)})
+        .catch(error => {
+            res.status(404).send('Invalid userID')
+        })
+
+})
+
 // A route to login and create a sessino for admin
 app.post("/admin/login", (req, res) => {
     const username = req.body.username;

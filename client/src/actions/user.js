@@ -80,3 +80,14 @@ export const getUserID = async (username) => {
         .catch(error => {return Promise.reject()})
 }
 
+
+// Get a username in database by userID
+export const getUserID = async (userID) => {
+    axios.get('/getUsername', {
+        params: {
+            userID
+        }
+    })
+        .then(data => {return Promise.resolve(data)})
+        .catch(error => {return Promise.reject()})
+}
