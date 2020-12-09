@@ -253,7 +253,7 @@ app.post("/story/:id", (req, res) =>{
     
 })
 
-/// Route for getting a story
+// Route for getting a story
 app.get('/story/:id', async (req, res) => {
 	const id = req.params.id
 
@@ -274,11 +274,49 @@ app.get('/story/:id', async (req, res) => {
 	try {
 		const story = await Story.findById(id)
 		if (!story) {
-			res.status(404).send('Resource not found')  // could not find this restaurant
+			res.status(404).send('Resource not found')  // could not find this story
 		} else {
 			/// sometimes we might wrap returned object in another object:
 			//res.send({student})   
 			res.send(story)
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+})
+
+// Route for getting all the proposals to a story
+app.get('/proposals/:storyId', async (req, res) => {
+    const id = req.params.storyId
+
+    // Good practise: Validate id immediately.
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+		return;  // so that we don't run the rest of the handler.
+	}
+
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}
+
+	// If id valid, findById the story first
+	try {
+		const story = await Story.findById(id)
+		if (!story) {
+			res.status(404).send('Resource not found')  // could not find this story
+		} else {
+			/// sometimes we might wrap returned object in another object:
+            //res.send({student})   
+            const proposals = await Proposal.find({ proposeToID: id })
+            if (!proposals) {
+                res.status(404).send('Proposals to Story not found')  // could not find any proposals to this story
+            } else {
+			    res.send(proposals)
+            }
 		}
 	} catch(error) {
 		log(error)
