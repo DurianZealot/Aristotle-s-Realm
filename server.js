@@ -34,6 +34,7 @@ app.use(bodyParser.json());
 // express-session for managing user sessions
 const session = require("express-session");
 const { request } = require("http");
+const { ObjectID } = require('mongodb')
 const { Proposal } = require("./models/proposal");
 const { Story } = require("./models/story");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -250,6 +251,39 @@ app.post("/story/:id", (req, res) =>{
         res.status(400).send('Duplicate Story')
     })
     
+})
+
+/// Route for getting a story
+app.get('/story/:id', async (req, res) => {
+	const id = req.params.id
+
+	// Good practise: Validate id immediately.
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+		return;  // so that we don't run the rest of the handler.
+	}
+
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}
+
+	// If id valid, findById
+	try {
+		const story = await Story.findById(id)
+		if (!story) {
+			res.status(404).send('Resource not found')  // could not find this restaurant
+		} else {
+			/// sometimes we might wrap returned object in another object:
+			//res.send({student})   
+			res.send(story)
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
 })
 
 /**ROUTES */
