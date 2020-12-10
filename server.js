@@ -250,12 +250,13 @@ app.post("/story/:id", (req, res) =>{
     // the session is not expired 
     const story = new Story({
         storyTitle: req.body.storyTitle,
-        storyAuthorUsername: req.body.storyAuthorUsername,
+        // storyAuthorUsername: req.body.storyAuthorUsername,
         storyAuthorID: req.params.id,
         storyDate: req.body.storyDate,
         storyTags: req.body.storyTags,
         storyViewCount: req.body.storyViewCount,
-        storyChapters: req.body.storyChapters
+        storyChapters: req.body.storyChapters,
+        storyPreview: req.body.storyPreview
     })
 
     Story.findByStoryNameAndAuthor(req.body.storyTitle, req.params.id).then(() => {

@@ -82,7 +82,7 @@ export const getUserID = async (username) => {
 
 
 // Get a username in database by userID
-export const getUserID = async (userID) => {
+export const getUsername = async (userID) => {
     axios.get('/getUsername', {
         params: {
             userID

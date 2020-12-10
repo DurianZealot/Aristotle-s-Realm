@@ -22,11 +22,11 @@ const StorySchema = new mongoose.Schema({
         minlength: 1,
         trim: true,
     },
-    storyAuthorUsername: {
-        type: String,
-        required: true,
-        minlength: 1
-    },
+    // storyAuthorUsername: {
+    //     type: String,
+    //     required: true,
+    //     minlength: 1
+    // },
 
     storyAuthorID: {
         type: mongoose.Schema.Types.ObjectID, ref: 'User',
@@ -53,7 +53,7 @@ const StorySchema = new mongoose.Schema({
     storyVotes: {
 		type: [Number],
 		required: true,
-        default: []
+        default: [0,0]
     },
     storyChapters: {
         type:[String],
@@ -61,6 +61,11 @@ const StorySchema = new mongoose.Schema({
         minlength: 1,
         trim: true,
         default: []
+    },
+    storyPreview :{
+        type: String,
+        required: true,
+        minlength:1
     }
 })
 

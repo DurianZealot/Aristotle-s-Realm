@@ -34,6 +34,8 @@ class TagInput extends Component {
       }
       tags.push(newTag);
       this.setState({ tags });
+      this.props.page.setState({ tags: this.state.tags })
+      console.log(this.props.page.state)
       // when submit tag, set current input filled to be null
       this.inputRef.current.value = null;
     } else if (code === 8 && !newTag) {
@@ -48,6 +50,8 @@ class TagInput extends Component {
     const newTags = this.state.tags;
     newTags.splice(index, 1);
     this.setState({ tags: newTags });
+    this.props.page.setState({ tags: this.state.tags })
+    console.log(this.props.page.state)
   };
 
   remove;

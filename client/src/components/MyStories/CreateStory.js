@@ -5,7 +5,8 @@ import "./styles.css";
 import TagInput from "../TagInput/TagInput";
 import {CssTextField, txtFieldStyle} from "../CssTextField/CssTextField";
 import SideBar from "../SideBar";
-function confirmation(state, action) {
+import { createAStory } from "../../actions/story";
+async function confirmation(state, action) {
   var answer;
   if (action === "create") {
     // check if required states are non empty
@@ -16,6 +17,12 @@ function confirmation(state, action) {
     } else {
       answer = window.confirm("Are you sure to create your story?");
       if (answer) {
+        // TODO: Post this story to the database
+        if(! await createAStory(window.sessionStorage.getItem('currentUser'), state.storyName, Date.now(), state.tags, 0, state.storyContent, state.storyPreview)){
+          // Fail to create a story
+          alert('Invalid Creation of Story: Duplicate Story Name / Invalid Login')
+          return
+        }
         delayRedirect("create");
       }
       return;
@@ -88,6 +95,7 @@ class CreateStory extends Component {
       storyLine: "",
       storyPreview: "",
       storyContent: "",
+      tags: ["Sci-Fi", "Romance"]
     };
     console.log("In create story, the current app state is ", this.props.appState)
   }
@@ -113,7 +121,7 @@ class CreateStory extends Component {
         <span style={txtFieldStyle}>
           Story Genre
         </span>
-        <TagInput></TagInput>
+        <TagInput page={this}></TagInput>
         <form className="story-creation-detail">
           {/* Material UI uses inline styling */}
           <CssTextField
