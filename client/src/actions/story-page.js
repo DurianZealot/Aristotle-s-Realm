@@ -1,5 +1,7 @@
 // Methods in this file are used in the StoryPage component
 
+import Axios from "axios";
+
 const log = console.log;
 
 export const getStory = async (storyId) => {
@@ -8,29 +10,11 @@ export const getStory = async (storyId) => {
   // the URL for the request
   const url = `/story/${storyId}`;
 
-  // Since this is a GET request, simply call fetch on the URL
-  await fetch(url)
-      .then(async (res) => {
-          if (res.status === 200) {
-              // return a promise that resolves with the JSON body
-              const storyJSON = await res.json();
-              const story = {
-                storyAuthorID: storyJSON._id,
-                storyTitle: storyJSON.storyTitle,
-                storyAuthor: storyJSON.storyAuthor,
-                storyDate: storyJSON.storyDate,
-                storyViewCount: storyJSON.storyViewCount,
-                storyTags: storyJSON.storyTags,
-                storyVotes: storyJSON.storyVotes,
-                storyChapters: storyJSON.storyChapters
-              }
-              return story
-          } else {
-              alert("Could not get story");
-          }
-      })
-      .catch(error => {
-          console.log(error);
-      });
-
+  return Axios({
+      method: 'get',
+      url: url
+  })
+    .then(res => {return res})
+    .catch(error => {console.log(error);})
 };
+
