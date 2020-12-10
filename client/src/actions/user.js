@@ -83,11 +83,13 @@ export const getUserID = async (username) => {
 
 // Get a username in database by userID
 export const getUsername = async (userID) => {
-    axios.get('/getUsername', {
+    return axios({
+        method: 'get',
+        url: '/getUsername',
         params: {
             userID
         }
     })
-        .then(data => {return Promise.resolve(data)})
+        .then(data => {console.log('In getUsername', data); return data})
         .catch(error => {return Promise.reject()})
 }
