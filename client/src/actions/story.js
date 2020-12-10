@@ -24,3 +24,15 @@ export const createAStory = async function (userID, storyTitle, storyDate=Date.n
     })
     .catch(error => {return false})
 }
+
+// Get stories that match keywords 
+export const searchStoryWithKeywords = async function(searchKeyword){
+    return axios('/search/story', {
+        method:'get',
+        params:{
+            keyword: searchKeyword
+        }
+    })
+        .then(response => {return Promise.resolve(response.data)})
+        .catch(error => {return Promise.reject()})
+}

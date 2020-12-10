@@ -4,6 +4,7 @@ import SearchResult from "./SearchResult";
 import $ from "jquery";
 import "./style.css";
 import SideBar from "../SideBar";
+import {searchStoryWithKeywords} from '../../actions/story'
 
 class Search extends Component {
   state = {
@@ -19,32 +20,19 @@ class Search extends Component {
     // console.log(value)
   };
 
-  searchStory = (allStories, searchKeyword) => {
-    // return a list of stories whose name contains `this.state.searchKeyword`
-    function getStoryByKeyword(allMatched, key) {
-      if (
-        key.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-        key.toUpperCase().includes(searchKeyword.toUpperCase())
-      ) {
-        allMatched[key] = allStories[key];
-      }
-      // console.log(this.state)
-      return allMatched;
-    }
-
-    var matchedStories = {};
+  searchStory = async(searchKeyword) => {
+    var matchedStories;
     // prevent from empty search
     if (searchKeyword !== "") {
-      matchedStories = Object.keys(allStories).reduce(getStoryByKeyword, {});
+      searchStoryWithKeywords(searchKeyword)
+          .then(returnMatchedStories => {
+          console.log('stories from search :', returnMatchedStories)
+          matchedStories = returnMatchedStories
+          this.setState({ searchResult: matchedStories })   
+          })
+        .catch(error => {return []})
     }
-
-    // update state and log the search result in the console
-    this.setState(
-      (state) => ({ searchResult: matchedStories }),
-      () => {
-        console.log(Object.keys(this.state.searchResult));
-      }
-    );
+    
   };
 
   render() {
@@ -61,11 +49,11 @@ class Search extends Component {
         <SideBar appState={this.props.appState}></SideBar>
         <h1 className="search-header"> Search stories with keywords... </h1>
         <Searchbar
-          allStories={this.props.data}
+          // allStories={this.props.data}
           searchKeyword={this.state.searchKeyword}
           handleChange={this.handleChange}
           searchStory={() =>
-            this.searchStory(this.props.data, this.state.searchKeyword)
+            this.searchStory(this.state.searchKeyword)
           }
         ></Searchbar>
         {search}

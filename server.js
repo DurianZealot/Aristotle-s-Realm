@@ -278,6 +278,15 @@ app.post("/story/:id", (req, res) =>{
     
 })
 
+// Route for searching stories with keyword 
+app.get('/search/story', async(req, res) => {
+    const keyword= req.query.keyword
+    // Find all stories contain keyword
+    Story.find({storyTitle:{$regex: '.*' + keyword +'.*'}})
+        .then(data => {res.status(200).send(data)})
+        .catch(error => res.status(500).send(error))
+})
+
 // Route for getting a story
 app.get('/story/:id', async (req, res) => {
 	const id = req.params.id
