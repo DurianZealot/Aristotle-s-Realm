@@ -2,7 +2,7 @@
 const log = console.log;
 const axios = require('axios')
 
-export const createAStory = async function (userID, storyTitle, storyDate=Date.now(), storyTags, storyViewCount, storyChapters, storyPreview){
+export const createAStory = async function (userID, storyTitle, storyDate=Date.now(), storyTags, storyViewCount, storyChapters, storyPreview, storyLine){
     return axios('/story/'+userID, {
         method: 'post',
         data:{
@@ -11,7 +11,8 @@ export const createAStory = async function (userID, storyTitle, storyDate=Date.n
             storyTags,
             storyViewCount,
             storyChapters,
-            storyPreview
+            storyPreview,
+            storyLine
         }
     })
     .then(res => {

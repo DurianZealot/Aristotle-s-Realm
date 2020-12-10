@@ -18,7 +18,7 @@ async function confirmation(state, action) {
       answer = window.confirm("Are you sure to create your story?");
       if (answer) {
         // TODO: Post this story to the database
-        createAStory(window.sessionStorage.getItem('currentUser'), state.storyName, Date.now(), state.tags, 0, state.storyContent, state.storyPreview)
+        createAStory(window.sessionStorage.getItem('currentUser'), state.storyName, Date.now(), state.tags, 0, state.storyContent, state.storyPreview, state.storyLine)
           .then(created => {
             if(created){
               delayRedirect("create");

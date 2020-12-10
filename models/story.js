@@ -28,6 +28,12 @@ const StorySchema = new mongoose.Schema({
     //     minlength: 1
     // },
 
+    storyLine:{
+        type: String,
+        required: false,
+        default: ""
+    },
+    
     storyAuthorID: {
         type: mongoose.Schema.Types.ObjectID, ref: 'User',
         required: true
@@ -64,8 +70,7 @@ const StorySchema = new mongoose.Schema({
     },
     storyPreview :{
         type: String,
-        required: true,
-        minlength:1
+        required: false
     }
 })
 

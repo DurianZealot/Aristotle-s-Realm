@@ -256,7 +256,8 @@ app.post("/story/:id", (req, res) =>{
         storyTags: req.body.storyTags,
         storyViewCount: req.body.storyViewCount,
         storyChapters: req.body.storyChapters,
-        storyPreview: req.body.storyPreview
+        storyPreview: req.body.storyPreview,
+        storyLine: req.body.storyLine
     })
 
     Story.findByStoryNameAndAuthor(req.body.storyTitle, req.params.id).then(() => {
