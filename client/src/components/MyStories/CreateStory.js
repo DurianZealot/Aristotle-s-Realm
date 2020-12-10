@@ -18,12 +18,18 @@ async function confirmation(state, action) {
       answer = window.confirm("Are you sure to create your story?");
       if (answer) {
         // TODO: Post this story to the database
-        if(! await createAStory(window.sessionStorage.getItem('currentUser'), state.storyName, Date.now(), state.tags, 0, state.storyContent, state.storyPreview)){
-          // Fail to create a story
-          alert('Invalid Creation of Story: Duplicate Story Name / Invalid Login')
-          return
-        }
-        delayRedirect("create");
+        createAStory(window.sessionStorage.getItem('currentUser'), state.storyName, Date.now(), state.tags, 0, state.storyContent, state.storyPreview)
+          .then(created => {
+            if(created){
+              delayRedirect("create");
+            }
+            else{
+              alert('Fail to create a story : Invalid Stroy name')
+              return
+            }
+          })
+        
+        
       }
       return;
     }
