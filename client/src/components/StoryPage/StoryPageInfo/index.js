@@ -11,6 +11,7 @@ class StoryPageInfo extends React.Component {
           {/* Only save the date of the date time */}
           <dd className="story-page-info-item">{story.storyDate.split('T')[0]}</dd>
           <dt className="story-page-info-term">Tags:</dt>
+          <dd className="story-page-info-item">{story.storyTags.join(',')}</dd>
           <dt className="story-page-info-term">Views:</dt>
           <dd className="story-page-info-item">{story.storyViewCount}</dd>
           <dt className="story-page-info-term">Upvotes:</dt>
