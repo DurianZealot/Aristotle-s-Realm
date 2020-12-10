@@ -2,52 +2,39 @@
 
 const log = console.log;
 
-export const getUserInfo = (userId) => {
+export const getUserInfo = async (userId) => {
   log("getting user data");
   // HARDCODED
   // Requires server call here to access user general information based on >>>>>userId<<<<< given
-  switch (userId) {
-    case "AcawO":
-      return {
-        userId: "AcawO",
-        username: "EnTaroAdun",
-        firstName: "Ipsum",
-        lastName: "Lorem",
-        iconPath: "icon/profile-icon-placeholder.png",
-        age: "20",
-        genrePref: "Sci-Fi",
 
-        joinDate: "December 21",
-        followerCount: "6666",
-        followingCount: "420",
-        approvalRate: "69",
+  const url = `/profile/user=${userId}`;
 
-        proposalAcceptNum: "9",
-        worksBegunNum: "11",
-        lastContributionDate: "Oct 31, 2020",
-      };
-    case "LuCaW":
-      return {
-        userId: "LuCaW",
-        username: "EnTaroTassadar",
-        firstName: "Ipsum 2",
-        lastName: "Lorem 2",
-        iconPath: "icon/profile-icon-placeholder.png",
-        age: "48",
-        genrePref: "Romance",
-
-        joinDate: "January 1 2020",
-        followerCount: "12",
-        followingCount: "9450",
-        approvalRate: "99",
-
-        proposalAcceptNum: "9",
-        worksBegunNum: "11",
-        lastContributionDate: "Oct 31, 2020",
-      };
-    default:
-      return "ERROR GRABBING USER DATA";
-  }
+  // Since this is a GET request, simply call fetch on the URL
+  return await fetch(url)
+      .then(async (res) => {
+        if (res.status !== 500) {
+          const userJSON = await res.json();
+          const user = {
+            username: userJSON.username,
+            password: userJSON.password,
+            firstName: userJSON.firstName,
+            lastName: userJSON.lastName,
+            birthday: userJSON.birthday,
+            age: Math.floor((new Date() - userJSON.birthday)/1000/60/60/24/365),
+            genrePref: userJSON.genrePref,
+            approvalRate: userJSON.approvalRate,
+            proposalAcceptNum: userJSON.proposalAcceptNum,
+            worksBegunNum: userJSON.worksBegunNum,
+            lastContributionDate: userJSON.LastContributionDate // Careful the mongoose object's var name has capital L
+          };
+          return user
+        } else {
+          alert("Could not get user!");
+        }
+      })
+      .catch(error => {
+          console.log(error);
+      });
 };
 
 export const getUserProposals = (userId) => {

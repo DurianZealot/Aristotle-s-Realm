@@ -36,7 +36,7 @@ class UserProfile extends React.Component {
     const params = this.props.params;
     const user = getUserInfo(params.userId); // Reserved in case needed
     console.log(
-      "userId based on url: " + params.userId + ", currId: " + this.props.appState.currId
+      "userId based on url: " + params.userId + ", currId: " + window.sessionStorage.getItem('currentUser')// + this.props.appState.currId
     );
 
     return (
@@ -53,8 +53,8 @@ class UserProfile extends React.Component {
 
         <SocialStats
           joinDate={this.state.user.joinDate}
-          followerCount={this.state.user.followerCount}
-          followingCount={this.state.user.followingCount}
+          // followerCount={this.state.user.followerCount}
+          // followingCount={this.state.user.followingCount}
           approvalRate={this.state.user.approvalRate}
         />
         <div className="career-featured-works blocks">
