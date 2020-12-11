@@ -195,12 +195,18 @@ app.post("/admin/login", (req, res) => {
         res.status(400).send()
     })
 })
+// A route update the story view by 1 
+app.post('/story/updateView', (req, res)=>{
+    Story.findOneAndUpdate({_id: req.body.storyID}, {$inc:{'storyViewCount':1}})
+        .then(data => res.status(200).send())
+        .catch(error => res.status(400).send(error))
+})
 
 // A route to upvote or downvote a story 
 app.post('/vote', (req, res) => {
     // Check if the session expired
     if (checkSessionVaid(req)){
-        res.status(404).send('Session expired, failed to create a new story')
+        res.status(404).send('Session expired')
         return 
     }
     Story.findById(req.query.storyID)
@@ -338,7 +344,7 @@ app.post("/story/:id", (req, res) =>{
 app.get("/story", (req, res) => {
     // Check if the session expired
     if (checkSessionVaid(req)){
-        res.status(404).send('Session expired, failed to create a new story')
+        res.status(404).send('Session expired')
         return 
     }
     console.log(req.query.user)
@@ -359,7 +365,7 @@ app.get("/story", (req, res) => {
 app.post("/story/:id/chapter/:chapterIndex", (req, res) => {
     // Check if the session expired
     if (checkSessionVaid(req)){
-        res.status(404).send('Session expired, failed to create a new story')
+        res.status(404).send('Session expired')
         return 
     }
     console.log(req)

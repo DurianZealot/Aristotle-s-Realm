@@ -76,3 +76,13 @@ export const voteStory = async function(storyID, vote) {
     }).then(data => {return Promise.resolve(data)})
       .catch(error => {return Promise.reject(error)})
 }
+
+export const increaseStoryView = async function(storyID) { 
+    return axios({
+        method:'post',
+        url:'/story/updateView',
+        data:{
+            storyID
+        }
+    }).then(data => {return Promise.resolve()}).catch(error => {return Promise.reject()})
+}
