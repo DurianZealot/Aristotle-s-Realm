@@ -17,14 +17,12 @@ export const getUserInfo = async(userId) => {
     })
     .then(res => {
       console.log('Response :', res)
-      const today = new Date(Date.now()).getFullYear()
-      const birthday = new Date(Date.parse(res.data.birthday)).getFullYear()
       const userInfo = {
         username : res.data.username,
         password : res.data.password,
         firstName : res.data.firstName,
         lastName : res.data.lastName,
-        age: today - birthday,
+        age: res.data.age,
         genrePref: res.data.genrePref,
         approvalRate: res.data.approvalRate,
         proposalAcceptNum: res.data.proposalAcceptNum,

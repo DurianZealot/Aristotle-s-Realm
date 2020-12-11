@@ -8,16 +8,46 @@ export const handleInputChange = (event, form) => {
   });
 };
 
-export const handleSave = (edit) => {
+export const handleSave = (form) => {
+  const valid = valid_information(form) 
+  console.log(window.sessionStorage.getItem('currentUser'))
+  if (valid){
+      const request = new Request("/api/edit", {
+          method: "post",
+          body: JSON.stringify(form.state),
+          headers: {
+              Accept: "application/json, text/plain, */*",
+              "Content-Type": "application/json"
+          }
+      });
+  
+      
+      fetch(request)
+          .then(res => {
+              if (res.status === 200) {
+                  alert("Successfully Updated User")
+                  return res.json();
+              }
+          })
+          .catch(error => {
+              console.log(error);
+              alert("Invalid Information. User info not updated")
+          });
+      
+  } 
+  
+};
+const valid_information = (form) => {
   if (
-    (edit.state.username == "") ||
-    (edit.state.firstName == "") ||
-    (edit.state.lastName == "") ||
-    (edit.state.age == "") ||
-    (edit.state.genrePref == "")
+    (form.state.username == "") ||
+    (form.state.firstName == "") ||
+    (form.state.lastName == "") ||
+    (form.state.age == "") ||
+    (form.state.genrePref == "")
   ) {
     alert("Cannot leave empty fields!");
-  } else {
-    alert("You've saved your new settings.");
-  }
-};
+    return false
+  } 
+  return true
+
+}

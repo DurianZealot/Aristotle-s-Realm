@@ -28,7 +28,7 @@ class GeneralInfo extends React.Component {
                 aria-label="Edit Profile"
                 size="small"
                 className="user-profile-edit-button"
-              >
+              > 
                 edit
                 <EditIcon />
               </IconButton>

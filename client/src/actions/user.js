@@ -28,11 +28,11 @@ export const login = async function(username, password, form){
     
 }
 
-export const register = async function(username, password, firstName, lastName, birthday){
+export const register = async function(username, password, firstName, lastName,age){
     // Create a new request with parameters we need
     const request = new Request ("/api/users", {
         method: "post",
-        body: JSON.stringify({username, password, firstName, lastName, birthday}),
+        body: JSON.stringify({username, password, firstName, lastName, age}),
         headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"

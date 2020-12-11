@@ -10,7 +10,7 @@ class MyProposals extends React.Component {
     const userId = this.props.appState.currId;
 
     const proposals = getUserProposals(userId);
-
+    console.log(20)
     return (
       <div className="my-proposals">
         <SideBar

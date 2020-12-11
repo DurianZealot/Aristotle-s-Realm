@@ -25,11 +25,12 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 //user model TODO: change from generic example
 const{ User } = require("./models/user")
 const {Admin} = require("./models/admin")
-
+const {Picture} = require('./models/picture')
 /**MIDDLEWARE */
 // body-parser: middleware for parsing HTTP JSON body into a usable object
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
+
 
 // express-session for managing user sessions
 const session = require("express-session");
@@ -37,7 +38,6 @@ const { request } = require("http");
 const { ObjectID } = require('mongodb')
 const { Proposal } = require("./models/proposal");
 const { Story } = require("./models/story");
-const { error } = require("console");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "/client/build")));
@@ -86,8 +86,8 @@ const checkSessionVaid = (req) => {
 
 
 /**API CALLS */
-//making a user (test API call)
-app.post('/api/users', mongoChecker, async (req, res) => {
+//Creating an account
+app.post('/api', mongoChecker, async (req, res) => {
     log(req.body)
 
     // Create a new user
@@ -96,7 +96,7 @@ app.post('/api/users', mongoChecker, async (req, res) => {
         password: req.body.password,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        birthday: req.body.birthday
+        age: req.body.age
     })
 
     try {
@@ -112,6 +112,7 @@ app.post('/api/users', mongoChecker, async (req, res) => {
         }
     }
 })
+
 
 // A route to login and create a session 
 app.post("/users/login", (req, res) => {
@@ -436,6 +437,29 @@ app.get('/proposals/:storyId', async (req, res) => {
 		log(error)
 		res.status(500).send('Internal Server Error')  // server error
 	}
+})
+
+app.post('/edit', mongoChecker, async (req, res) => {
+
+	try {
+        console.log(req.body.userId)
+		const user = await User.findById(req.body.userId)
+		if (!user) {
+			res.status(404).send('Resource not found')  
+		} else {
+            user.username= req.body.username
+            user.firstName= req.body.firstName
+            user.lastName= req.body.lastName
+            user.age= req.body.age
+            user.genrePref= req.body.genrePref
+            const updated = await user.save()
+			res.send(updated)
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error') 
+	}
+
 })
 
 /**ROUTES */

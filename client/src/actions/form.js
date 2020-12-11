@@ -82,7 +82,7 @@ export const handleAdminSubmit = async (form) => {
 }
 
 export const handleRegister = async function (form){   
-    const {username, password, firstName, lastName, birthday} = form.state 
+    const {username, password, firstName, lastName, age} = form.state 
     const valid = validateEntries(form)
     /*
     console.log('Valid entries for registration: ', valid)
@@ -98,7 +98,7 @@ export const handleRegister = async function (form){
     }   
     */
     if(valid){
-        if (await register(username, password, firstName, lastName, birthday)){
+        if (await register(username, password, firstName, lastName, age)){
             alert('Successfully Created Account')
             form.setState(
                 {redirect: true}
@@ -113,7 +113,7 @@ export const handleRegister = async function (form){
 
 const validateEntries = (form) =>{
 
-    const {username, password, firstName, lastName, birthday} = form.state 
+    const {username, password, firstName, lastName, age} = form.state 
     if (!username || !password || !firstName || !lastName ){
         alert("Please fill out all required infromation")
         return false 

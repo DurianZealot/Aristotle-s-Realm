@@ -15,7 +15,7 @@ class Registration extends React.Component {
         lastName: "",
         username: "",
         password: "",
-        birthday: null,
+        age: 0,
         slideIn: true,
         slideDirection: "right",
         redirect: false
@@ -47,7 +47,7 @@ class Registration extends React.Component {
                             lastName={this.state.lastName}
                             username={this.state.username}
                             password={this.state.password}
-                            birthday={this.state.birthday}
+                            age={this.state.age}
                             redirect={this.state.redirect}
                             handleInputChange={(event) => handleInputChange(event, this)}
                             handleRegister={() => handleRegister(this)}

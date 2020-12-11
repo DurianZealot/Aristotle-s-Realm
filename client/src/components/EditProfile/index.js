@@ -37,7 +37,11 @@ class EditProfile extends React.Component {
       genrePref: "",
     };
   }
-
+  componentDidMount() {
+    // When the component enters the DOM
+    console.log("Current user ID: " + this.props.appState.currID)
+    console.log("localStorage's currId: " + window.sessionStorage.currentUser)
+  }
   componentWillMount() {
     this._asyncRequestUserinfo = getUserInfo(window.sessionStorage.getItem("currentUser")).then(async(userInfo) => {
       this._asyncRequestUserinfo = null;

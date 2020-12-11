@@ -11,7 +11,7 @@ class RegisterForm extends React.Component {
             lastName,
             username,
             password,
-            birthday,
+            age,
             handleInputChange,
             handleRegister,
             redirect
@@ -70,15 +70,12 @@ class RegisterForm extends React.Component {
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
-                        name="birthday"
+                        name="age"
                         variant="filled"
-                        label="Birthday"
-                        type="date"
-                        value={birthday}
+                        label="age"
+                        type="number"
+                        value={age}
                         onChange={handleInputChange}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
                         fullWidth
                     />
                 </Grid>

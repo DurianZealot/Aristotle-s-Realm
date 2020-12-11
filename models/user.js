@@ -30,8 +30,8 @@ const UserSchema = new mongoose.Schema({
 		required: true,
 		minlength: 1
 	},
-	birthday: {
-		type: Date,
+	age: {
+		type: Number,
 		required: false
 	},
 	genrePref: {	// Preferred Genre type(s)

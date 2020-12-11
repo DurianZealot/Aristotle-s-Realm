@@ -8,6 +8,7 @@ class CreateProposal extends Component {
         super(props);
         const {appState} = this.props;
         this.state = {appState : appState, storyToChange : story, storyProposal: ""}
+        console.log(window.sessionStorage.getItem('currentUser'))
         // window.sessionStorage.setItem('currentUser', this.state.appState.currentUser.username)
         }
 
@@ -52,6 +53,7 @@ class CreateProposal extends Component {
     render() {
         return (
             <div>
+                
                 <SideBar appState={this.props.appState}></SideBar>
                 <div style={{marginLeft: '15%'}}>
                 <h1 style={{ fontFamily: "Noteworthy", textAlign: "center" }}>
