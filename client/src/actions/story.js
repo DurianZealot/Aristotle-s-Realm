@@ -63,3 +63,16 @@ export const getUserAllStories = async function(storyAuthorID) {
     }).then(res => {console.log('From getUserAllStories', res); return res})
       .catch(error => {return Promise.reject(error)})
 }
+
+export const voteStory = async function(storyID, vote) {
+    // 0 for downvote, 1 for upvote
+    return axios({
+        method: 'post',
+        url: '/vote',
+        params:{
+            storyID,
+            vote
+        }
+    }).then(data => {return Promise.resolve(data)})
+      .catch(error => {return Promise.reject(error)})
+}

@@ -5,6 +5,7 @@ import { getStory } from "../../actions/story-page";
 import StoryPageInfo from "./StoryPageInfo";
 import StoryPageChapterTable from "./StoryPageChapterTable";
 import StoryPageMain from "./StoryPageMain";
+import {voteStory} from "../../actions/story"
 import "./styles.css";
 import { Box } from "@material-ui/core";
 
@@ -48,7 +49,7 @@ class StoryPage extends React.Component {
                   variant="contained"
                   color="primary"
                   size="large"
-                  onClick={() => alert("You've successfully upvoted.")}
+                  onClick={() => voteStory(this.state.story._id, 1).then(() => {alert('You upvote this story'); window.location.reload()}).catch(error => alert('Fail to upvote this story'))}
                 >
                   Upvote
                 </Button>
@@ -58,7 +59,7 @@ class StoryPage extends React.Component {
                   variant="contained"
                   color="primary" 
                   size="large"
-                  onClick={() => alert("You've successfully downvoted.")}
+                  onClick={() => voteStory(this.state.story._id, 0).then(() => {alert('You downvote this story'); window.location.reload()}).catch(error => alert('Fail to downvote this story'))}
                 >
                   Downvote
                 </Button>

@@ -38,6 +38,7 @@ const { ObjectID } = require('mongodb')
 const { Proposal } = require("./models/proposal");
 const { Story } = require("./models/story");
 const { error } = require("console");
+const { response } = require("express");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "/client/build")));
@@ -195,7 +196,32 @@ app.post("/admin/login", (req, res) => {
     })
 })
 
-
+// A route to upvote or downvote a story 
+app.post('/vote', (req, res) => {
+    // Check if the session expired
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired, failed to create a new story')
+        return 
+    }
+    Story.findById(req.query.storyID)
+        .then(response => {
+            if(req.query.vote == 1){
+                // upvote
+                Story.updateOne({_id: req.query.storyID}, {$set: {[`storyVotes.0`]:response.storyVotes[0]+1}})
+                .then(data => res.status(200).send(data))
+                .catch(error => res.status(500).send(error))
+            }
+            else{
+                Story.updateOne({_id: req.query.storyID}, {$set: {[`storyVotes.1`]:response.storyVotes[1]+1}})
+                .then(data => res.status(200).send(data))
+                .catch(error => res.status(500).send(error))
+            }
+            
+        })
+        .catch(error => {
+            res.status(400).send(error)
+        })
+})
 // A route to logout a user / admin
 app.get("/logout", (req, res) => {
     // log the previous session 
