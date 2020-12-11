@@ -129,8 +129,8 @@ app.post("/users/login", (req, res) => {
 })
 
 // A route to get the entire user for userProfile
-app.get("/profile/user=:userId", async (req, res) => {
-    const id = req.params.userId
+app.get("/profile", async (req, res) => {
+    const id = req.query.userId
 
     // Good practise: Validate id immediately.
 	if (!ObjectID.isValid(id)) {

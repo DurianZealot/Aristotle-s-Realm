@@ -1,44 +1,42 @@
 // Methods in this file modifies the UserProfile component
 
+import Axios from "axios";
+
 const log = console.log;
 
 /*==================================TODO: IMPLEMENT THE FUNCTIONS HERE====================================*/
+export const getUserInfo = async(userId) => {
+  const url = `/profile`
+  return Axios(
+    {
+      method:'get',
+      url: url,
+      params: {
+        userId
+      }
+    })
+    .then(res => {
+      console.log('Response :', res)
+      const today = new Date(Date.now()).getFullYear()
+      const birthday = new Date(Date.parse(res.data.birthday)).getFullYear()
+      const userInfo = {
+        username : res.data.username,
+        password : res.data.password,
+        firstName : res.data.firstName,
+        lastName : res.data.lastName,
+        age: today - birthday,
+        genrePref: res.data.genrePref,
+        approvalRate: res.data.approvalRate,
+        proposalAcceptNum: res.data.proposalAcceptNum,
+        worksBegunNum: res.data.worksBegunNum,
+        lastContributionDate: res.data.LastContributionDate.split('T')[0]
+      }
+      return (Promise.resolve(userInfo))
+    })
+    .catch(error => Promise.reject())
+}
 
 
-export const getUserInfo = async (userId) => {
-  log("getting user data");
-  // HARDCODED
-  // Requires server call here to access user general information based on >>>>>userId<<<<< given
-
-  const url = `/profile/user=${userId}`;
-
-  // Since this is a GET request, simply call fetch on the URL
-  return await fetch(url)
-      .then(async (res) => {
-        if (res.status !== 500) {
-          const userJSON = await res.json();
-          const user = {
-            username: userJSON.username,
-            password: userJSON.password,
-            firstName: userJSON.firstName,
-            lastName: userJSON.lastName,
-            birthday: userJSON.birthday,
-            age: Math.floor((new Date() - userJSON.birthday)/1000/60/60/24/365),
-            genrePref: userJSON.genrePref,
-            approvalRate: userJSON.approvalRate,
-            proposalAcceptNum: userJSON.proposalAcceptNum,
-            worksBegunNum: userJSON.worksBegunNum,
-            lastContributionDate: userJSON.LastContributionDate // Careful the mongoose object's var name has capital L
-          };
-          return user
-        } else {
-          alert("Could not get user!");
-        }
-      })
-      .catch(error => {
-          console.log(error);
-      });
-};
 
 export const getUserProposals = (userId) => {
   log("getting user proposals");

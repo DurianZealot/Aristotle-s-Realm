@@ -12,12 +12,12 @@ class GeneralInfo extends React.Component {
       iconPath, // Path to user's icon
       age, // User's age
       genrePref, // User's preferred genre of writing
-      currId, // User's Id
     } = this.props;
 
     return (
       <div className="general-info-container blocks">
         <img className="icon" src="icon/profile-icon-placeholder.png"/>
+        {/* TODO: add iconPath!!! */}
         {/* src={iconPath} Doesn't seem to be working EVENT LISTENER MAYBE? */}
         <div className="general-info">
           <h1 className="user_name black">{firstName + " " + lastName}</h1>
