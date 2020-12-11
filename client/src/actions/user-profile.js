@@ -2,6 +2,9 @@
 
 const log = console.log;
 
+/*==================================TODO: IMPLEMENT THE FUNCTIONS HERE====================================*/
+
+
 export const getUserInfo = async (userId) => {
   log("getting user data");
   // HARDCODED

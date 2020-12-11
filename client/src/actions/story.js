@@ -1,4 +1,7 @@
 "use strict";
+
+import { render } from '@testing-library/react';
+
 const log = console.log;
 const axios = require('axios')
 
@@ -35,4 +38,9 @@ export const searchStoryWithKeywords = async function(searchKeyword){
     })
         .then(response => {return Promise.resolve(response.data)})
         .catch(error => {return Promise.reject()})
+}
+
+/* =====================================================TODO: backend server call============================================================= */
+export const createNewChapter = async function() {
+
 }
