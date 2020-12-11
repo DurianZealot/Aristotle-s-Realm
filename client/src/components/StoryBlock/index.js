@@ -59,7 +59,6 @@ class StoryBlock extends React.Component {
           <Button style={{float:'right', marginTop:'2%', marginRight:'1%', display: 'inline'}} onClick={() => this.delete(storyId)}color="primary" variant="contained">Delete</Button>
           <ChapterModal style={{float:'right', marginTop:'2%', marginRight:'1%'}} viewFrom = 'story_author' storyTitle={storyTitle} storyChapterNums={storyChapterNums} storyId={storyId} ></ChapterModal>
         </p>
-       
       </div>
     );
   }

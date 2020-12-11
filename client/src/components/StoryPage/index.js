@@ -6,12 +6,21 @@ import StoryPageInfo from "./StoryPageInfo";
 import StoryPageChapterTable from "./StoryPageChapterTable";
 import StoryPageMain from "./StoryPageMain";
 import {voteStory, increaseStoryView} from "../../actions/story"
+import ProposalModal from "./newProposal.js"
 import "./styles.css";
 import { Box } from "@material-ui/core";
 
+// const checkUser = (userId, authorId) => {
+//     if (userId == authorId) {
+//       return (
+        
+//       )
+//     }
+// }
 
 class StoryPage extends React.Component {
   state = {
+    userId: window.sessionStorage.getItem('currentUser'),
     story : null,
   }
   componentWillMount() {
@@ -30,6 +39,7 @@ class StoryPage extends React.Component {
   async componentDidMount() {
     increaseStoryView(this.props.params.storyId)
   }
+
   render() {
     if(this.state.story === null){
       return <div>Loading</div>
@@ -48,6 +58,10 @@ class StoryPage extends React.Component {
             </div>
             {/* Put buttons in the 'main' div */}
             <div className="story-page-feedback-wrapper">
+              <Box mr={1.5} className="story-page-feedback-button">
+                {/* {checkUser(this.state.userId, this.state.story.storyAuthorID)} */}
+                <ProposalModal style={{float:'right', marginTop:'2%', marginRight:'1%'}} storyTitle={this.state.story.storyTitle} storyChapterNums={this.state.story.storyChapters.length} storyId={this.state.story._id} ></ProposalModal>
+              </Box>
               <Box mr={1.5} className="story-page-feedback-button">
                 <Button
                   variant="contained"
