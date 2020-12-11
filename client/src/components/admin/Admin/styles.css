@@ -3,11 +3,10 @@
   height: 100%;
   width: 100%;
   z-index: 1;
-  background-image: url('../../Home/Body/static/background.jpg');
-  background-size: cover;
+  background: #F0E3E5;
 }
 .admin_title_container{
-  position: absolute;
+  position: fixed;
   height: 75px;
   width: 100%;
   background-color: black;
