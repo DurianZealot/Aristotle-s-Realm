@@ -63,3 +63,37 @@ export const getUserAllStories = async function(storyAuthorID) {
     }).then(res => {console.log('From getUserAllStories', res); return res})
       .catch(error => {return Promise.reject(error)})
 }
+
+export const voteStory = async function(storyID, vote) {
+    // 0 for downvote, 1 for upvote
+    return axios({
+        method: 'post',
+        url: '/vote',
+        params:{
+            storyID,
+            vote
+        }
+    }).then(data => {return Promise.resolve(data)})
+      .catch(error => {return Promise.reject(error)})
+}
+
+export const increaseStoryView = async function(storyID) { 
+    return axios({
+        method:'post',
+        url:'/story/updateView',
+        data:{
+            storyID
+        }
+    }).then(data => {return Promise.resolve()}).catch(error => {return Promise.reject()})
+}
+
+
+export const deleteStory = async function(storyID) { 
+    return axios({
+        method:'delete',
+        url:'/story',
+        data:{
+            storyID
+        }
+    }).then(data => {return Promise.resolve()}).catch(error => {return Promise.reject()})
+}

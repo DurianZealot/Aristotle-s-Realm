@@ -38,6 +38,8 @@ const { request } = require("http");
 const { ObjectID } = require('mongodb')
 const { Proposal } = require("./models/proposal");
 const { Story } = require("./models/story");
+const { error } = require("console");
+const { response } = require("express");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "/client/build")));
@@ -195,8 +197,51 @@ app.post("/admin/login", (req, res) => {
         res.status(400).send()
     })
 })
+// A route to delete a story 
+app.delete('/story', (req, res) => {
+    // Check if the session expired
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired')
+        return 
+    }
 
+    Story.deleteOne({_id:req.body.storyID})
+        .then(response => res.status(200).send(response))
+        .catch(error => res.status(500).send(error))
+})
+// A route update the story view by 1 
+app.post('/story/updateView', (req, res)=>{
+    Story.findOneAndUpdate({_id: req.body.storyID}, {$inc:{'storyViewCount':1}})
+        .then(data => res.status(200).send())
+        .catch(error => res.status(400).send(error))
+})
 
+// A route to upvote or downvote a story 
+app.post('/vote', (req, res) => {
+    // Check if the session expired
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired')
+        return 
+    }
+    Story.findById(req.query.storyID)
+        .then(response => {
+            if(req.query.vote == 1){
+                // upvote
+                Story.updateOne({_id: req.query.storyID}, {$set: {[`storyVotes.0`]:response.storyVotes[0]+1}})
+                .then(data => res.status(200).send(data))
+                .catch(error => res.status(500).send(error))
+            }
+            else{
+                Story.updateOne({_id: req.query.storyID}, {$set: {[`storyVotes.1`]:response.storyVotes[1]+1}})
+                .then(data => res.status(200).send(data))
+                .catch(error => res.status(500).send(error))
+            }
+            
+        })
+        .catch(error => {
+            res.status(400).send(error)
+        })
+})
 // A route to logout a user / admin
 app.get("/logout", (req, res) => {
     // log the previous session 
@@ -313,7 +358,7 @@ app.post("/story/:id", (req, res) =>{
 app.get("/story", (req, res) => {
     // Check if the session expired
     if (checkSessionVaid(req)){
-        res.status(404).send('Session expired, failed to create a new story')
+        res.status(404).send('Session expired')
         return 
     }
     console.log(req.query.user)
@@ -334,7 +379,7 @@ app.get("/story", (req, res) => {
 app.post("/story/:id/chapter/:chapterIndex", (req, res) => {
     // Check if the session expired
     if (checkSessionVaid(req)){
-        res.status(404).send('Session expired, failed to create a new story')
+        res.status(404).send('Session expired')
         return 
     }
     console.log(req)
