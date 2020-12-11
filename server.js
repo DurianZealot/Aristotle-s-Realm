@@ -307,6 +307,58 @@ app.post("/story/:id", (req, res) =>{
     })
     
 })
+// A route to get all stories created by a user
+
+app.get("/story", (req, res) => {
+    // Check if the session expired
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired, failed to create a new story')
+        return 
+    }
+    console.log(req.query.user)
+    Story.findByStoryAuthor(req.query.user)
+            .then(stories => {
+                res.status(200).send(stories)
+            })
+            .catch(error=>{
+                res.status(500).send(error)
+            })
+})
+
+// A route to update a or create a new chapter to a story 
+/* Request will be like
+ {
+     storyChapterContent : 'xxxxx'
+ } */
+app.post("/story/:id/chapter/:chapterIndex", (req, res) => {
+    // Check if the session expired
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired, failed to create a new story')
+        return 
+    }
+    console.log(req)
+    // the session is not expired
+    Story.findById(req.params.id)
+        .then(story => {
+            // create a new chapter
+            if(parseInt(req.params.chapterIndex) == story.storyChapters.length + 1){
+                // console.log('The chapter is ', parseInt(req.params.chapterIndex))
+                // console.log('The length is ', story.storyChapters.length)
+                // console.log(story.storyChapters)
+                Story.findByIdAndUpdate(req.params.id, {$push: {storyChapters : req.body.storyChapterContent}})
+                    .then(data => res.status(200).send(data))
+                    .catch(error => res.status(500).send(error))
+            }
+            else{
+                // update a previous chapter
+                Story.update({_id:req.params.id}, {$set: {[`storyChapters.${req.params.chapterIndex - 1}`]: req.body.storyChapterContent}})
+                .then(data => res.status(200).send(data))
+                .catch(error => res.status(500).send(error))
+            }
+            
+        })
+        .catch(error => {res.status(500).send(error)})
+})
 
 // Route for searching stories with keyword 
 app.get('/search/story', async(req, res) => {

@@ -21,6 +21,7 @@ class StoryBlock extends React.Component {
       storyTags,
       storyDate,
       storyVotes,
+      storyChapterNums
     } = this.props;
 
     console.log(storyVotes);
@@ -56,7 +57,7 @@ class StoryBlock extends React.Component {
             </Link>
           </span>
           <Button style={{float:'right', marginTop:'2%', marginRight:'1%', display: 'inline'}} onClick={() => this.delete()}color="primary" variant="contained">Delete</Button>
-          <ChapterModal style={{float:'right', marginTop:'2%', marginRight:'1%'}} viewFrom = 'story_author' title={storyTitle}></ChapterModal>
+          <ChapterModal style={{float:'right', marginTop:'2%', marginRight:'1%'}} viewFrom = 'story_author' storyTitle={storyTitle} storyChapterNums={storyChapterNums} storyId={storyId} ></ChapterModal>
         </p>
        
       </div>

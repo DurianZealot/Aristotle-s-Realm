@@ -16,6 +16,7 @@ class StoryPage extends React.Component {
   componentWillMount() {
     this._asyncRequestStory = getStory(this.props.params.storyId).then(async(res) => {
       this._asyncRequestStory = null;
+      console.log('Loading', res.data)
       this.setState({story : res.data})
     })
   }

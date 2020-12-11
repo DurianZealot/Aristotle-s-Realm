@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Button, Input} from '@material-ui/core'
+import {Button, Input, TextField} from '@material-ui/core'
 import Modal from '@material-ui/core/Modal';
 import {CssTextField} from '../CssTextField/CssTextField'
 import { createNewChapter } from '../../actions/story.js'
@@ -28,24 +28,35 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ChapterModal(props) {
+  
 
-  // this.state = {
-  //   chapterName: '',
-  //   chapterContent: ''
-  // }
+  var state = {
+    chapterContent: '',
+    chapterLength: props.storyChapterNums,
+    chapterIndex: 1,
+    storyID: props.storyId,
+    storyTitle: props.storyTitle
+  }
+
+  var chapterSelection = []
+  console.log('we have ', state.chapterLength)
+  for(let num = 1; num <= state.chapterLength + 1; num++){
+    chapterSelection.push(num)
+  }
+  
 
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
   var modified = false;
+
   const handleChange = (event) => { // ================================TODO: MIGHT NEED TO CHANGE TO TRACK INPUT===================================
     modified = true
-    // this.setState({
-    //   [event.target.name]: event.target.value
-    // })
-    // console.log(this.state.chapterName)
-    // console.log(this.state.chapterContent)
+    console.log('Current State', state)
+    state[event.target.name] = event.target.value
+    console.log('Current State After Update', state)
+    
   }
   const handleOpen = () => {
     setOpen(true);
@@ -59,11 +70,12 @@ export default function ChapterModal(props) {
     var answer
     if (action == "submit"){
       if(modified){
-        answer = window.confirm('Are you going to submit this chapter?')
+        answer = window.confirm('Are you going to submit/update this chapter?')
         if(answer){
           // SERVER CALL FUNCTION
-          createNewChapter()
-          handleClose()
+          createNewChapter(state.storyID, state.chapterIndex, state.chapterContent)
+            .then(handleClose())
+            .catch(error => {alert('Fail to upload your chapter to the database'); })
         }
       }
       else{
@@ -122,16 +134,16 @@ export default function ChapterModal(props) {
             New Chapter For:
           </span>
           <span classNamestyle={{display:"inline-flex"}}>
-            {props.title}
+            {state.storyTitle}
           </span>
         </span>
-        <span style={{display:"inline-flex", marginTop:'5%'}}>
-          <span style={{display:"inline-flex"}}>
-            New Chapter Name:  
+        <span style={{marginTop:'5%'}}>
+          <span>
+            Chapter Index:  
           </span>
-          <span style={{display:"inline-flex"}}>
-            <Input style={{fontSize:"x-large"}} name='chapterName' onChange={handleChange}></Input>
-          </span>
+          <select style={{width:"20%"}} name="chapterIndex" onChange={handleChange}>
+            {chapterSelection.map((chapterNum) => {return <option value={chapterNum}>{chapterNum}</option>})}
+          </select>
         </span>
         <span style={{display:"flex", marginTop:'2%'}}>
           Chapter Content:  
@@ -145,7 +157,7 @@ export default function ChapterModal(props) {
 
   return (
     <div>
-      <Button type="button" onClick={handleOpen}>
+      <Button type="button" onClick={handleOpen} >
         Write New Chapter
       </Button>
       <Modal

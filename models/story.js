@@ -90,6 +90,15 @@ StorySchema.statics.findByStoryNameAndAuthor = function(storyName, storyAuthorID
     })
 }
 
+// Return all stories created by a given userid
+StorySchema.statics.findByStoryAuthor = function(storyAuthorID){
+    const Story = this
+    return Story.find({storyAuthorID})
+                .then(data => {console.log('Get from statics' ,data); return Promise.resolve(data)})
+                .catch(error => {console.log(error); return Promise.reject(error)})
+}
+
+
 // make a model using the User schema
 const Story = mongoose.model('Story', StorySchema)
 module.exports = { Story }

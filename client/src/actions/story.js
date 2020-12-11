@@ -40,7 +40,26 @@ export const searchStoryWithKeywords = async function(searchKeyword){
         .catch(error => {return Promise.reject()})
 }
 
-/* =====================================================TODO: backend server call============================================================= */
-export const createNewChapter = async function() {
 
+export const createNewChapter = async function(storyID, chapterNum, chapterContent) {
+    return axios({
+        method:'post',
+        url: `/story/${storyID}/chapter/${chapterNum}`,
+        data: {
+            storyChapterContent:chapterContent
+        }
+    }).then(res => {return Promise.resolve(res)})
+    .catch(error => {return Promise.reject()})
+
+}
+
+export const getUserAllStories = async function(storyAuthorID) {
+    return axios({
+        method:'get',
+        url: '/story',
+        params : {
+            user : storyAuthorID
+        }
+    }).then(res => {console.log('From getUserAllStories', res); return res})
+      .catch(error => {return Promise.reject(error)})
 }
