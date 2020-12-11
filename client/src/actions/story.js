@@ -28,6 +28,15 @@ export const createAStory = async function (userID, storyTitle, storyDate=Date.n
     .catch(error => {return false})
 }
 
+// Get all stories
+export const getAllStories = async function(){
+    return axios('/search/allstory', {
+        method:'get',
+    })
+        .then(response => {return Promise.resolve(response.data)})
+        .catch(error => {return Promise.reject()})
+}
+
 // Get stories that match keywords 
 export const searchStoryWithKeywords = async function(searchKeyword){
     return axios('/search/story', {
@@ -39,6 +48,7 @@ export const searchStoryWithKeywords = async function(searchKeyword){
         .then(response => {return Promise.resolve(response.data)})
         .catch(error => {return Promise.reject()})
 }
+
 
 
 export const createNewChapter = async function(storyID, chapterNum, chapterContent) {

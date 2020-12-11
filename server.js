@@ -420,6 +420,13 @@ app.get('/search/story', async(req, res) => {
         .catch(error => res.status(500).send(error))
 })
 
+//Route for getting all stories
+app.get('/search/allstory', async(req, res) => {
+    Story.find({storyTitle:{$regex: '.*'}})
+        .then(data => {res.status(200).send(data)})
+        .catch(error => res.status(500).send(error))
+})
+
 // Route for getting a story
 app.get('/story/:id', async (req, res) => {
 	const id = req.params.id
@@ -522,7 +529,7 @@ app.get("*", (req, res) => {
 
 /*************************************************/
 // Express server listening...
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
     log(`Listening on port ${port}...`);
 });

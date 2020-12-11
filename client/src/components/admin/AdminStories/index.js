@@ -7,14 +7,24 @@ import "./stories.css";
 import {Link} from 'react-router-dom'
 import {Button} from '@material-ui/core';
 import {adminLogout} from '../../../actions/admin'
-import {searchStoryWithKeywords} from '../../../actions/story'
+import {searchStoryWithKeywords, getAllStories} from '../../../actions/story'
 
 class AdminStories extends Component {
   state = {
     searchKeyword: "",
     searchResult: {},
   };
-
+  componentDidMount(){
+    var matchedStories;
+   
+      getAllStories()
+          .then(returnMatchedStories => {
+          console.log('stories from search :', returnMatchedStories)
+          matchedStories = returnMatchedStories
+          this.setState({ searchResult: matchedStories })   
+          })
+        .catch(error => {return []})
+  }
   handleChange = (event) => {
     const target = event.target;
     const value = target.value;
