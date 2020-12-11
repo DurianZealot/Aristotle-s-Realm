@@ -13,7 +13,7 @@ class StoryPageChapterTable extends React.Component {
           <tbody className="story-page-chapter-tbody">
             <tr>
               <td className="story-page-chapter-td">
-                <Link to={`/article/${story.storyId}/1`}>&#171;</Link>
+                <Link to={`/article/${story._id}/1`}>&#171;</Link>
               </td>
               {story.storyChapters.map((chapter, i) => {
                 if (chapterNum == i + 1) {
@@ -22,7 +22,7 @@ class StoryPageChapterTable extends React.Component {
                       className="story-page-chapter-td story-page-chapter-current"
                       key={uid(chapter)}
                     >
-                      <Link to={`/article/${story.storyId}/${i + 1}`}>
+                      <Link to={`/article/${story._id}/${i + 1}`}>
                         {i + 1}
                       </Link>
                     </td>
@@ -30,7 +30,7 @@ class StoryPageChapterTable extends React.Component {
                 }
                 return (
                   <td className="story-page-chapter-td" key={uid(chapter)}>
-                    <Link to={`/article/${story.storyId}/${i + 1}`}>
+                    <Link to={`/article/${story._id}/${i + 1}`}>
                       {i + 1}
                     </Link>
                   </td>
@@ -38,7 +38,7 @@ class StoryPageChapterTable extends React.Component {
               })}
               <td className="story-page-chapter-td">
                 <Link
-                  to={`/article/${story.storyId}/${story.storyChapters.length}`}
+                  to={`/article/${story._id}/${story.storyChapters.length}`}
                 >
                   &#187;
                 </Link>

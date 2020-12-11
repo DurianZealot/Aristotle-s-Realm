@@ -6,8 +6,6 @@ class SocialStats extends React.Component {
 
     const {
         joinDate,
-        followerCount,
-        followingCount,
         approvalRate
     } = this.props
 
@@ -21,16 +19,6 @@ class SocialStats extends React.Component {
           </div>
           <div className="social-stats__info-item">
             {/* Currently HARDCORDED */}
-            <div className="social-stats-item-title text">Followers:</div>
-            <div className="social-stats-item-value text">{followerCount}</div>
-          </div>
-          <div className="social-stats__info-item">
-            {/* Currently HARDCORDED */}
-            <div className="social-stats-item-title text">Followed:</div>
-            <div className="social-stats-item-value text">{followingCount}</div>
-          </div>
-          <div className="social-stats__info-item">
-            {/* Currently HARDCORDED */}
             <div className="social-stats-item-title text">Approval Rate:</div>
             <div className="social-stats-item-value text">{approvalRate}%</div>
           </div>
@@ -41,3 +29,6 @@ class SocialStats extends React.Component {
 }
 
 export default SocialStats
+
+
+// No need !!!!

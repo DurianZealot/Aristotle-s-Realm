@@ -1,6 +1,8 @@
 import { Button } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
+import { createNewChapter } from "../../actions/story";
+import ChapterModal from './newChapter.js'
 import "./styles.css";
 
 class StoryBlock extends React.Component {
@@ -10,6 +12,7 @@ class StoryBlock extends React.Component {
       alert('You delete this story!')
     }
   }
+
   render() {
     const {
       storyId,
@@ -18,6 +21,7 @@ class StoryBlock extends React.Component {
       storyTags,
       storyDate,
       storyVotes,
+      storyChapterNums
     } = this.props;
 
     console.log(storyVotes);
@@ -52,7 +56,8 @@ class StoryBlock extends React.Component {
               <span>View Proposals to this story</span>
             </Link>
           </span>
-          <Button style={{float:'right', marginTop:'2%', marginRight:'1%'}} onClick={() => this.delete()}color="primary" variant="contained">Delete</Button>
+          <Button style={{float:'right', marginTop:'2%', marginRight:'1%', display: 'inline'}} onClick={() => this.delete()}color="primary" variant="contained">Delete</Button>
+          <ChapterModal style={{float:'right', marginTop:'2%', marginRight:'1%'}} viewFrom = 'story_author' storyTitle={storyTitle} storyChapterNums={storyChapterNums} storyId={storyId} ></ChapterModal>
         </p>
        
       </div>

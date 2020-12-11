@@ -1,54 +1,42 @@
 // Methods in this file modifies the UserProfile component
 
+import Axios from "axios";
+
 const log = console.log;
 
-export const getUserInfo = (userId) => {
-  log("getting user data");
-  // HARDCODED
-  // Requires server call here to access user general information based on >>>>>userId<<<<< given
-  switch (userId) {
-    case "AcawO":
-      return {
-        userId: "AcawO",
-        username: "EnTaroAdun",
-        firstName: "Ipsum",
-        lastName: "Lorem",
-        iconPath: "icon/profile-icon-placeholder.png",
-        age: "20",
-        genrePref: "Sci-Fi",
+/*==================================TODO: IMPLEMENT THE FUNCTIONS HERE====================================*/
+export const getUserInfo = async(userId) => {
+  const url = `/profile`
+  return Axios(
+    {
+      method:'get',
+      url: url,
+      params: {
+        userId
+      }
+    })
+    .then(res => {
+      console.log('Response :', res)
+      const today = new Date(Date.now()).getFullYear()
+      const birthday = new Date(Date.parse(res.data.birthday)).getFullYear()
+      const userInfo = {
+        username : res.data.username,
+        password : res.data.password,
+        firstName : res.data.firstName,
+        lastName : res.data.lastName,
+        age: today - birthday,
+        genrePref: res.data.genrePref,
+        approvalRate: res.data.approvalRate,
+        proposalAcceptNum: res.data.proposalAcceptNum,
+        worksBegunNum: res.data.worksBegunNum,
+        lastContributionDate: res.data.LastContributionDate.split('T')[0]
+      }
+      return (Promise.resolve(userInfo))
+    })
+    .catch(error => Promise.reject())
+}
 
-        joinDate: "December 21",
-        followerCount: "6666",
-        followingCount: "420",
-        approvalRate: "69",
 
-        proposalAcceptNum: "9",
-        worksBegunNum: "11",
-        lastContributionDate: "Oct 31, 2020",
-      };
-    case "LuCaW":
-      return {
-        userId: "LuCaW",
-        username: "EnTaroTassadar",
-        firstName: "Ipsum 2",
-        lastName: "Lorem 2",
-        iconPath: "icon/profile-icon-placeholder.png",
-        age: "48",
-        genrePref: "Romance",
-
-        joinDate: "January 1 2020",
-        followerCount: "12",
-        followingCount: "9450",
-        approvalRate: "99",
-
-        proposalAcceptNum: "9",
-        worksBegunNum: "11",
-        lastContributionDate: "Oct 31, 2020",
-      };
-    default:
-      return "ERROR GRABBING USER DATA";
-  }
-};
 
 export const getUserProposals = (userId) => {
   log("getting user proposals");

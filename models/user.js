@@ -39,16 +39,6 @@ const UserSchema = new mongoose.Schema({
 		required: true,
 		default: ['None']
 	},
-	followerCount: {	// MOST LIKELY TO BE SCRAPPED, ADDED TENTATIVELY FOR NOW
-		type: Number,
-		required: true,
-		default: 0
-	},
-	followingCount: {	// MOST LIKELY TO BE SCRAPPED, ADDED TENTATIVELY FOR NOW
-		type: Number,
-		required: true,
-		default: 0
-	},
 	approvalRate: {	// Approval rate, from 0 to 100, percentage
 		type: Number,
 		required: true,

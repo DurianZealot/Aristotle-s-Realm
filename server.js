@@ -128,6 +128,37 @@ app.post("/users/login", (req, res) => {
     })
 })
 
+// A route to get the entire user for userProfile
+app.get("/profile", async (req, res) => {
+    const id = req.query.userId
+
+    // Good practise: Validate id immediately.
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+		return;  // so that we don't run the rest of the handler.
+	}
+
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}
+
+	// If id valid, findById
+	try {
+		const user = await User.findById(id)
+		if (!user) {
+			res.status(404).send('Resource not found')  // could not find this user
+		} else {
+            res.send(user)
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+})
+
 // A route to get the user ID in database 
 app.get("/getUserID", (req, res) => {
     const username = req.query.username
@@ -136,7 +167,6 @@ app.get("/getUserID", (req, res) => {
         .catch(error => {
             res.status(404).send('Invalid username')
         })
-
 })
 
 // A route to get the username in database 
@@ -277,6 +307,58 @@ app.post("/story/:id", (req, res) =>{
     })
     
 })
+// A route to get all stories created by a user
+
+app.get("/story", (req, res) => {
+    // Check if the session expired
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired, failed to create a new story')
+        return 
+    }
+    console.log(req.query.user)
+    Story.findByStoryAuthor(req.query.user)
+            .then(stories => {
+                res.status(200).send(stories)
+            })
+            .catch(error=>{
+                res.status(500).send(error)
+            })
+})
+
+// A route to update a or create a new chapter to a story 
+/* Request will be like
+ {
+     storyChapterContent : 'xxxxx'
+ } */
+app.post("/story/:id/chapter/:chapterIndex", (req, res) => {
+    // Check if the session expired
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired, failed to create a new story')
+        return 
+    }
+    console.log(req)
+    // the session is not expired
+    Story.findById(req.params.id)
+        .then(story => {
+            // create a new chapter
+            if(parseInt(req.params.chapterIndex) == story.storyChapters.length + 1){
+                // console.log('The chapter is ', parseInt(req.params.chapterIndex))
+                // console.log('The length is ', story.storyChapters.length)
+                // console.log(story.storyChapters)
+                Story.findByIdAndUpdate(req.params.id, {$push: {storyChapters : req.body.storyChapterContent}})
+                    .then(data => res.status(200).send(data))
+                    .catch(error => res.status(500).send(error))
+            }
+            else{
+                // update a previous chapter
+                Story.update({_id:req.params.id}, {$set: {[`storyChapters.${req.params.chapterIndex - 1}`]: req.body.storyChapterContent}})
+                .then(data => res.status(200).send(data))
+                .catch(error => res.status(500).send(error))
+            }
+            
+        })
+        .catch(error => {res.status(500).send(error)})
+})
 
 // Route for searching stories with keyword 
 app.get('/search/story', async(req, res) => {
@@ -343,8 +425,6 @@ app.get('/proposals/:storyId', async (req, res) => {
 		if (!story) {
 			res.status(404).send('Resource not found')  // could not find this story
 		} else {
-			/// sometimes we might wrap returned object in another object:
-            //res.send({student})   
             const proposals = await Proposal.find({ proposeToID: id })
             if (!proposals) {
                 res.status(404).send('Proposals to Story not found')  // could not find any proposals to this story

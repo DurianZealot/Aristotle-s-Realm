@@ -8,7 +8,7 @@ export const getStoryProposals = async (storyId) => {
   // Since this is a GET request, simply call fetch on the URL
   await fetch(url)
       .then(async(res) => {
-          if (res.status === 200) {
+          if (res.status !== 500) {
               // return a promise that resolves with the JSON body
               const proposalsJSON = await res.json();
               // map through the proposalsJSON object and turn it into an array of proposals and return it
