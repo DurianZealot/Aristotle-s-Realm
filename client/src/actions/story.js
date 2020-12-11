@@ -86,3 +86,14 @@ export const increaseStoryView = async function(storyID) {
         }
     }).then(data => {return Promise.resolve()}).catch(error => {return Promise.reject()})
 }
+
+
+export const deleteStory = async function(storyID) { 
+    return axios({
+        method:'delete',
+        url:'/story',
+        data:{
+            storyID
+        }
+    }).then(data => {return Promise.resolve()}).catch(error => {return Promise.reject()})
+}

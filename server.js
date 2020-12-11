@@ -195,6 +195,18 @@ app.post("/admin/login", (req, res) => {
         res.status(400).send()
     })
 })
+// A route to delete a story 
+app.delete('/story', (req, res) => {
+    // Check if the session expired
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired')
+        return 
+    }
+
+    Story.deleteOne({_id:req.body.storyID})
+        .then(response => res.status(200).send(response))
+        .catch(error => res.status(500).send(error))
+})
 // A route update the story view by 1 
 app.post('/story/updateView', (req, res)=>{
     Story.findOneAndUpdate({_id: req.body.storyID}, {$inc:{'storyViewCount':1}})
