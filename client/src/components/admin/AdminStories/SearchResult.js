@@ -1,8 +1,17 @@
 import React, { Component } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import {uid} from "react-uid";
+import { TextField, Button } from "@material-ui/core";
+import { deleteStory } from "../../../actions/story";
 import "./stories.css";
 class SearchResult extends Component {
+
+  handleDelete = (storyID)=>{
+     deleteStory(storyID)
+     alert("successfully deleted story")
+     window.location.reload()
+  }
+
   render() {
     return (
       <div>
@@ -37,6 +46,13 @@ class SearchResult extends Component {
                     </p>
                   </span>
                 </span>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => this.handleDelete(storyId)}
+                    >
+                    Delete
+                  </Button>
               </li>
             );
           })}

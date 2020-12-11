@@ -37,6 +37,7 @@ export const getAllStories = async function(){
         .catch(error => {return Promise.reject()})
 }
 
+
 // Get stories that match keywords 
 export const searchStoryWithKeywords = async function(searchKeyword){
     return axios('/search/story', {

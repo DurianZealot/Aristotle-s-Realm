@@ -6,7 +6,7 @@
   background: #F0E3E5;
 }
 .admin_title_container{
-  position: absolute;
+  position: fixed;
   height: 75px;
   width: 100%;
   background-color: black;
