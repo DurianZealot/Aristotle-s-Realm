@@ -420,6 +420,19 @@ app.get('/search/story', async(req, res) => {
         .catch(error => res.status(500).send(error))
 })
 
+// A route to update the proposal status
+app.post('/proposal/update', async(req, res) => {
+    // Check if the session expired
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired')
+        return 
+    }
+    Proposal.update({_id:req.body.proposalID}, {$set: {status : req.body.proposalStatus}})
+    .then(response => res.send(200))
+    .catch(error => res.send(500))
+})
+
+
 // Route for getting a story
 app.get('/story/:id', async (req, res) => {
 	const id = req.params.id
