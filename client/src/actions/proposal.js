@@ -1,7 +1,7 @@
 "use strict"
 
 import Axios from "axios"
-import {getUserID} from './user'
+import {getUsername} from './user'
 const log = console.log
 
 export const postProposal = async function(proposeToID, proposeToTitle, proposeChapter, visibility, content, proposeByID, status = 'pending'){

@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import {Button, Input} from '@material-ui/core'
 import Modal from '@material-ui/core/Modal';
 import {CssTextField} from '../CssTextField/CssTextField'
+import { createNewChapter } from '../../actions/story';
+import {updateProposalStatus} from '../../actions/proposal'
 
 function getModalStyle() {
   return {
@@ -30,6 +32,9 @@ export default function SimpleModal(props) {
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
+  var {proposalId, chapter, content, proposalSourceId} = props
+
+
   var modified = false;
   const handleChange = () => {
     modified = true
@@ -144,7 +149,7 @@ export default function SimpleModal(props) {
 
     if(viewFrom == 'proposal_writter'){
       // if the status is ACCEPTED, the user can only CLOSE the modal
-      if(proposalStatus == 'Accepted'){
+      if(proposalStatus == 'Accepted' || proposalStatus == 'accepted'){
         return (
           <span style={{display: "flex",justifyContent: "space-around",width: "100%"}}>
             {closeBtn()}
@@ -152,7 +157,7 @@ export default function SimpleModal(props) {
         )
       }
       // if the status is REJECTED, the user can only CLOSE the modal / DELETE the proposal
-      else if (proposalStatus == 'Rejected'){
+      else if (proposalStatus == 'Rejected' || proposalStatus == 'rejected' ){
         return (
           <span style={{display: "flex",justifyContent: "space-around",width: "100%"}}>
             {deleteBtn()}
@@ -160,7 +165,7 @@ export default function SimpleModal(props) {
           </span>)
       }
       // if status is PENDING, the user can SAVE CHANGES / DELETE proposal or CLOSE the modal
-      else if (proposalStatus == 'Pending'){
+      else if (proposalStatus == 'Pending' || proposalStatus == 'pending'){
         return (
           <span style={{display: "flex",justifyContent: "space-around",width: "100%"}}>
             {saveChangesBtn()}
@@ -172,7 +177,7 @@ export default function SimpleModal(props) {
     }
     else if (viewFrom == 'original_author'){
       // if the status is ACCEPTED, the user can only CLOSE the modal / REJECT the proposal
-      if(proposalStatus == 'Accepted'){
+      if(proposalStatus == 'Accepted' || proposalStatus == 'accepted'){
         return (
           <span style={{display: "flex",justifyContent: "space-around",width: "100%"}}>
             {acceptOrRejectBtn('REJECT')}
@@ -181,7 +186,7 @@ export default function SimpleModal(props) {
         )
       }
       // if the status is REJECTED, the user can only CLOSE the modal / DELETE / ACCEPT the proposal
-      else if (proposalStatus == 'Rejected'){
+      else if (proposalStatus == 'Rejected' || proposalStatus == 'rejected'){
         return (
           <span style={{display: "flex",justifyContent: "space-around",width: "100%"}}>
             {acceptOrRejectBtn('ACCEPT')}
@@ -190,7 +195,7 @@ export default function SimpleModal(props) {
           </span>)
       }
       // if status is PENDING, the user can  ACCEPT / REJECT proposal or CLOSE the modal
-      else if (proposalStatus == 'Pending'){
+      else if (proposalStatus == 'Pending' || proposalStatus == 'pending'){
         return (
           <span style={{display: "flex",justifyContent: "space-around",width: "100%"}}>
             {acceptOrRejectBtn('ACCEPT')}
@@ -242,7 +247,7 @@ export default function SimpleModal(props) {
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
-        disableBackdropClick = {true}
+        // disableBackdropClick = {true}
       >
         {body}
       </Modal>
