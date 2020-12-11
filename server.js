@@ -204,7 +204,12 @@ app.delete('/story', (req, res) => {
     }
 
     Story.deleteOne({_id:req.body.storyID})
-        .then(response => res.status(200).send(response))
+        .then(response => 
+            {
+                Proposal.deleteMany({proposeToID:req.body.storyID})
+                    .then(success => res.send(success))
+                    .catch(error => res.status(500).send(error))
+            })
         .catch(error => res.status(500).send(error))
 })
 // A route update the story view by 1 
