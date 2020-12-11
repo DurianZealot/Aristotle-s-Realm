@@ -433,6 +433,13 @@ app.post('/proposal/update', async(req, res) => {
 })
 
 
+//Route for getting all stories
+app.get('/search/allstory', async(req, res) => {
+    Story.find({storyTitle:{$regex: '.*'}})
+        .then(data => {res.status(200).send(data)})
+        .catch(error => res.status(500).send(error))
+})
+
 // Route for getting a story
 app.get('/story/:id', async (req, res) => {
 	const id = req.params.id
@@ -502,8 +509,11 @@ app.get('/proposals/:storyId', async (req, res) => {
 	}
 })
 
-app.post('/edit', mongoChecker, async (req, res) => {
-
+app.post('/api/edit', mongoChecker, async (req, res) => {
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired')
+        return 
+    }
 	try {
         console.log(req.body.userId)
 		const user = await User.findById(req.body.userId)
