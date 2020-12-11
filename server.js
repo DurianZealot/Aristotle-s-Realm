@@ -489,8 +489,11 @@ app.get('/proposals/:storyId', async (req, res) => {
 	}
 })
 
-app.post('/edit', mongoChecker, async (req, res) => {
-
+app.post('/api/edit', mongoChecker, async (req, res) => {
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired')
+        return 
+    }
 	try {
         console.log(req.body.userId)
 		const user = await User.findById(req.body.userId)
@@ -519,7 +522,7 @@ app.get("*", (req, res) => {
 
 /*************************************************/
 // Express server listening...
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 app.listen(port, () => {
     log(`Listening on port ${port}...`);
 });

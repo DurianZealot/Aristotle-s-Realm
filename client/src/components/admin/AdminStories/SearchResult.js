@@ -4,18 +4,15 @@ import {uid} from "react-uid";
 import "./stories.css";
 class SearchResult extends Component {
   render() {
-    // this.props.searchResult is a JSON, so get a list of keys first
-    const storyNames = Object.keys(this.props.searchResult);
     return (
       <div>
         <ul className="search_result_list">
-          {storyNames.map((name) => {
-            const {
-              storyId,
-              lastUpdate,
-              storyLine,
-              storyPreview,
-            } = this.props.searchResult[name];
+        {this.props.searchResult.map((story) => {
+            const storyId = story._id
+            const name = story.storyTitle
+            const storyLine = story.storyLine
+            const storyPreview = story.storyPreview === '' ? 'Not Given' :  story.storyPreview
+            const created = story.storyDate.split('T')[0]
             return (
               <li className="search_result" key={uid(name)}>
                 <span>
@@ -23,8 +20,8 @@ class SearchResult extends Component {
                     <h4 className="story_name">{name}</h4>
                   </Link>
                   <span className="last_update">
-                    <span className="black">Most Recent Update: </span>
-                    <span className="grey">{lastUpdate}</span>
+                    <span className="black">Created at: </span>
+                    <span className="grey">{created}</span>
                   </span>
                 </span>
                 <span className="inline-block">
