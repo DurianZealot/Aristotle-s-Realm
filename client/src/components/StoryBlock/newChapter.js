@@ -29,10 +29,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ChapterModal(props) {
 
-  this.state = {
-    chapterName: '',
-    chapterContent: ''
-  }
+  // this.state = {
+  //   chapterName: '',
+  //   chapterContent: ''
+  // }
 
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
@@ -41,11 +41,11 @@ export default function ChapterModal(props) {
   var modified = false;
   const handleChange = (event) => { // ================================TODO: MIGHT NEED TO CHANGE TO TRACK INPUT===================================
     modified = true
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-    console.log(this.state.chapterName)
-    console.log(this.state.chapterContent)
+    // this.setState({
+    //   [event.target.name]: event.target.value
+    // })
+    // console.log(this.state.chapterName)
+    // console.log(this.state.chapterContent)
   }
   const handleOpen = () => {
     setOpen(true);
