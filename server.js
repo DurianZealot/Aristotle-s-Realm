@@ -421,13 +421,14 @@ app.get('/search/story', async(req, res) => {
 })
 
 // A route to update the proposal status
-app.post('/proposal/update', async(req, res) => {
+app.post('/proposalUpdateStatus', async(req, res) => {
     // Check if the session expired
     if (checkSessionVaid(req)){
         res.status(404).send('Session expired')
         return 
     }
-    Proposal.update({_id:req.body.proposalID}, {$set: {status : req.body.proposalStatus}})
+
+    Proposal.update({_id:req.body.proposalID}, {"$set": {"status" : req.body.proposalStatus}})
     .then(response => res.send(200))
     .catch(error => res.send(500))
 })
