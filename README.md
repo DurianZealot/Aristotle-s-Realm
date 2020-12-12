@@ -45,14 +45,12 @@ Users will be directed to a new page that user can put necessary elements for a 
 There will a delay redirection (back to home page) of 5 seconds to micmic the process that data is transmitted to the server.
 
 
-
 ### Create proposal:
 
-Users will be able to create a new proposal to an existing story(either belongs to the users themselves or belongs to some one else) to continue the creation process of a story.
+Users will be able to create a new proposal to an existing story by going to the sidebar and hit the browse button to browse stories. When navigating to the story page of each story, there will be a button
+    at the bottom of the page that allows users to create new proposal forthis story through a popup. Duplicate proposals are not allowed.
 
 Users can ACCEPT/REJECT a story proposal to their stories
-
-
 
 ### Manage Stories 
 
@@ -73,6 +71,7 @@ Proposals to users' own stories will can be viewed under the `View Proposals to 
 ### User Profile: 
 
 User will be able to view informations regarding themselves in the profile page, which contains a Side Bar with various buttons to direct users to `My Stories`, `My Proposals`, `Create Proposal`, `Create Story`, `Browse`. The User Profile itself also contains a button leading to the `Edit Profile` page.
+User profile contains tracker for how many stories the user has created and the time since their last contribution, and various general information regarding them.
 
 ### Edit Profile:
 
