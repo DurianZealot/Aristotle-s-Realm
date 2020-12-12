@@ -112,6 +112,8 @@ Users will be directed to this page when viewing the main content of a story. Th
 
 ## Current Bugs
 1. Unable to return to admin view once clicking out on a story
+2. LastContributionDate on user profile sometimes doesnt work
+3. number of proposals accepted on user profile does not work
 
 ## API Documentation (Endpoints)
 Mongoose Models: Proposal, Admin, Story, User <br>
