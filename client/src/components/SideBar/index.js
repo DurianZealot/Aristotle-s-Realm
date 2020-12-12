@@ -57,10 +57,6 @@ class SideBar extends React.Component {
                         <Button className="side-bar__button" variant="contained" size="large">My Proposals</Button>
                     </Link>
 
-                    <Link className="side-bar_create-proposal-link" to={`/profile/user=${window.sessionStorage.getItem('currentUser')}/create-proposal`}> {/* Take User to Create Proposal Page*/}
-                        <Button className="side-bar__button" variant="contained" size="large">Create Proposal</Button>
-                    </Link>
-
                     <Link className="side-bar__profile-link" to={`/profile/user=${window.sessionStorage.getItem('currentUser')}`}> {/* Takes User to Profile Page */}
                         <Button className="side-bar__button" variant="contained" size="large">Profile</Button>
                     </Link>

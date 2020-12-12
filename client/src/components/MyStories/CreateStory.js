@@ -194,14 +194,6 @@ class CreateStory extends Component {
               justifyContent: "space-evenly",
             }}
           >
-            <span style={{}}>
-              {" "}
-              Open for Story Proposals : <Switch color="secondary"></Switch>
-            </span>
-            <span style={{}}>
-              {" "}
-              Visibility to Public : <Switch color="secondary"></Switch>{" "}
-            </span>
           </span>
         </form>
         
