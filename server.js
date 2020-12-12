@@ -487,6 +487,20 @@ app.get('/search/allstory', async(req, res) => {
         .catch(error => res.status(500).send(error))
 })
 
+// Route for getting all proposals made by a user
+app.get('/proposals/all/:userid', async(req,res) =>{
+    Proposal.find({proposeByID:req.params.userid})
+    .then(response => {console.log('We get',response); res.send(response)})
+    .catch(error => res.status(500).send(error))
+})
+
+// Route for updating proposal content made by a user
+app.post('/proposal/update/:propsalID/chapter/:proposeChapter', async(req, res) => {
+    console.log('chapter content we get', req.body.storyChapterContent)
+    Proposal.update({_id: req.params.proposalID}, {"$set": {"content":req.body.storyChapterContent}})
+    .then(response => {console.log('We get',response); res.send(response)})
+    .catch(error => res.status(500).send(error))
+})
 
 // Route for searching user by username
 app.get('/search/user', async(req, res) => {

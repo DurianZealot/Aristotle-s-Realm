@@ -22,7 +22,7 @@ class ProposalBlock extends React.Component {
         <div className="my-proposals-list-item-icon"></div>
         {/* Require call to props/states here */}
         <p className="item text">
-          <h3>Source Title: <SimpleModal viewFrom = 'proposal_writter'proposalId={proposalId} status={proposalAccepted} title={proposalSourceTitle} chapter={proposalChapter} accpeted ={proposalAccepted} content = {proposalContent}></SimpleModal></h3>
+          <h3>Source Title: <SimpleModal viewFrom = 'proposal_writter' proposalId={proposalId} status={proposalAccepted} title={proposalSourceTitle} chapter={proposalChapter} accpeted ={proposalAccepted} content = {proposalContent}></SimpleModal></h3>
           
           <span className="subitem">
             Proposal Status: {setProposalStatus(proposalAccepted)}
@@ -36,9 +36,9 @@ class ProposalBlock extends React.Component {
 }
 
 const setProposalStatus = (status) => {
-  if (status === "Accepted") {
+  if (status === "Accepted" || status === "accepted") {
     return <span className="green">Accepted</span>;
-  } else if (status === "Pending") {
+  } else if (status === "Pending" || status === "pending") {
     return <span className="yellow">Pending</span>;
   }
   return <span className="red">Rejected</span>;

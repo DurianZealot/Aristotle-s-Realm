@@ -71,3 +71,14 @@ export const insertProposal = async function(proposalSourceId, propsalID, propos
     .catch(error => {return Promise.reject()})
    ).catch(error => {return Promise.reject()})
 }
+
+export const updateProposalContent = async function(propsalID, proposeChapter, storyChapterContent){
+  return axios({
+    method:'post',
+    url: `/proposal/update/${propsalID}/chapter/${proposeChapter}`,
+    data: {
+      storyChapterContent
+    }
+  }).then(response => {return Promise.resolve(response)})
+  .catch(error => {return Promise.reject()})
+}
