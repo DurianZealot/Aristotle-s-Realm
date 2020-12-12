@@ -56,3 +56,18 @@ export const deleteProposal = async function(propsalID) {
     }).then(response => {return Promise.resolve(response)})
     .catch(error => {return Promise.reject()})
 }
+
+export const insertProposal = async function(proposalSourceId, propsalID, proposeChapter, storyChapterContent){
+  console.log('The chapter is', proposeChapter)
+   return axios({
+     method:'post',
+     url: `/story/${proposalSourceId}/chapter/${proposeChapter}`,
+     data: {
+      storyChapterContent
+     }
+   }).then(
+     updateProposalStatus(propsalID, 'Accepted')
+     .then(response => {return Promise.resolve(response)})
+    .catch(error => {return Promise.reject()})
+   ).catch(error => {return Promise.reject()})
+}

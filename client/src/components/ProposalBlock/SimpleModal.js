@@ -4,7 +4,7 @@ import {Button, Input} from '@material-ui/core'
 import Modal from '@material-ui/core/Modal';
 import {CssTextField} from '../CssTextField/CssTextField'
 import { createNewChapter } from '../../actions/story';
-import {updateProposalStatus, deleteProposal} from '../../actions/proposal'
+import {updateProposalStatus, deleteProposal, insertProposal} from '../../actions/proposal'
 
 function getModalStyle() {
   return {
@@ -88,8 +88,9 @@ export default function SimpleModal(props) {
     if (action == 'ACCEPT'){
       answer = window.confirm('Are you sure you are going to accept this proposal?')
       if (answer){
-        window.alert('You accept this proposal successfully')
-        handleClose()
+        insertProposal(proposalSourceId, proposalId, chapter, content)
+          .then(() => {window.alert('You accept this proposal successfully');  handleClose(); window.location.reload();})
+          .catch(error => {window.alert('You fail to accept this proposal'); return}) 
       }
     }
     else if (action == 'REJECT'){
@@ -182,7 +183,7 @@ export default function SimpleModal(props) {
       if(proposalStatus == 'Accepted' || proposalStatus == 'accepted'){
         return (
           <span style={{display: "flex",justifyContent: "space-around",width: "100%"}}>
-            {acceptOrRejectBtn('REJECT')}
+            {/* Once you accept, you cannot delete a proposal since it is already part of story and other already see it */}
             {closeBtn()}
           </span>
         )
