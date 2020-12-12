@@ -17,7 +17,6 @@ class ProposalsToStory extends React.Component {
       this._asyncRequestStory = null;
       console.log('Loading', res.data)
       this.setState({story : res.data})
-      console.log(this.props.params.storyId)
       getStoryProposals(this.props.params.storyId).then(proposals => {this.setState({proposals : proposals})})
     })
   }

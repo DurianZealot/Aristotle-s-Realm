@@ -4,7 +4,7 @@ import {Button, Input} from '@material-ui/core'
 import Modal from '@material-ui/core/Modal';
 import {CssTextField} from '../CssTextField/CssTextField'
 import { createNewChapter } from '../../actions/story';
-import {updateProposalStatus, deleteProposal, insertProposal} from '../../actions/proposal'
+import {updateProposalStatus, deleteProposal, insertProposal, updateProposalContent} from '../../actions/proposal'
 
 function getModalStyle() {
   return {
@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SimpleModal(props) {
+  var state = {
+    'content' : null
+  }
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -36,8 +39,11 @@ export default function SimpleModal(props) {
 
 
   var modified = false;
-  const handleChange = () => {
+  const handleChange = (event) => {
     modified = true
+    console.log('Logged', state.content)
+    state[event.target.name] = event.target.value
+
   }
   const handleOpen = () => {
     setOpen(true);
@@ -53,8 +59,10 @@ export default function SimpleModal(props) {
       if(modified){
         answer = window.confirm('Are you going to save your changes ?')
         if(answer){
-          window.alert('Your changes are saved!')
-          handleClose()
+          const chapterContent = state.content
+          updateProposalContent(proposalId, chapter, chapterContent)
+          .then(() => {window.alert('Your changes are saved!');  handleClose(); window.location.reload();})
+          .catch(error => {window.alert('Changes saving fails'); return}) 
         }
       }
       else{
@@ -179,7 +187,7 @@ export default function SimpleModal(props) {
       
     }
     else if (viewFrom == 'original_author'){
-      // if the status is ACCEPTED, the user can only CLOSE the modal / REJECT the proposal
+      // if the status is ACCEPTED, the user can only CLOSE the modal  the proposal
       if(proposalStatus == 'Accepted' || proposalStatus == 'accepted'){
         return (
           <span style={{display: "flex",justifyContent: "space-around",width: "100%"}}>
@@ -210,7 +218,7 @@ export default function SimpleModal(props) {
     }
   };
   // ONLY Proposal writters can modify proposals when the proposals are pending
-  const disableChanges = (props.status == 'Pending' && props.viewFrom == 'proposal_writter');
+  const disableChanges = ((props.status == 'Pending' || props.status == 'pending' ) && props.viewFrom == 'proposal_writter');
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <div>
@@ -227,13 +235,13 @@ export default function SimpleModal(props) {
             Proposal to Chapter:  
           </span>
           <span style={{display:"inline-flex"}}>
-            <Input disabled={!disableChanges}style={{fontSize:"x-large"}} defaultValue={props.chapter} onChange={handleChange}></Input>
+            <Input disabled={true}style={{fontSize:"x-large"}} defaultValue={props.chapter}></Input>
           </span>
         </span>
         <span style={{display:"flex", marginTop:'2%'}}>
           Proposal Content:  
         </span>
-        <CssTextField disabled={!disableChanges} style={{width: "100%", marginTop:'2%'}} variant='outlined' multiline rows={5} rowsMax={10} defaultValue={props.content} onChange={handleChange}></CssTextField>
+        <CssTextField name='content' disabled={!disableChanges} style={{width: "100%", marginTop:'2%'}} variant='outlined' multiline rows={5} rowsMax={10} defaultValue={props.content} onChange={handleChange}></CssTextField>
         {actionsAvailable(props.viewFrom, props.status)}
       </div>
       
