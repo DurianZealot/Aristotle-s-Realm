@@ -5,7 +5,7 @@ import "./styles.css";
 import TagInput from "../TagInput/TagInput";
 import {CssTextField, txtFieldStyle} from "../CssTextField/CssTextField";
 import SideBar from "../SideBar";
-import { createAStory } from "../../actions/story";
+import { createAStory, updateCareerStats } from "../../actions/story";
 async function confirmation(state, action) {
   var answer;
   if (action === "create") {
@@ -21,10 +21,19 @@ async function confirmation(state, action) {
         createAStory(window.sessionStorage.getItem('currentUser'), state.storyName, Date.now(), state.tags, 0, state.storyContent, state.storyPreview, state.storyLine)
           .then(created => {
             if(created){
+              updateCareerStats(window.sessionStorage.getItem('currentUser'), 1)
+                .then((updatedCareer) => {
+                  if(updatedCareer) {
+                    return Promise.resolve()
+                  } else {
+                    alert('Failed to update career stats.')
+                    return
+                  }
+                })
               delayRedirect("create");
             }
             else{
-              alert('Fail to create a story : Invalid Stroy name')
+              alert('Fail to create a story : Invalid Story name')
               return
             }
           })
