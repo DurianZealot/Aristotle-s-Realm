@@ -89,7 +89,7 @@ const checkSessionVaid = (req) => {
 
 /**API CALLS */
 //Creating an account
-app.post('/api', mongoChecker, async (req, res) => {
+app.post('/api/users', mongoChecker, async (req, res) => {
     log(req.body)
 
     // Create a new user
@@ -214,6 +214,29 @@ app.delete('/story', (req, res) => {
             })
         .catch(error => res.status(500).send(error))
 })
+
+// A route to delete a user 
+app.delete('/user', (req, res) => {
+    // Check if the session expired
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired')
+        return 
+    }
+
+    User.deleteOne({_id:req.body.userID})
+        .then(response => 
+            {
+                Proposal.deleteMany({proposeByID:req.body.userID})
+                    .then(success => res.send(success))
+                    .catch(error => res.status(500).send(error))
+                Story.deleteMany({storyAuthorID:req.body.userID})
+                    .then(success => res.send(success))
+                    .catch(error => res.status(500).send(error))
+            })
+        .catch(error => res.status(500).send(error))
+})
+
+
 // A route update the story view by 1 
 app.post('/story/updateView', (req, res)=>{
     Story.findOneAndUpdate({_id: req.body.storyID}, {$inc:{'storyViewCount':1}})
@@ -438,21 +461,45 @@ app.post('/updateCareer/', async(req, res) => {
 
 
 // A route to update the proposal status
-app.post('/proposal/update', async(req, res) => {
+app.post('/proposalUpdateStatus', async(req, res) => {
     // Check if the session expired
     if (checkSessionVaid(req)){
         res.status(404).send('Session expired')
         return 
     }
-    Proposal.update({_id:req.body.proposalID}, {$set: {status : req.body.proposalStatus}})
+
+    Proposal.update({_id:req.body.proposalID}, {"$set": {"status" : req.body.proposalStatus}})
     .then(response => res.send(200))
     .catch(error => res.send(500))
 })
 
+// A route to delete proposal
+app.delete('/proposalDelete', async(req, res) => {
+    Proposal.deleteOne({_id:req.body.propsalID})
+    .then(response => res.send(200))
+    .catch(error => res.send(500))
+})
 
 //Route for getting all stories
 app.get('/search/allstory', async(req, res) => {
     Story.find({storyTitle:{$regex: '.*'}})
+        .then(data => {res.status(200).send(data)})
+        .catch(error => res.status(500).send(error))
+})
+
+
+// Route for searching user by username
+app.get('/search/user', async(req, res) => {
+    const keyword= req.query.keyword
+    // Find all stories contain keyword
+    User.find({username:{$regex: '.*' + keyword +'.*'}})
+        .then(data => {res.status(200).send(data)})
+        .catch(error => res.status(500).send(error))
+})
+
+//Route for getting all users
+app.get('/search/alluser', async(req, res) => {
+    User.find({username:{$regex: '.*'}})
         .then(data => {res.status(200).send(data)})
         .catch(error => res.status(500).send(error))
 })
@@ -525,6 +572,7 @@ app.get('/proposals/:storyId', async (req, res) => {
 		res.status(500).send('Internal Server Error')  // server error
 	}
 })
+
 
 app.post('/api/edit', mongoChecker, async (req, res) => {
     if (checkSessionVaid(req)){

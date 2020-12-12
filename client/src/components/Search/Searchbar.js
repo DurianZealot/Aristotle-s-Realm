@@ -14,7 +14,7 @@ class Searchbar extends Component {
         />
         <button
           className="search-button"
-          onClick={() => searchStory(this.props.allStories, searchKeyword)}
+          onClick={() => searchStory( searchKeyword)}
         >
           Search
         </button>

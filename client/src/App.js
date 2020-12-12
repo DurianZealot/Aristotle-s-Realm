@@ -65,7 +65,7 @@ import Reports from './components/admin/Reports'
             <Route exact path='/search' render={() => (<Search appState={this.state}/>)}/>
             {/* Route to a page of the article; url also separated based on chapter number*/}
             <Route exact path='/article/:storyId/:chapterNum' render={(props) => (<StoryPage params={props.match.params} appState={this.state}/>)}/>
-            <Route exact path='/proposals/:storyId' render={(props) => (<ProposalsToStory params={props.match.params} appState={this.state}/>)}/>
+            <Route exact path='/proposals/getAll/:storyId' render={(props) => (<ProposalsToStory params={props.match.params} appState={this.state}/>)}/>
             {/* <Route exact path='/proposasl/:storyId/:proposalId' render={(props) => (<Home></Home>)} />  */}
             <Route exact path='/profile/user=:userId/my-proposals' render={(props) => (<MyProposals params={props.match.params} appState={this.state}/>)} />
             <Route exact path='/profile/user=:userId/my-stories' render={(props) => <MyStories params={props.match.params} appState={this.state}/>} />
