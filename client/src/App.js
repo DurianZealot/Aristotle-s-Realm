@@ -70,7 +70,6 @@ import Reports from './components/admin/Reports'
             <Route exact path='/profile/user=:userId/my-proposals' render={(props) => (<MyProposals params={props.match.params} appState={this.state}/>)} />
             <Route exact path='/profile/user=:userId/my-stories' render={(props) => <MyStories params={props.match.params} appState={this.state}/>} />
             <Route exact path='/profile/user=:userId/create-stories' render={(props) => <CreateStory params={props.match.params} appState={this.state}/>} />
-            <Route exact path='/profile/user=:userId/create-proposal' render={(props) => <CreateProposal params={props.match.params} appState={this.state}></CreateProposal>} />
           </Switch>
         </BrowserRouter>
       </div>
