@@ -89,7 +89,7 @@ const checkSessionVaid = (req) => {
 
 /**API CALLS */
 //Creating an account
-app.post('/api', mongoChecker, async (req, res) => {
+app.post('/api/users', mongoChecker, async (req, res) => {
     log(req.body)
 
     // Create a new user
