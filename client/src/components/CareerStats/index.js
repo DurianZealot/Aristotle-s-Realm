@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.css";
 
 class CareerStats extends React.Component {
+
   render() {
     const {
         proposalAcceptNum,

@@ -28,6 +28,23 @@ export const createAStory = async function (userID, storyTitle, storyDate=Date.n
     .catch(error => {return false})
 }
 
+export const updateCareerStats = async function (userID, increment) {
+    return axios('/updateCareer/', { 
+        method: 'post',
+        data: {
+            userID,
+            increment
+        }
+    })
+    .then(res => {
+        if (res.status == 200){
+            return true
+        }
+        return false
+    })
+    .catch(error => {return false})
+}
+
 // Get all stories
 export const getAllStories = async function(){
     return axios('/search/allstory', {

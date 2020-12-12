@@ -54,7 +54,7 @@ class UserProfile extends React.Component {
           <CareerStats
             proposalAcceptNum={this.state.user.proposalAcceptNum}
             worksBegunNum={this.state.user.worksBegunNum}
-            lastContributionDate={this.state.user.lastContributionDate}
+            lastContributionDate={this.state.user.lastContributionDate.toString()}
           />
         </div>
       );

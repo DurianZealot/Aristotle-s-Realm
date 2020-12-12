@@ -89,7 +89,7 @@ const checkSessionVaid = (req) => {
 
 /**API CALLS */
 //Creating an account
-app.post('/api', mongoChecker, async (req, res) => {
+app.post('/api/users', mongoChecker, async (req, res) => {
     log(req.body)
 
     // Create a new user
@@ -442,6 +442,23 @@ app.get('/search/story', async(req, res) => {
         .then(data => {res.status(200).send(data)})
         .catch(error => res.status(500).send(error))
 })
+
+// A route to update Career Stats
+app.post('/updateCareer/', async(req, res) => {
+    // Check if the session expired
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired')
+        return 
+    }
+    // Update contribution date if it's an 'increase'
+    if (req.body.increment > 0) {
+        User.findOneAndUpdate({_id:req.body.userID}, {$set:{LastContributionDate: Date.now()}},{new: true, useFindAndModify: false})
+    } 
+    User.findOneAndUpdate({_id:req.body.userID}, {$inc:{'worksBegunNum': req.body.increment}})
+    .then(response => res.send(200))
+    .catch(error => res.send(500))
+})
+
 
 // A route to update the proposal status
 app.post('/proposalUpdateStatus', async(req, res) => {
