@@ -14,6 +14,7 @@ class UserProfile extends React.Component {
     super(props);
     this.state = {
       user: null,
+      userStories: null
     };
   }
 
@@ -30,7 +31,6 @@ class UserProfile extends React.Component {
     }
   }
 
-
   render() {
     if(this.state.user){
       return (
@@ -44,13 +44,12 @@ class UserProfile extends React.Component {
             age={this.state.user.age}
             genrePref={this.state.user.genrePref}
           />
-          <div className="career-featured-works blocks">
+          {/* <div className="career-featured-works blocks">
             <h1 className="career-featured-works-header text">Featured Works:</h1>
-            {/* Currently HARDCODED */}
             <div className="career-featured-works-item text">
               This user hasn't published any works yet...
             </div>
-          </div>
+          </div> */}
           <CareerStats
             proposalAcceptNum={this.state.user.proposalAcceptNum}
             worksBegunNum={this.state.user.worksBegunNum}
