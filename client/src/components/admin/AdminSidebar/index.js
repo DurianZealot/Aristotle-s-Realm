@@ -15,9 +15,9 @@ class AdminSidebar extends React.Component {
                     <Button className="admin_sidebar_button" variant="contained" size="large">Moderate Stories</Button>
                 </Link>
 
-                <Link className="admin_reports_link" to={"/admin/reports"}> {/* Takes admin to reports */}
-                        <Button className="admin_sidebar_button" variant="contained" size="large">Moderate Reports</Button>
-                </Link>
+                {/* <Link className="admin_reports_link" to={"/admin/reports"}> {/* Takes admin to reports */}
+                        {/* <Button className="admin_sidebar_button" variant="contained" size="large">Moderate Reports</Button>
+                </Link> */} 
             </div>
         )
     }
