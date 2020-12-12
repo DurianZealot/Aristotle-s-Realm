@@ -475,6 +475,12 @@ app.post('/proposalUpdateStatus', async(req, res) => {
 
 // A route to delete proposal
 app.delete('/proposalDelete', async(req, res) => {
+    // Check if the session expired
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired')
+        return 
+    }
+
     Proposal.deleteOne({_id:req.body.propsalID})
     .then(response => res.send(200))
     .catch(error => res.send(500))
@@ -489,6 +495,12 @@ app.get('/search/allstory', async(req, res) => {
 
 // Route for getting all proposals made by a user
 app.get('/proposals/all/:userid', async(req,res) =>{
+    // Check if the session expired
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired')
+        return 
+    }
+    
     Proposal.find({proposeByID:req.params.userid})
     .then(response => {console.log('We get',response); res.send(response)})
     .catch(error => res.status(500).send(error))
