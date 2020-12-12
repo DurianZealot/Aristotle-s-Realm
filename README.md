@@ -37,6 +37,7 @@ A logged-in user can browse stories, create stories, make proposal to others sto
 
 An admin when logged in is shown the admin dashboard. There, they can view all users and stories on the website using a search feature and delete users or stories if approrpiate.
 
+## Features of the Story
 ### Create Story:
 
 Users will be directed to a new page that user can put necessary elements for a new original story, such as the genre of the story, the name/title of the story and a little bit story contents.
@@ -80,6 +81,38 @@ User will be directed to a page that allows them to edit basic informations rega
 ### Story:
 
 Users will be directed to this page when viewing the main content of a story. The page contains basic information regarding the story and a chapter selector to choose the chapters to go to. The majority of the page is covered by the main texts of the story.
+
+## Sample Unregistered User Workflow 
+1. From the home page, click browse stories <br>
+2. Type in any key word in the search bar to browse all stories with titles that have the keyword. <br>
+3. Read any stories that you find. <br>
+4. Using the sidebar, click register, fill out the user information and become a registered user.<br>
+## Sample Registered User Workflow
+1. Click login and log in as a user <br>
+2. Click the edit icon to direct to another page that allows you to change your information <br>
+3. Once your information is what you wish, click save and it will be saved to database <br>
+4. Click create story on the sidebar to create the start of a new story. Note you can make the story open to proposals or not and visible to public or not. <br>
+5. Once you have created a story, click on my stories on the sidebar and the story you have created is there. Note you are able to see number of views your story has received as well as the upvotes and downvotes your story has received <br>
+6. Clicking on write new chapter will allow you to write new chapters as well as update old chapters of the story. <br>
+7. Clicking on view proposals to this story will allow you to see all proposals for your story created by other users. <br>
+8. Clicking delete will delete your story from the database. <br>
+9. You can create a proposal for a story that you find from create proposal. <br>
+10. Once you have created a proposal for the story, it will show up in my proposals and you will be able to view its status. <br>
+11. Finally you can browse for stories in Browse by searching for titles. <br>
+12. When you click a title and read it, you are able to upvote or downvote each chapter you read as well as having an option to create a proposal for the continuation of that story <br>
+13. Finally, you have the option to logout on the sidebar which will return you back to the home page. <br>
+## Sample Admin Workflow 
+1. Click login and enter admin credentials and click Admin Login <br>
+2. This takes us to the admin dashboard with the page showing all users currently created on this website <br>
+3. As an admin, you can click the delete button corresponding to any user and delete that user from the website <br>
+4. You can also click the search bar and search for specific users to narrow down the list. The search bar matches for username <br>
+5. Click Moderate stories on the sidebar and all stories on the website will be shown <br>
+6. As with the users, you are able to delete any story. Clicking on a story title will also allow you to read the story. <br>
+7. You have the same rights as any normal user which means you can upvote/downvote the story as well as creating proposals for stories and your own stories. <br>
+8. Press the log out button to log out. <br>
+
+## Current Bugs
+1. Unable to return to admin view once clicking out on a story
 
 ## API Documentation (Endpoints)
 Mongoose Models: Proposal, Admin, Story, User <br>
