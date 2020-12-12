@@ -4,17 +4,17 @@
 
 ## App : Aristotle's Realm
 
-A platform that enables story writters to create original stories and contributing to others' stories
+A platform that enables story writers to create original stories and contribute to others' stories
 
 ## Deployed Website: https://aristotles-realm.herokuapp.com/
 
 
 
-##### Instruction on How to run this app virtually:
+##### Instructions: Running this app locally:
 
-1. Go to `team31/webapp` directory
-2. `npm install` to install all dependencies this app will need
-3. `npm start` will run this app at  http://localhost:3000
+1. Clone this repository
+2. Open up a terminal in the root of the cloned repository and type `npm run-script setup ` to install all dependencies this app will need
+3. Now type `npm run-script build-run` and a local server serving this app will run at  http://localhost:5000/ which will be accessible by any browser
 
 ***Note : please run this app on full page size***
 
@@ -31,14 +31,11 @@ A platform that enables story writters to create original stories and contributi
 | **admin username** | **admin password** |
 |       admin        |       admin        |
 
-A guest without loggoing in can browse stories published pulically.
+A guest without logging in can browse stories published pulbically.
 
-A log-in user can browse stories, create stories, make proposal to others stories, create own proposal to others stories, and accept/reject others proposal to own stories
+A logged-in user can browse stories, create stories, make proposal to others stories, and accept/reject others proposal to their own stories
 
-An admin account can log in as a user to use the website as stated above. They can also choose to log in as admin on the login screen to access the admin dashboard which 
-will allow them to review reports as well as view all users and stories on the website
-
-
+An admin when logged in is shown the admin dashboard. There, they can view all users and stories on the website using a search feature and delete users or stories if approrpiate.
 
 ### Create Story:
 
@@ -83,3 +80,9 @@ User will be directed to a page that allows them to edit basic informations rega
 ### Story:
 
 Users will be directed to this page when viewing the main content of a story. The page contains basic information regarding the story and a chapter selector to choose the chapters to go to. The majority of the page is covered by the main texts of the story.
+
+### API Documentation (Endpoints)
+1. /
+
+### THIRD-PARTY Libraries used:
+1. Material-UI
