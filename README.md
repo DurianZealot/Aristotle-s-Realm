@@ -91,8 +91,8 @@ Mongoose Models: Proposal, Admin, Story, User <br>
 6. post /admin/login: Takes in a username and password from the request body and finds an admin in the database that matches it (if one exists); used for admin login and creates a session cookie if an admin is found. <br>
 7. delete /story: Takes in an object id for a story and if a story with that object id exists, it is removed. All proposals for that story are also removed; Deletes a story from database<br>
 8. delete /user: Takes in an object id for a user and if a user object in the database that matches the id exists, it is removed; All stories created by this user is removed. All proposals for any of this user's stories or created by this user is also removed. <br>
-9.post /story/updateView: Updates the view count of a story in the database from id sent in from request body; Increments a story's views when a user views that story.<br>
-10.post /vote: updates the upvotes or downvotes of a story based on the id from request body and integer indicating upvote or downvote; Used when a user upvotes or downvotes a story.<br>
+9. post /story/updateView: Updates the view count of a story in the database from id sent in from request body; Increments a story's views when a user views that story.<br>
+10. post /vote: updates the upvotes or downvotes of a story based on the id from request body and integer indicating upvote or downvote; Used when a user upvotes or downvotes a story.<br>
 11. get /logout: destroys the current session if it exists; used to log a user out<br>
 12. post /proposal/:id : creates a proposal object from request body and stores it in the database; Used when user submits a proposal<br>
 13. post /story/:id : creates a story object from request body and stores it in the database; Used when user submits a new story<br>
