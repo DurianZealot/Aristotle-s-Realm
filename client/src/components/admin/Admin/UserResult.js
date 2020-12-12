@@ -21,30 +21,38 @@ class UserResult extends Component {
              const age = user.age
             return (
               <li className="search_result" key={uid(firstName)}>
-                <span className="inline-block">
+                <div >
                   <span className="inline-flex">
                     <p className="black">Username: </p>
-                    <p className="story_line truncate grey">{username}</p>
+                    <p className=" grey">{username}</p>
                   </span>
+                </div>
+                <div>
                   <span className="inline-flex">
                     <p className="black">Age: </p>
-                    <p className="story_preview truncate grey">
+                    <p className="grey">
                       {age}
                     </p>
                   </span>
-                </span>
-                <span className="inline-block">
+                </div>
+                 
+                
+                <div>
                   <span className="inline-flex">
                     <p className="black">firstName: </p>
-                    <p className="story_line truncate grey">{firstName}</p>
+                    <p className=" grey">{firstName}</p>
                   </span>
+                </div>
+                <div>
+           
                   <span className="inline-flex">
                     <p className="black">lastName: </p>
-                    <p className="story_preview truncate grey">
+                    <p className=" grey">
                       {lastName}
                     </p>
                   </span>
-                </span>
+                </div>
+                <div className='delete_button'>
                   <Button
                     variant="contained"
                     color="primary"
@@ -52,6 +60,7 @@ class UserResult extends Component {
                     >
                     Delete
                   </Button>
+                </div>
               </li>
             );
           })}

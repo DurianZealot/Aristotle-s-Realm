@@ -46,6 +46,7 @@ class SearchResult extends Component {
                     </p>
                   </span>
                 </span>
+                <div className='delete_button'>
                   <Button
                     variant="contained"
                     color="primary"
@@ -53,6 +54,8 @@ class SearchResult extends Component {
                     >
                     Delete
                   </Button>
+                </div>
+
               </li>
             );
           })}

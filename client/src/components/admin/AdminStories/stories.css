@@ -69,7 +69,11 @@
   .story_name{
     display: inline;
   }
-  
+  .delete_button{
+    display:block;
+    width: 75px;
+    height: 25px;
+  }
   .last_update{
     display: inline;
     float:right;
