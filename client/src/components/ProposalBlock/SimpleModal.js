@@ -4,7 +4,7 @@ import {Button, Input} from '@material-ui/core'
 import Modal from '@material-ui/core/Modal';
 import {CssTextField} from '../CssTextField/CssTextField'
 import { createNewChapter } from '../../actions/story';
-import {updateProposalStatus} from '../../actions/proposal'
+import {updateProposalStatus, deleteProposal, insertProposal} from '../../actions/proposal'
 
 function getModalStyle() {
   return {
@@ -64,8 +64,9 @@ export default function SimpleModal(props) {
     else if (action == 'delete'){
       answer = window.confirm('Are you going to delete your proposals ?')
       if(answer){
-        window.alert('Your proposal is deleted!')
-        handleClose()
+        deleteProposal(proposalId)
+          .then(() => {window.alert('You delete this proposal successfully');  handleClose(); window.location.reload();})
+          .catch(error => {window.alert('You fail to delete this proposal'); return}) 
       }
     }
     else if (action == 'close'){
@@ -87,15 +88,17 @@ export default function SimpleModal(props) {
     if (action == 'ACCEPT'){
       answer = window.confirm('Are you sure you are going to accept this proposal?')
       if (answer){
-        window.alert('You accept this proposal successfully')
-        handleClose()
+        insertProposal(proposalSourceId, proposalId, chapter, content)
+          .then(() => {window.alert('You accept this proposal successfully');  handleClose(); window.location.reload();})
+          .catch(error => {window.alert('You fail to accept this proposal'); return}) 
       }
     }
     else if (action == 'REJECT'){
       answer = window.confirm('Are you sure you are going to reject this proposal?')
       if (answer){
-        window.alert('You reject this proposal successfully')
-        handleClose()
+        updateProposalStatus(proposalId, 'Rejected')
+          .then(() => {window.alert('You reject this proposal successfully');  handleClose(); window.location.reload();})
+          .catch(error => {window.alert('You fail to reject this proposal'); return}) 
       }
     }
   }
@@ -180,7 +183,7 @@ export default function SimpleModal(props) {
       if(proposalStatus == 'Accepted' || proposalStatus == 'accepted'){
         return (
           <span style={{display: "flex",justifyContent: "space-around",width: "100%"}}>
-            {acceptOrRejectBtn('REJECT')}
+            {/* Once you accept, you cannot delete a proposal since it is already part of story and other already see it */}
             {closeBtn()}
           </span>
         )

@@ -52,7 +52,7 @@ class StoryBlock extends React.Component {
             return tag + ", ";
           })}
           <span className="stories-subitem">
-            <Link to={`/proposals/${storyId}`}>
+            <Link to={`/proposals/getAll/${storyId}`}>
               <span>View Proposals to this story</span>
             </Link>
           </span>
