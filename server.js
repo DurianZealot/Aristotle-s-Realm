@@ -433,6 +433,12 @@ app.post('/proposalUpdateStatus', async(req, res) => {
     .catch(error => res.send(500))
 })
 
+// A route to delete proposal
+app.delete('/proposalDelete', async(req, res) => {
+    Proposal.deleteOne({_id:req.body.propsalID})
+    .then(response => res.send(200))
+    .catch(error => res.send(500))
+})
 
 //Route for getting all stories
 app.get('/search/allstory', async(req, res) => {
@@ -509,6 +515,7 @@ app.get('/proposals/:storyId', async (req, res) => {
 		res.status(500).send('Internal Server Error')  // server error
 	}
 })
+
 
 app.post('/api/edit', mongoChecker, async (req, res) => {
     if (checkSessionVaid(req)){
