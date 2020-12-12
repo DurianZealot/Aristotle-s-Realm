@@ -93,3 +93,35 @@ export const getUsername = async (userID) => {
         .then(data => {console.log('In getUsername', data); return data})
         .catch(error => {return Promise.reject()})
 }
+
+//delete user
+export const deleteUser= async function(userID) { 
+    return axios({
+        method:'delete',
+        url:'/user',
+        data:{
+            userID
+        }
+    }).then(data => {return Promise.resolve()}).catch(error => {return Promise.reject()})
+}
+
+// Get all users
+export const getAllUsers = async function(){
+    return axios('/search/alluser', {
+        method:'get',
+    })
+        .then(response => {return Promise.resolve(response.data)})
+        .catch(error => {return Promise.reject()})
+}
+//get user by username
+export const searchUserWithKeywords = async function(searchKeyword){
+    return axios('/search/user', {
+        method:'get',
+        params:{
+            keyword: searchKeyword
+        }
+    })
+        .then(response => {return Promise.resolve(response.data)})
+        .catch(error => {return Promise.reject()})
+}
+

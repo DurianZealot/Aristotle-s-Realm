@@ -214,6 +214,29 @@ app.delete('/story', (req, res) => {
             })
         .catch(error => res.status(500).send(error))
 })
+
+// A route to delete a user 
+app.delete('/user', (req, res) => {
+    // Check if the session expired
+    if (checkSessionVaid(req)){
+        res.status(404).send('Session expired')
+        return 
+    }
+
+    User.deleteOne({_id:req.body.userID})
+        .then(response => 
+            {
+                Proposal.deleteMany({proposeByID:req.body.userID})
+                    .then(success => res.send(success))
+                    .catch(error => res.status(500).send(error))
+                Story.deleteMany({storyAuthorID:req.body.userID})
+                    .then(success => res.send(success))
+                    .catch(error => res.status(500).send(error))
+            })
+        .catch(error => res.status(500).send(error))
+})
+
+
 // A route update the story view by 1 
 app.post('/story/updateView', (req, res)=>{
     Story.findOneAndUpdate({_id: req.body.storyID}, {$inc:{'storyViewCount':1}})
@@ -443,6 +466,23 @@ app.delete('/proposalDelete', async(req, res) => {
 //Route for getting all stories
 app.get('/search/allstory', async(req, res) => {
     Story.find({storyTitle:{$regex: '.*'}})
+        .then(data => {res.status(200).send(data)})
+        .catch(error => res.status(500).send(error))
+})
+
+
+// Route for searching user by username
+app.get('/search/user', async(req, res) => {
+    const keyword= req.query.keyword
+    // Find all stories contain keyword
+    User.find({username:{$regex: '.*' + keyword +'.*'}})
+        .then(data => {res.status(200).send(data)})
+        .catch(error => res.status(500).send(error))
+})
+
+//Route for getting all users
+app.get('/search/alluser', async(req, res) => {
+    User.find({username:{$regex: '.*'}})
         .then(data => {res.status(200).send(data)})
         .catch(error => res.status(500).send(error))
 })

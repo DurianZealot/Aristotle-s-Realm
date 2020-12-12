@@ -30,7 +30,7 @@ export const postProposal = async function (
         },
       });
     })
-    .catch((error) => log(error));
+    .catch((error) => alert("You cannot make the same proposal twice!"));
 };
 
 

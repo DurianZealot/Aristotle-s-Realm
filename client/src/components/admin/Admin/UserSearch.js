@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import "./stories.css";
-class Searchbar extends Component {
+class UserSearch extends Component {
   render() {
-    const { searchKeyword, handleChange, searchStory } = this.props;
+    const { searchKeyword, handleChange, searchUser } = this.props;
     console.log(this.props);
     return (
       <div className="search_container">
@@ -14,7 +13,7 @@ class Searchbar extends Component {
         />
         <button
           className="search_button"
-          onClick={() => searchStory( searchKeyword)}
+          onClick={() => searchUser(searchKeyword)}
         >
           Search
         </button>
@@ -22,5 +21,4 @@ class Searchbar extends Component {
     );
   }
 }
-
-export default Searchbar;
+export default UserSearch;
