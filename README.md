@@ -1,8 +1,4 @@
-# team31
-
-
-
-## App : Aristotle's Realm
+## Application with React : Aristotle's Realm
 
 A platform that enables story writers to create original stories and contribute to others' stories
 
